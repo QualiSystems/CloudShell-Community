@@ -1,0 +1,579 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ResourceManagementExportImport xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.qualisystems.com/ResourceManagement/ExportImportConfigurationSchema.xsd">
+  <Tags>
+    <Tag Name="Editable After Run (System Administrators)" />
+    <Tag Name="Editable After Run (Everyone)" />
+    <Tag Name="Configuration" />
+    <Tag Name="Setting" />
+    <Tag Name="Displayed In Diagram" />
+    <Tag Name="Link Configurations" />
+    <Tag Name="Variable Capability" />
+    <Tag Name="Constant Capability" />
+    <Tag Name="Topology Category" />
+    <Tag Name="Displayed In Route Creation" />
+    <Tag Name="Editable After Run" />
+  </Tags>
+  <Attributes>
+    <AttributeInfo Name="Tag" Type="String" DefaultValue="" IsReadOnly="false" IsCommand="false">
+      <Tags />
+    </AttributeInfo>
+    <AttributeInfo Name="Block Storage Service Address" Type="String" DefaultValue="" IsReadOnly="false" IsCommand="false">
+      <Tags>
+        <TagName Name="Configuration" />
+      </Tags>
+    </AttributeInfo>
+    <AttributeInfo Name="Compute Service Address" Type="String" DefaultValue="" IsReadOnly="false" IsCommand="false">
+      <Tags>
+        <TagName Name="Configuration" />
+      </Tags>
+    </AttributeInfo>
+    <AttributeInfo Name="Identity Service Address" Type="String" DefaultValue="" IsReadOnly="false" IsCommand="false">
+      <Tags>
+        <TagName Name="Configuration" />
+      </Tags>
+    </AttributeInfo>
+    <AttributeInfo Name="Image Service Address" Type="String" DefaultValue="" IsReadOnly="false" IsCommand="false">
+      <Tags>
+        <TagName Name="Configuration" />
+      </Tags>
+    </AttributeInfo>
+    <AttributeInfo Name="Image Service Port" Type="String" DefaultValue="9292" IsReadOnly="false" IsCommand="false">
+      <Tags>
+        <TagName Name="Configuration" />
+      </Tags>
+    </AttributeInfo>
+    <AttributeInfo Name="Image Service Registry Address" Type="String" DefaultValue="" IsReadOnly="false" IsCommand="false">
+      <Tags>
+        <TagName Name="Configuration" />
+      </Tags>
+    </AttributeInfo>
+    <AttributeInfo Name="Networking Service Address" Type="String" DefaultValue="" IsReadOnly="false" IsCommand="false">
+      <Tags>
+        <TagName Name="Configuration" />
+      </Tags>
+    </AttributeInfo>
+    <AttributeInfo Name="Object Storage Service Address" Type="String" DefaultValue="" IsReadOnly="false" IsCommand="false">
+      <Tags>
+        <TagName Name="Configuration" />
+      </Tags>
+    </AttributeInfo>
+    <AttributeInfo Name="Orchestration Service Address" Type="String" DefaultValue="" IsReadOnly="false" IsCommand="false">
+      <Tags>
+        <TagName Name="Configuration" />
+      </Tags>
+    </AttributeInfo>
+    <AttributeInfo Name="Orchestration Service Port" Type="String" DefaultValue="8004" IsReadOnly="false" IsCommand="false">
+      <Tags>
+        <TagName Name="Configuration" />
+      </Tags>
+    </AttributeInfo>
+    <AttributeInfo Name="Telemetry Service Address" Type="String" DefaultValue="" IsReadOnly="false" IsCommand="false">
+      <Tags>
+        <TagName Name="Configuration" />
+      </Tags>
+    </AttributeInfo>
+    <AttributeInfo Name="Block Storage Service Port" Type="Numeric" DefaultValue="8776" IsReadOnly="false" IsCommand="false">
+      <Tags>
+        <TagName Name="Configuration" />
+      </Tags>
+    </AttributeInfo>
+    <AttributeInfo Name="Compute Service Port" Type="Numeric" DefaultValue="8774" IsReadOnly="false" IsCommand="false">
+      <Tags>
+        <TagName Name="Configuration" />
+      </Tags>
+    </AttributeInfo>
+    <AttributeInfo Name="Identity Service Port" Type="Numeric" DefaultValue="5000" IsReadOnly="false" IsCommand="false">
+      <Tags>
+        <TagName Name="Configuration" />
+      </Tags>
+    </AttributeInfo>
+    <AttributeInfo Name="Image Service Registry Port" Type="Numeric" DefaultValue="9191" IsReadOnly="false" IsCommand="false">
+      <Tags>
+        <TagName Name="Configuration" />
+      </Tags>
+    </AttributeInfo>
+    <AttributeInfo Name="Networking Service Port" Type="Numeric" DefaultValue="9696" IsReadOnly="false" IsCommand="false">
+      <Tags>
+        <TagName Name="Configuration" />
+      </Tags>
+    </AttributeInfo>
+    <AttributeInfo Name="Object Storage Service Port" Type="Numeric" DefaultValue="6000" IsReadOnly="false" IsCommand="false">
+      <Tags>
+        <TagName Name="Configuration" />
+      </Tags>
+    </AttributeInfo>
+    <AttributeInfo Name="Telemetry Service Port" Type="Numeric" DefaultValue="8777" IsReadOnly="false" IsCommand="false">
+      <Tags>
+        <TagName Name="Configuration" />
+      </Tags>
+    </AttributeInfo>
+    <AttributeInfo Name="Auto Negotiation" Type="Boolean" DefaultValue="True" IsReadOnly="false" IsCommand="true">
+      <Tags>
+        <TagName Name="Setting" />
+        <TagName Name="Variable Capability" />
+      </Tags>
+    </AttributeInfo>
+    <AttributeInfo xsi:type="LookupAttributeDetails" Name="Autoneg Capability" Type="Lookup" DefaultValue="34" IsReadOnly="false" IsCommand="false">
+      <Tags>
+        <TagName Name="Setting" />
+        <TagName Name="Variable Capability" />
+      </Tags>
+      <LookupValues>
+        <LookupValue NumericValue="34" StringValue="10 Mbps HD" />
+        <LookupValue NumericValue="35" StringValue="10 Mbps FD" />
+        <LookupValue NumericValue="50" StringValue="100 Mbps HD" />
+        <LookupValue NumericValue="51" StringValue="100 Mbps FD" />
+        <LookupValue NumericValue="67" StringValue="1 Gbps FD" />
+        <LookupValue NumericValue="99" StringValue="10 Gbps FD" />
+      </LookupValues>
+    </AttributeInfo>
+    <AttributeInfo xsi:type="LookupAttributeDetails" Name="Duplex" Type="Lookup" DefaultValue="3" IsReadOnly="false" IsCommand="true">
+      <Tags>
+        <TagName Name="Setting" />
+        <TagName Name="Variable Capability" />
+      </Tags>
+      <LookupValues>
+        <LookupValue NumericValue="2" StringValue="Half" />
+        <LookupValue NumericValue="3" StringValue="Full" />
+      </LookupValues>
+    </AttributeInfo>
+    <AttributeInfo xsi:type="LookupAttributeDetails" Name="Protocol" Type="Lookup" DefaultValue="2" IsReadOnly="false" IsCommand="true">
+      <Tags>
+        <TagName Name="Setting" />
+      </Tags>
+      <LookupValues>
+        <LookupValue NumericValue="0" StringValue="Not supported" />
+        <LookupValue NumericValue="1" StringValue="User defined" />
+        <LookupValue NumericValue="2" StringValue="Transparent" />
+        <LookupValue NumericValue="3" StringValue="IBM ESCON 200 MHz" />
+        <LookupValue NumericValue="4" StringValue="IBM FICON 200 MHz" />
+        <LookupValue NumericValue="5" StringValue="TelcoBus 77 MHz" />
+        <LookupValue NumericValue="6" StringValue="SONET OC1 51.84 Mbps" />
+        <LookupValue NumericValue="7" StringValue="SONET OC3 155.52 Mbps" />
+        <LookupValue NumericValue="8" StringValue="SONET OC12 622.08 Mbps" />
+        <LookupValue NumericValue="9" StringValue="SONET OC24 1.244 Gbps" />
+        <LookupValue NumericValue="10" StringValue="SONET OC48 2.488 Gbps" />
+        <LookupValue NumericValue="11" StringValue="SONET OC48/FEC 2.666 Gbps" />
+        <LookupValue NumericValue="12" StringValue="SONET OC192 9.9533 Gbps" />
+        <LookupValue NumericValue="13" StringValue="SONET OC192-FEC237 10.709 Gbps" />
+        <LookupValue NumericValue="14" StringValue="SONET OC192-FEC238 10.6642 Gbps" />
+        <LookupValue NumericValue="15" StringValue="SONET STS1 51.54 Mbps" />
+        <LookupValue NumericValue="16" StringValue="SONET OC1/3/12/24/48 51-2488 Mbps" />
+        <LookupValue NumericValue="17" StringValue="T-Carrier T1 1.544 Mbps" />
+        <LookupValue NumericValue="18" StringValue="T-Carrier T1 AMI 1.544 Mbps" />
+        <LookupValue NumericValue="19" StringValue="T-Carrier T1 B8ZS 1.544 Mbps" />
+        <LookupValue NumericValue="20" StringValue="T-Carrier T3 44.736 Mbps" />
+        <LookupValue NumericValue="21" StringValue="T-Carrier DS3 44.736 Mbps" />
+        <LookupValue NumericValue="22" StringValue="E-Carrier E1 2.048 Mbps" />
+        <LookupValue NumericValue="23" StringValue="E-Carrier E1 AMI 2.048 Mbps" />
+        <LookupValue NumericValue="24" StringValue="E-Carrier E1 HDB3 2.048 Mbps" />
+        <LookupValue NumericValue="25" StringValue="E-Carrier E3 34.368 Mbps" />
+        <LookupValue NumericValue="26" StringValue="Ethernet 10Base-T 10 Mbps" />
+        <LookupValue NumericValue="27" StringValue="Ethernet 10Base-FL 10 Mbps" />
+        <LookupValue NumericValue="28" StringValue="Ethernet 100Base-Tx 100 Mbps" />
+        <LookupValue NumericValue="29" StringValue="Ethernet 100Base-Fx 100 Mbps" />
+        <LookupValue NumericValue="30" StringValue="Ethernet 1000Base-T/X 1 Gbps" />
+        <LookupValue NumericValue="31" StringValue="Ethernet 1000Base-T 1 Gbps" />
+        <LookupValue NumericValue="32" StringValue="Ethernet 1000Base-X 1 Gbps" />
+        <LookupValue NumericValue="33" StringValue="Ethernet 10G-WAN 9.9533 Gbps" />
+        <LookupValue NumericValue="34" StringValue="Ethernet 10G-LAN 10.3125 Gbps" />
+        <LookupValue NumericValue="35" StringValue="Ethernet 10GLAN-FEC237 11.0957 Gbps" />
+        <LookupValue NumericValue="36" StringValue="Ethernet 10GLAN-FEC238 11.0491 Gbps" />
+        <LookupValue NumericValue="37" StringValue="Ethernet 10/100/1000 10-1000 Mbps" />
+        <LookupValue NumericValue="38" StringValue="FibreChannel 1GFC 1.063 Gbps" />
+        <LookupValue NumericValue="39" StringValue="FibreChannel 2GFC 2.125 Gbps" />
+        <LookupValue NumericValue="40" StringValue="FibreChannel 4GFC 4.25 Gbps" />
+        <LookupValue NumericValue="41" StringValue="FibreChannel 8GFC 8.5 Gbps" />
+        <LookupValue NumericValue="42" StringValue="FibreChannel 10G 10.5187 Gbps" />
+        <LookupValue NumericValue="43" StringValue="FibreChannel 10G-FEC237 11.318 Gbps" />
+        <LookupValue NumericValue="44" StringValue="FibreChannel 10G-FEC238 11.27 Gbps" />
+        <LookupValue NumericValue="45" StringValue="FibreChannel 1/2/4g-repeater 1-4 Gbps" />
+        <LookupValue NumericValue="46" StringValue="FibreChannel 2xGFC 2/4/8.. Gbps" />
+        <LookupValue NumericValue="47" StringValue="FibreChannel 1/2/4g-retimer 1-4 Gbps" />
+        <LookupValue NumericValue="48" StringValue="FibreChannel 1/2GFC 1-2 Gbps" />
+        <LookupValue NumericValue="49" StringValue="FibreChannel 1/2/4GFC 1-4 Gbps" />
+        <LookupValue NumericValue="50" StringValue="FDDI 125 Mbps" />
+        <LookupValue NumericValue="51" StringValue="InfiniBand 2.5G 2.5 Gbps" />
+        <LookupValue NumericValue="52" StringValue="InfiniBand 10G 10 Gbps" />
+        <LookupValue NumericValue="53" StringValue="DigitalVideo SDI270 270 MHz" />
+        <LookupValue NumericValue="54" StringValue="DigitalVideo SDI270-15 270 MHz" />
+        <LookupValue NumericValue="55" StringValue="DigitalVideo SDI540 540 MHz" />
+        <LookupValue NumericValue="56" StringValue="DigitalVideo SDI540-15 540 MHz" />
+        <LookupValue NumericValue="57" StringValue="DigitalVideo HDTV 1.485 GHz" />
+        <LookupValue NumericValue="58" StringValue="DigitalVideo HDTV-15 1.485 GHz" />
+        <LookupValue NumericValue="59" StringValue="SLIP" />
+        <LookupValue NumericValue="60" StringValue="PPP" />
+        <LookupValue NumericValue="61" StringValue="SDH STM64 9.9533 Gbps" />
+        <LookupValue NumericValue="62" StringValue="SDH STM64-FEC237 10.709 Gbps" />
+        <LookupValue NumericValue="63" StringValue="SDH STM64-FEC238 10.6642 Gbps" />
+        <LookupValue NumericValue="64" StringValue="Ethernet Quarter 10GE 3.125 Gbps" />
+        <LookupValue NumericValue="65" StringValue="Ethernet 10GWAN-FEC237 10.709 Gbps" />
+        <LookupValue NumericValue="66" StringValue="Ethernet 10GWAN-FEC238 10.6642 Gbps" />
+        <LookupValue NumericValue="67" StringValue="FibreChannel 1/2/4/8G 1-8.5 Gbps" />
+        <LookupValue NumericValue="68" StringValue="InfiniBand 5G 5 Gbps" />
+      </LookupValues>
+    </AttributeInfo>
+    <AttributeInfo xsi:type="LookupAttributeDetails" Name="Protocol Type" Type="Lookup" DefaultValue="0" IsReadOnly="false" IsCommand="false">
+      <Tags>
+        <TagName Name="Configuration" />
+        <TagName Name="Constant Capability" />
+      </Tags>
+      <LookupValues>
+        <LookupValue NumericValue="0" StringValue="Transparent" />
+        <LookupValue NumericValue="1" StringValue="Fibre Channel" />
+        <LookupValue NumericValue="2" StringValue="Ethernet" />
+        <LookupValue NumericValue="3" StringValue="SONET" />
+        <LookupValue NumericValue="4" StringValue="10G Ethernet" />
+        <LookupValue NumericValue="5" StringValue="Infiniband" />
+        <LookupValue NumericValue="6" StringValue="T-Carrier" />
+        <LookupValue NumericValue="7" StringValue="E-Carrier" />
+      </LookupValues>
+    </AttributeInfo>
+    <AttributeInfo xsi:type="LookupAttributeDetails" Name="Speed" Type="Lookup" DefaultValue="2" IsReadOnly="false" IsCommand="true">
+      <Tags>
+        <TagName Name="Setting" />
+        <TagName Name="Variable Capability" />
+      </Tags>
+      <LookupValues>
+        <LookupValue NumericValue="2" StringValue="10 Mbps" />
+        <LookupValue NumericValue="3" StringValue="100 Mbps" />
+        <LookupValue NumericValue="4" StringValue="1 Gbps" />
+        <LookupValue NumericValue="5" StringValue="10 Gbps" />
+        <LookupValue NumericValue="6" StringValue="1 Gbps CU" />
+        <LookupValue NumericValue="11" StringValue="1 Gbps Fiber" />
+        <LookupValue NumericValue="12" StringValue="2 Gbps Fiber" />
+        <LookupValue NumericValue="13" StringValue="4 Gbps Fiber" />
+        <LookupValue NumericValue="14" StringValue="8 Gbps Fiber" />
+        <LookupValue NumericValue="15" StringValue="10 Gbps Fiber Serial" />
+        <LookupValue NumericValue="21" StringValue="2.5 Gbps Sonnet" />
+        <LookupValue NumericValue="22" StringValue="10 Gbps Sonnet" />
+        <LookupValue NumericValue="31" StringValue="2.5 Gbps Infiniband" />
+        <LookupValue NumericValue="32" StringValue="10 Gbps Infiniband" />
+        <LookupValue NumericValue="41" StringValue="200 Mbps ESCON/SBCON" />
+      </LookupValues>
+    </AttributeInfo>
+    <AttributeInfo Name="Number of Power Outlets" Type="Numeric" DefaultValue="0" IsReadOnly="false" IsCommand="false">
+      <Tags />
+    </AttributeInfo>
+    <AttributeInfo Name="Password" Type="Password" DefaultValue="PASSW0RD" IsReadOnly="false" IsCommand="false">
+      <Tags>
+        <TagName Name="Configuration" />
+      </Tags>
+    </AttributeInfo>
+    <AttributeInfo Name="UniqueID" Type="String" DefaultValue="" IsReadOnly="false" IsCommand="false">
+      <Tags>
+        <TagName Name="Configuration" />
+      </Tags>
+    </AttributeInfo>
+    <AttributeInfo Name="User" Type="String" DefaultValue="" IsReadOnly="false" IsCommand="false">
+      <Tags>
+        <TagName Name="Configuration" />
+      </Tags>
+    </AttributeInfo>
+    <AttributeInfo Name="Tenant" Type="String" DefaultValue="" IsReadOnly="false" IsCommand="false">
+      <Tags>
+        <TagName Name="Configuration" />
+      </Tags>
+    </AttributeInfo>
+    <AttributeInfo Name="http or https" Type="String" DefaultValue="http" IsReadOnly="false" IsCommand="false">
+      <Tags>
+        <TagName Name="Configuration" />
+      </Tags>
+    </AttributeInfo>
+  </Attributes>
+  <Modules>
+    <Module Name="Measurement">
+      <AttachedAttributes>
+        <AttributeName>Tag</AttributeName>
+      </AttachedAttributes>
+    </Module>
+    <Module Name="Test">
+      <AttachedAttributes>
+        <AttributeName>Tag</AttributeName>
+      </AttachedAttributes>
+    </Module>
+    <Module Name="Resource Module">
+      <AttachedAttributes />
+    </Module>
+  </Modules>
+  <ResourceFamilies>
+    <ResourceFamily Name="PatchPanel" IsMappableContainer="true" IsMappable="false" IsConnectable="false" IsLicenseCheckRequired="false" IsAllConnectedContainer="false" IsLockedByDefault="false" AcceptsMultipleConnections="false" Description="" SupportsMulticastMapping="true" SupportsLoopbackMapping="true" IsPowerSwitch="false" IsConsoleServer="false">
+      <AttachedAttributes />
+      <AttributeValues />
+      <Models>
+        <ResourceModel Name="Generic PatchPanel" Description="" SupportsConcurrentCommands="false">
+          <AttachedAttributes />
+          <AttributeValues />
+          <ParentModels />
+          <Drivers>
+            <DriverName>Patch Panel Driver</DriverName>
+          </Drivers>
+        </ResourceModel>
+      </Models>
+    </ResourceFamily>
+    <ResourceFamily Name="Panel Jack" IsMappableContainer="false" IsMappable="true" IsConnectable="true" IsLicenseCheckRequired="false" IsAllConnectedContainer="false" IsLockedByDefault="true" AcceptsMultipleConnections="false" Description="" SupportsMulticastMapping="false" SupportsLoopbackMapping="false" IsPowerSwitch="false" IsConsoleServer="false">
+      <AttachedAttributes />
+      <AttributeValues />
+      <Models>
+        <ResourceModel Name="Generic Jack" Description="" SupportsConcurrentCommands="false">
+          <AttachedAttributes>
+            <AttachedAttribute Name="Protocol Type" IsOverridable="true" IsLocal="false">
+              <AllowedValues>
+                <AllowedValue>0</AllowedValue>
+              </AllowedValues>
+            </AttachedAttribute>
+          </AttachedAttributes>
+          <AttributeValues>
+            <AttributeValue Name="Protocol Type" Value="0" />
+          </AttributeValues>
+          <ParentModels>
+            <ParentModelName>Generic PatchPanel</ParentModelName>
+          </ParentModels>
+          <Drivers />
+        </ResourceModel>
+      </Models>
+    </ResourceFamily>
+    <ResourceFamily Name="Network" IsMappableContainer="false" IsMappable="false" IsConnectable="true" IsLicenseCheckRequired="false" IsAllConnectedContainer="true" IsLockedByDefault="false" AcceptsMultipleConnections="true" Description="" SupportsMulticastMapping="false" SupportsLoopbackMapping="false" IsPowerSwitch="false" IsConsoleServer="false">
+      <AttachedAttributes />
+      <AttributeValues />
+      <Models>
+        <ResourceModel Name="Network Generic Model" Description="" SupportsConcurrentCommands="false">
+          <AttachedAttributes />
+          <AttributeValues />
+          <ParentModels />
+          <Drivers />
+        </ResourceModel>
+      </Models>
+    </ResourceFamily>
+    <ResourceFamily Name="Console Server" IsMappableContainer="false" IsMappable="false" IsConnectable="false" IsLicenseCheckRequired="false" IsAllConnectedContainer="false" IsLockedByDefault="true" AcceptsMultipleConnections="false" Description="" SupportsMulticastMapping="false" SupportsLoopbackMapping="false" IsPowerSwitch="false" IsConsoleServer="true">
+      <AttachedAttributes>
+        <AttachedAttribute Name="User" IsOverridable="true" IsLocal="false">
+          <AllowedValues />
+        </AttachedAttribute>
+        <AttachedAttribute Name="Password" IsOverridable="true" IsLocal="false">
+          <AllowedValues />
+        </AttachedAttribute>
+      </AttachedAttributes>
+      <AttributeValues>
+        <AttributeValue Name="User" Value="" />
+        <AttributeValue Name="Password" Value="" />
+      </AttributeValues>
+      <Models />
+    </ResourceFamily>
+    <ResourceFamily Name="Power Controller" IsMappableContainer="false" IsMappable="false" IsConnectable="false" IsLicenseCheckRequired="false" IsAllConnectedContainer="false" IsLockedByDefault="false" AcceptsMultipleConnections="false" Description="" SupportsMulticastMapping="false" SupportsLoopbackMapping="false" IsPowerSwitch="true" IsConsoleServer="false">
+      <AttachedAttributes>
+        <AttachedAttribute Name="Number of Power Outlets" IsOverridable="true" IsLocal="true">
+          <AllowedValues />
+        </AttachedAttribute>
+        <AttachedAttribute Name="User" IsOverridable="true" IsLocal="false">
+          <AllowedValues />
+        </AttachedAttribute>
+        <AttachedAttribute Name="Password" IsOverridable="true" IsLocal="false">
+          <AllowedValues />
+        </AttachedAttribute>
+      </AttachedAttributes>
+      <AttributeValues>
+        <AttributeValue Name="Number of Power Outlets" Value="0" />
+        <AttributeValue Name="User" Value="" />
+        <AttributeValue Name="Password" Value="" />
+      </AttributeValues>
+      <Models>
+        <ResourceModel Name="SmartPower 2L" Description="" SupportsConcurrentCommands="false">
+          <AttachedAttributes />
+          <AttributeValues>
+            <AttributeValue Name="Number of Power Outlets" Value="0" />
+            <AttributeValue Name="User" Value="" />
+            <AttributeValue Name="Password" Value="" />
+          </AttributeValues>
+          <ParentModels />
+          <Drivers />
+        </ResourceModel>
+        <ResourceModel Name="SmartPower 4L" Description="" SupportsConcurrentCommands="false">
+          <AttachedAttributes />
+          <AttributeValues>
+            <AttributeValue Name="Number of Power Outlets" Value="0" />
+            <AttributeValue Name="User" Value="" />
+            <AttributeValue Name="Password" Value="" />
+          </AttributeValues>
+          <ParentModels />
+          <Drivers />
+        </ResourceModel>
+        <ResourceModel Name="SmartPower 8H" Description="" SupportsConcurrentCommands="false">
+          <AttachedAttributes />
+          <AttributeValues>
+            <AttributeValue Name="Number of Power Outlets" Value="0" />
+            <AttributeValue Name="User" Value="" />
+            <AttributeValue Name="Password" Value="" />
+          </AttributeValues>
+          <ParentModels />
+          <Drivers />
+        </ResourceModel>
+      </Models>
+    </ResourceFamily>
+    <ResourceFamily Name="Power Controller Port" IsMappableContainer="false" IsMappable="false" IsConnectable="true" IsLicenseCheckRequired="false" IsAllConnectedContainer="false" IsLockedByDefault="true" AcceptsMultipleConnections="false" Description="" SupportsMulticastMapping="false" SupportsLoopbackMapping="false" IsPowerSwitch="false" IsConsoleServer="false">
+      <AttachedAttributes />
+      <AttributeValues />
+      <Models>
+        <ResourceModel Name="SmartPower 2L Port" Description="" SupportsConcurrentCommands="false">
+          <AttachedAttributes />
+          <AttributeValues />
+          <ParentModels>
+            <ParentModelName>SmartPower 2L</ParentModelName>
+          </ParentModels>
+          <Drivers />
+        </ResourceModel>
+        <ResourceModel Name="SmartPower 4L Port" Description="" SupportsConcurrentCommands="false">
+          <AttachedAttributes />
+          <AttributeValues />
+          <ParentModels>
+            <ParentModelName>SmartPower 4L</ParentModelName>
+          </ParentModels>
+          <Drivers />
+        </ResourceModel>
+        <ResourceModel Name="SmartPower 8H Port" Description="" SupportsConcurrentCommands="false">
+          <AttachedAttributes />
+          <AttributeValues />
+          <ParentModels>
+            <ParentModelName>SmartPower 8H</ParentModelName>
+          </ParentModels>
+          <Drivers />
+        </ResourceModel>
+      </Models>
+    </ResourceFamily>
+    <ResourceFamily Name="Power Port" IsMappableContainer="false" IsMappable="false" IsConnectable="true" IsLicenseCheckRequired="false" IsAllConnectedContainer="false" IsLockedByDefault="true" AcceptsMultipleConnections="false" Description="" SupportsMulticastMapping="false" SupportsLoopbackMapping="false" IsPowerSwitch="false" IsConsoleServer="false">
+      <AttachedAttributes />
+      <AttributeValues />
+      <Models>
+        <ResourceModel Name="Generic Power Port" Description="" SupportsConcurrentCommands="false">
+          <AttachedAttributes />
+          <AttributeValues />
+          <ParentModels />
+          <Drivers />
+        </ResourceModel>
+      </Models>
+    </ResourceFamily>
+    <ResourceFamily Name="OpenStack Installation" IsMappableContainer="false" IsMappable="false" IsConnectable="false" IsLicenseCheckRequired="false" IsAllConnectedContainer="false" IsLockedByDefault="false" AcceptsMultipleConnections="false" Description="" SupportsMulticastMapping="false" SupportsLoopbackMapping="false" IsPowerSwitch="false" IsConsoleServer="false">
+      <AttachedAttributes />
+      <AttributeValues />
+      <Models>
+        <ResourceModel Name="OpenStack Installation v2" Description="" SupportsConcurrentCommands="false">
+          <AttachedAttributes>
+            <AttachedAttribute Name="Block Storage Service Port" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="Block Storage Service Address" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="Compute Service Address" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="Compute Service Port" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="Identity Service Port" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="Identity Service Address" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="Image Service Address" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="Image Service Port" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="Image Service Registry Address" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="Image Service Registry Port" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="Networking Service Address" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="Networking Service Port" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="Object Storage Service Address" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="Object Storage Service Port" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="Orchestration Service Address" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="Orchestration Service Port" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="Password" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="Tenant" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="User" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="http or https" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+          </AttachedAttributes>
+          <AttributeValues>
+            <AttributeValue Name="Block Storage Service Port" Value="8776" />
+            <AttributeValue Name="Block Storage Service Address" Value="" />
+            <AttributeValue Name="Compute Service Address" Value="" />
+            <AttributeValue Name="Compute Service Port" Value="8774" />
+            <AttributeValue Name="Identity Service Port" Value="5000" />
+            <AttributeValue Name="Identity Service Address" Value="" />
+            <AttributeValue Name="Image Service Address" Value="" />
+            <AttributeValue Name="Image Service Port" Value="9292" />
+            <AttributeValue Name="Image Service Registry Address" Value="" />
+            <AttributeValue Name="Image Service Registry Port" Value="9191" />
+            <AttributeValue Name="Networking Service Address" Value="" />
+            <AttributeValue Name="Networking Service Port" Value="9696" />
+            <AttributeValue Name="Object Storage Service Address" Value="" />
+            <AttributeValue Name="Object Storage Service Port" Value="6000" />
+            <AttributeValue Name="Orchestration Service Address" Value="" />
+            <AttributeValue Name="Orchestration Service Port" Value="8004" />
+            <AttributeValue Name="Password" Value="" />
+            <AttributeValue Name="Tenant" Value="" />
+            <AttributeValue Name="User" Value="" />
+            <AttributeValue Name="http or https" Value="http" />
+          </AttributeValues>
+          <ParentModels />
+          <Drivers />
+        </ResourceModel>
+      </Models>
+    </ResourceFamily>
+    <ResourceFamily Name="Virtual Machine" IsMappableContainer="false" IsMappable="false" IsConnectable="false" IsLicenseCheckRequired="false" IsAllConnectedContainer="false" IsLockedByDefault="true" AcceptsMultipleConnections="false" Description="" SupportsMulticastMapping="false" SupportsLoopbackMapping="false" IsPowerSwitch="false" IsConsoleServer="false">
+      <AttachedAttributes />
+      <AttributeValues />
+      <Models>
+        <ResourceModel Name="OpenStack VM" Description="" SupportsConcurrentCommands="false">
+          <AttachedAttributes>
+            <AttachedAttribute Name="UniqueID" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="User" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="Password" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+          </AttachedAttributes>
+          <AttributeValues>
+            <AttributeValue Name="UniqueID" Value="" />
+            <AttributeValue Name="User" Value="" />
+            <AttributeValue Name="Password" Value="" />
+          </AttributeValues>
+          <ParentModels />
+          <Drivers />
+        </ResourceModel>
+      </Models>
+    </ResourceFamily>
+  </ResourceFamilies>
+  <DriverDescriptors>
+    <DriverDescriptor Name="Patch Panel Driver" DriverType="L1SwitchDriver" />
+  </DriverDescriptors>
+</ResourceManagementExportImport>

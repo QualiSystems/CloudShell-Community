@@ -1,0 +1,38 @@
+from cloudshell.workflow.orchestration.sandbox import Sandbox
+import cloudshell.helpers.scripts.cloudshell_dev_helpers as dev_helpers
+
+# following 2 lines were used for debugging so should be commented out
+#dev_helpers.attach_to_cloudshell_as(user="admin", password="admin", domain="GLOBAL",
+                                    #reservation_id="4dd674b9-f787-4ee9-8aab-86013905c42a", server_address="localhost")
+
+# Get the current sandbox object
+Sandbox = Sandbox()
+
+print '\nChecking other current uses of the sandbox resources:'
+
+for resource_name, resource in Sandbox.components.resources.iteritems():
+    # Check it's the top level resource and not a port
+    if ('/' not in resource_name):
+        print '\n\t' + '{0}'.format(resource_name) + ' (Shared=' + str(resource.Shared) + '):'
+        # Keep track of number of other current reservations
+        res_count = 0
+        # Check on current availability of each resource using its name
+        for r in Sandbox.automation_api.GetResourceAvailability([resource_name], True).Resources:
+            # For each reservation record of resource
+            for res in r.Reservations:
+                # if resource is Shared and it's not a resource component like a port
+                if '/' not in r.FullName:
+                        if res.ReservationId != Sandbox.reservationContextDetails.id:
+                            print '\n\t\t' + res.ReservationName + ' (' + res.ReservationId + ')'
+                            print '\t\t\tOwner: ' + res.Owner
+                            print '\t\t\tStart: ' + res.StartTime + ' (mm/dd/yyyy)'
+                            print '\t\t\t  End: ' + res.EndTime + ' (mm/dd/yyyy)'
+                            res_count=res_count + 1
+                            print '\t\t\t Uses:'
+                            for rr in Sandbox.automation_api.GetReservationDetails(res.ReservationId).ReservationDescription.Resources:
+                                if rr.Name.startswith(resource_name + '/'):
+                                    print '\t\t\t\t' + rr.Name
+        if res_count == 0:
+            print '\t\t** No other current reservations **'
+
+

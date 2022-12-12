@@ -1,0 +1,25 @@
+##Add a line for any config param you would like populated in Project.Params##
+##Lines beginning with ## are comments and will be ignored.  Blank lines ignored##
+##Format is: ParamName,ParamValue,Description[optional]
+
+
+##TestShell Server Settings##
+TestShellServer,localhost,required
+TestShellPort,8028,required
+AdminUser,admin,optional
+AdminPassword,password,optional
+
+##Driver Debug Settings ##
+DebugLogEnabled,True,require - True or False
+DebugLogLocation,required - c:\TestShell\DriverLogs\DriverLog.txt
+DebugLogMaxKB,100,required
+
+##Outgoing Email Settings
+EmailEnabled,False,required
+SMTPServer,smtp.gmail.com,required
+SMTPPort,587,required - check server configuration
+SSLEnabled,1,required - check server requirement
+SMTPSender,example@gmail.com,required - 
+SMTPUser,example@gmail.com,required but leave blank if smtp server allows anonymous send
+SMTPPassword,examplePassword,required but leave blank if smtp server allows anonymous sent
+

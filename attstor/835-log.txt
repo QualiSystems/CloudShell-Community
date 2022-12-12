@@ -1,0 +1,314 @@
+2018-05-31 16:15:19,621 [INFO]: QS.works qs_logger - log_execution_info   --------------- Execution Info: ---------------------------
+2018-05-31 16:15:19,621 [INFO]: QS.works qs_logger - log_execution_info   Python version      : 2.7.10
+2018-05-31 16:15:19,621 [INFO]: QS.works qs_logger - log_execution_info   Platform            : Windows
+2018-05-31 16:15:19,622 [INFO]: QS.works qs_logger - log_execution_info   Hostname            : NTFTESTCLI-PS
+2018-05-31 16:15:19,622 [INFO]: QS.works qs_logger - log_execution_info   Operating System    : Windows-2012Server-6.2.9200
+2018-05-31 16:15:19,624 [INFO]: QS.works qs_logger - log_execution_info   IP                  : 192.168.57.177
+2018-05-31 16:15:19,625 [INFO]: QS.works qs_logger - log_execution_info   -----------------------------------------------------------
+2018-05-31 16:15:19,625 [INFO]: QS.works qs_logger - log_execution_info   
+2018-05-31 16:15:20,029 [INFO]: QS.works.Thread-5 driver - get_inventory        Autoload started
+2018-05-31 16:15:20,030 [ERROR]: QS.works.Thread-5 alcatel_enable_snmp_flow - _validate_snmp_v2_params SNMP community cannot be empty
+2018-05-31 16:15:35,535 [INFO]: QS.works.Thread-7 driver - get_inventory        Autoload started
+2018-05-31 16:15:35,615 [DEBUG]: QS.works.Thread-7 session_pool_manager - _new_session         Creating new session
+2018-05-31 16:15:36,016 [ERROR]: QS.works.Thread-7 ssh_session - _initialize_session  Traceback (most recent call last):
+2018-05-31 16:15:36,016 [ERROR]: QS.works.Thread-7 ssh_session - _initialize_session    File "C:\ProgramData\QualiSystems\venv\AlcatelTimetraRouterShell2G_1_71\lib\site-packages\cloudshell\cli\session\ssh_session.py", line 63, in _initialize_session
+2018-05-31 16:15:36,016 [ERROR]: QS.works.Thread-7 ssh_session - _initialize_session      banner_timeout=30, allow_agent=False, look_for_keys=False, pkey=self.pkey)
+2018-05-31 16:15:36,016 [ERROR]: QS.works.Thread-7 ssh_session - _initialize_session    File "C:\ProgramData\QualiSystems\venv\AlcatelTimetraRouterShell2G_1_71\lib\site-packages\paramiko\client.py", line 416, in connect
+2018-05-31 16:15:36,016 [ERROR]: QS.works.Thread-7 ssh_session - _initialize_session      look_for_keys, gss_auth, gss_kex, gss_deleg_creds, t.gss_host,
+2018-05-31 16:15:36,016 [ERROR]: QS.works.Thread-7 ssh_session - _initialize_session    File "C:\ProgramData\QualiSystems\venv\AlcatelTimetraRouterShell2G_1_71\lib\site-packages\paramiko\client.py", line 701, in _auth
+2018-05-31 16:15:36,016 [ERROR]: QS.works.Thread-7 ssh_session - _initialize_session      raise saved_exception
+2018-05-31 16:15:36,016 [ERROR]: QS.works.Thread-7 ssh_session - _initialize_session  AuthenticationException: Authentication failed.
+2018-05-31 16:15:36,016 [ERROR]: QS.works.Thread-7 ssh_session - _initialize_session  
+2018-05-31 16:15:36,137 [DEBUG]: QS.works.Thread-7 session_manager_impl - new_session          ('SSHSession', 'Failed to open connection to device: Authentication failed.')
+2018-05-31 16:15:37,138 [DEBUG]: QS.works.Thread-7 session_manager_impl - new_session          [Errno 10061] No connection could be made because the target machine actively refused it
+2018-05-31 16:15:39,140 [ERROR]: QS.works.Thread-7 ssh_session - _initialize_session  Traceback (most recent call last):
+2018-05-31 16:15:39,140 [ERROR]: QS.works.Thread-7 ssh_session - _initialize_session    File "C:\ProgramData\QualiSystems\venv\AlcatelTimetraRouterShell2G_1_71\lib\site-packages\cloudshell\cli\session\ssh_session.py", line 63, in _initialize_session
+2018-05-31 16:15:39,140 [ERROR]: QS.works.Thread-7 ssh_session - _initialize_session      banner_timeout=30, allow_agent=False, look_for_keys=False, pkey=self.pkey)
+2018-05-31 16:15:39,140 [ERROR]: QS.works.Thread-7 ssh_session - _initialize_session    File "C:\ProgramData\QualiSystems\venv\AlcatelTimetraRouterShell2G_1_71\lib\site-packages\paramiko\client.py", line 350, in connect
+2018-05-31 16:15:39,140 [ERROR]: QS.works.Thread-7 ssh_session - _initialize_session      raise NoValidConnectionsError(errors)
+2018-05-31 16:15:39,140 [ERROR]: QS.works.Thread-7 ssh_session - _initialize_session  NoValidConnectionsError: [Errno None] Unable to connect to port 22 on 192.168.57.177 or ::1
+2018-05-31 16:15:39,140 [ERROR]: QS.works.Thread-7 ssh_session - _initialize_session  
+2018-05-31 16:15:39,140 [DEBUG]: QS.works.Thread-7 session_manager_impl - new_session          ('ConsoleSSHSession', 'Failed to open connection to device: ')
+2018-05-31 16:15:41,145 [DEBUG]: QS.works.Thread-7 session_manager_impl - new_session          [Errno 10061] No connection could be made because the target machine actively refused it
+2018-05-31 16:15:43,154 [DEBUG]: QS.works.Thread-7 session_manager_impl - new_session          [Errno 10061] No connection could be made because the target machine actively refused it
+2018-05-31 16:16:49,174 [INFO]: QS.works.Thread-10 driver - get_inventory        Autoload started
+2018-05-31 16:16:50,448 [DEBUG]: QS.works.Thread-10 session_pool_manager - _new_session         Creating new session
+2018-05-31 16:16:51,115 [DEBUG]: QS.works.Thread-10 expect_session - hardware_expect      
+2018-05-31 16:16:51,115 [DEBUG]: QS.works.Thread-10 expect_session - hardware_expect      Welcome
+2018-05-31 16:16:51,115 [DEBUG]: QS.works.Thread-10 expect_session - hardware_expect      *A:SWECS0000203TS# 
+2018-05-31 16:16:51,316 [DEBUG]: QS.works.Thread-10 expect_session - hardware_expect      Command: 
+2018-05-31 16:16:51,423 [DEBUG]: QS.works.Thread-10 expect_session - hardware_expect      
+2018-05-31 16:16:51,423 [DEBUG]: QS.works.Thread-10 expect_session - hardware_expect      *A:SWECS0000203TS# 
+2018-05-31 16:16:51,624 [DEBUG]: QS.works.Thread-10 expect_session - hardware_expect      Command: environment no more
+2018-05-31 16:16:51,732 [DEBUG]: QS.works.Thread-10 expect_session - hardware_expect      environment no more 
+2018-05-31 16:16:51,732 [DEBUG]: QS.works.Thread-10 expect_session - hardware_expect      *A:SWECS0000203TS# 
+2018-05-31 16:16:51,834 [DEBUG]: QS.works.Thread-10 session_manager_impl - new_session          Created new SSH session
+2018-05-31 16:16:51,934 [DEBUG]: QS.works.Thread-10 expect_session - hardware_expect      Command: 
+2018-05-31 16:16:52,043 [DEBUG]: QS.works.Thread-10 expect_session - hardware_expect      
+2018-05-31 16:16:52,043 [DEBUG]: QS.works.Thread-10 expect_session - hardware_expect      *A:SWECS0000203TS# 
+2018-05-31 16:16:52,244 [DEBUG]: QS.works.Thread-10 expect_session - hardware_expect      Command: configure system snmp no shutdown
+2018-05-31 16:16:52,354 [DEBUG]: QS.works.Thread-10 expect_session - hardware_expect      configure system snmp no shutdown 
+2018-05-31 16:16:52,354 [DEBUG]: QS.works.Thread-10 expect_session - hardware_expect      MINOR: CLI Command not allowed for this user.
+2018-05-31 16:16:52,354 [DEBUG]: QS.works.Thread-10 expect_session - hardware_expect      *A:SWECS0000203TS# 
+2018-05-31 16:16:52,558 [DEBUG]: QS.works.Thread-10 expect_session - hardware_expect      Command: configure system security snmp community 	
+2018-05-31 16:16:52,673 [DEBUG]: QS.works.Thread-10 expect_session - hardware_expect      configure system security snmp community [1D [1D 
+2018-05-31 16:16:52,673 [DEBUG]: QS.works.Thread-10 expect_session - hardware_expect      <community-string>
+2018-05-31 16:16:52,673 [DEBUG]: QS.works.Thread-10 expect_session - hardware_expect      
+2018-05-31 16:16:52,673 [DEBUG]: QS.works.Thread-10 expect_session - hardware_expect      *A:SWECS0000203TS# configure system security snmp community 
+2018-05-31 16:16:52,673 [DEBUG]: QS.works.Thread-10 expect_session - hardware_expect                                                                  ^
+2018-05-31 16:16:52,673 [DEBUG]: QS.works.Thread-10 expect_session - hardware_expect      Error: Missing parameter
+2018-05-31 16:16:52,673 [DEBUG]: QS.works.Thread-10 expect_session - hardware_expect      *A:SWECS0000203TS# 
+2018-05-31 16:16:52,875 [DEBUG]: QS.works.Thread-10 expect_session - hardware_expect      Command: configure system security snmp community public r version v2c
+2018-05-31 16:16:52,996 [DEBUG]: QS.works.Thread-10 expect_session - hardware_expect      configure system security snmp community public r version v2c 
+2018-05-31 16:16:52,996 [DEBUG]: QS.works.Thread-10 expect_session - hardware_expect                                                                  ^
+2018-05-31 16:16:52,996 [DEBUG]: QS.works.Thread-10 expect_session - hardware_expect      MINOR: CLI Command not allowed for this user.
+2018-05-31 16:16:52,996 [DEBUG]: QS.works.Thread-10 expect_session - hardware_expect      *A:SWECS0000203TS# 
+2018-05-31 16:16:53,098 [INFO]: QS.works.Thread-10 alcatel_enable_snmp_flow - _enable_snmp_v2      Start verification of SNMP config
+2018-05-31 16:16:53,198 [DEBUG]: QS.works.Thread-10 expect_session - hardware_expect      Command: configure system security snmp community 	
+2018-05-31 16:16:53,315 [DEBUG]: QS.works.Thread-10 expect_session - hardware_expect      configure system security snmp community [1D [1D 
+2018-05-31 16:16:53,315 [DEBUG]: QS.works.Thread-10 expect_session - hardware_expect      <community-string>
+2018-05-31 16:16:53,315 [DEBUG]: QS.works.Thread-10 expect_session - hardware_expect      
+2018-05-31 16:16:53,315 [DEBUG]: QS.works.Thread-10 expect_session - hardware_expect      *A:SWECS0000203TS# configure system security snmp community 
+2018-05-31 16:16:53,315 [DEBUG]: QS.works.Thread-10 expect_session - hardware_expect                                                                  ^
+2018-05-31 16:16:53,315 [DEBUG]: QS.works.Thread-10 expect_session - hardware_expect      Error: Missing parameter
+2018-05-31 16:16:53,315 [DEBUG]: QS.works.Thread-10 expect_session - hardware_expect      *A:SWECS0000203TS# 
+2018-05-31 16:16:53,415 [DEBUG]: QS.works.Thread-10 session_pool_manager - remove_session       Removing session
+2018-05-31 16:16:53,415 [DEBUG]: QS.works.Thread-10 session_manager_impl - remove_session       SSH session was removed
+2018-05-31 16:17:15,242 [INFO]: QS.works.Thread-13 driver - get_inventory        Autoload started
+2018-05-31 16:17:15,260 [DEBUG]: QS.works.Thread-13 session_pool_manager - _new_session         Creating new session
+2018-05-31 16:17:15,913 [DEBUG]: QS.works.Thread-13 expect_session - hardware_expect      
+2018-05-31 16:17:15,913 [DEBUG]: QS.works.Thread-13 expect_session - hardware_expect      Welcome
+2018-05-31 16:17:15,913 [DEBUG]: QS.works.Thread-13 expect_session - hardware_expect      *A:SWECS0000203TS# 
+2018-05-31 16:17:16,115 [DEBUG]: QS.works.Thread-13 expect_session - hardware_expect      Command: 
+2018-05-31 16:17:16,221 [DEBUG]: QS.works.Thread-13 expect_session - hardware_expect      
+2018-05-31 16:17:16,221 [DEBUG]: QS.works.Thread-13 expect_session - hardware_expect      *A:SWECS0000203TS# 
+2018-05-31 16:17:16,424 [DEBUG]: QS.works.Thread-13 expect_session - hardware_expect      Command: environment no more
+2018-05-31 16:17:16,532 [DEBUG]: QS.works.Thread-13 expect_session - hardware_expect      environment no more 
+2018-05-31 16:17:16,532 [DEBUG]: QS.works.Thread-13 expect_session - hardware_expect      *A:SWECS0000203TS# 
+2018-05-31 16:17:16,634 [DEBUG]: QS.works.Thread-13 session_manager_impl - new_session          Created new SSH session
+2018-05-31 16:17:16,734 [DEBUG]: QS.works.Thread-13 expect_session - hardware_expect      Command: 
+2018-05-31 16:17:16,841 [DEBUG]: QS.works.Thread-13 expect_session - hardware_expect      
+2018-05-31 16:17:16,841 [DEBUG]: QS.works.Thread-13 expect_session - hardware_expect      *A:SWECS0000203TS# 
+2018-05-31 16:17:17,045 [DEBUG]: QS.works.Thread-13 expect_session - hardware_expect      Command: configure system snmp no shutdown
+2018-05-31 16:17:17,155 [DEBUG]: QS.works.Thread-13 expect_session - hardware_expect      configure system snmp no shutdown 
+2018-05-31 16:17:17,155 [DEBUG]: QS.works.Thread-13 expect_session - hardware_expect      MINOR: CLI Command not allowed for this user.
+2018-05-31 16:17:17,155 [DEBUG]: QS.works.Thread-13 expect_session - hardware_expect      *A:SWECS0000203TS# 
+2018-05-31 16:17:17,358 [DEBUG]: QS.works.Thread-13 expect_session - hardware_expect      Command: configure system security snmp community 	
+2018-05-31 16:17:17,473 [DEBUG]: QS.works.Thread-13 expect_session - hardware_expect      configure system security snmp community [1D [1D 
+2018-05-31 16:17:17,473 [DEBUG]: QS.works.Thread-13 expect_session - hardware_expect      <community-string>
+2018-05-31 16:17:17,473 [DEBUG]: QS.works.Thread-13 expect_session - hardware_expect      
+2018-05-31 16:17:17,473 [DEBUG]: QS.works.Thread-13 expect_session - hardware_expect      *A:SWECS0000203TS# configure system security snmp community 
+2018-05-31 16:17:17,473 [DEBUG]: QS.works.Thread-13 expect_session - hardware_expect                                                                  ^
+2018-05-31 16:17:17,473 [DEBUG]: QS.works.Thread-13 expect_session - hardware_expect      Error: Missing parameter
+2018-05-31 16:17:17,473 [DEBUG]: QS.works.Thread-13 expect_session - hardware_expect      *A:SWECS0000203TS# 
+2018-05-31 16:17:17,674 [DEBUG]: QS.works.Thread-13 expect_session - hardware_expect      Command: configure system security snmp community private rw version v2c
+2018-05-31 16:17:17,792 [DEBUG]: QS.works.Thread-13 expect_session - hardware_expect      configure system security snmp community private rw version v2c 
+2018-05-31 16:17:17,792 [DEBUG]: QS.works.Thread-13 expect_session - hardware_expect                                                                  ^
+2018-05-31 16:17:17,792 [DEBUG]: QS.works.Thread-13 expect_session - hardware_expect      MINOR: CLI Command not allowed for this user.
+2018-05-31 16:17:17,792 [DEBUG]: QS.works.Thread-13 expect_session - hardware_expect      *A:SWECS0000203TS# 
+2018-05-31 16:17:17,894 [INFO]: QS.works.Thread-13 alcatel_enable_snmp_flow - _enable_snmp_v2      Start verification of SNMP config
+2018-05-31 16:17:17,994 [DEBUG]: QS.works.Thread-13 expect_session - hardware_expect      Command: configure system security snmp community 	
+2018-05-31 16:17:18,109 [DEBUG]: QS.works.Thread-13 expect_session - hardware_expect      configure system security snmp community [1D [1D 
+2018-05-31 16:17:18,109 [DEBUG]: QS.works.Thread-13 expect_session - hardware_expect      <community-string>
+2018-05-31 16:17:18,109 [DEBUG]: QS.works.Thread-13 expect_session - hardware_expect      
+2018-05-31 16:17:18,109 [DEBUG]: QS.works.Thread-13 expect_session - hardware_expect      *A:SWECS0000203TS# configure system security snmp community 
+2018-05-31 16:17:18,109 [DEBUG]: QS.works.Thread-13 expect_session - hardware_expect                                                                  ^
+2018-05-31 16:17:18,109 [DEBUG]: QS.works.Thread-13 expect_session - hardware_expect      Error: Missing parameter
+2018-05-31 16:17:18,109 [DEBUG]: QS.works.Thread-13 expect_session - hardware_expect      *A:SWECS0000203TS# 
+2018-05-31 16:17:18,210 [DEBUG]: QS.works.Thread-13 session_pool_manager - remove_session       Removing session
+2018-05-31 16:17:18,210 [DEBUG]: QS.works.Thread-13 session_manager_impl - remove_session       SSH session was removed
+2018-05-31 16:17:31,170 [INFO]: QS.works.Thread-16 driver - get_inventory        Autoload started
+2018-05-31 16:17:31,187 [DEBUG]: QS.works.Thread-16 session_pool_manager - _new_session         Creating new session
+2018-05-31 16:17:31,841 [DEBUG]: QS.works.Thread-16 expect_session - hardware_expect      
+2018-05-31 16:17:31,841 [DEBUG]: QS.works.Thread-16 expect_session - hardware_expect      Welcome
+2018-05-31 16:17:31,841 [DEBUG]: QS.works.Thread-16 expect_session - hardware_expect      *A:SWECS0000203TS# 
+2018-05-31 16:17:32,042 [DEBUG]: QS.works.Thread-16 expect_session - hardware_expect      Command: 
+2018-05-31 16:17:32,147 [DEBUG]: QS.works.Thread-16 expect_session - hardware_expect      
+2018-05-31 16:17:32,147 [DEBUG]: QS.works.Thread-16 expect_session - hardware_expect      *A:SWECS0000203TS# 
+2018-05-31 16:17:32,348 [DEBUG]: QS.works.Thread-16 expect_session - hardware_expect      Command: environment no more
+2018-05-31 16:17:32,456 [DEBUG]: QS.works.Thread-16 expect_session - hardware_expect      environment no more 
+2018-05-31 16:17:32,456 [DEBUG]: QS.works.Thread-16 expect_session - hardware_expect      *A:SWECS0000203TS# 
+2018-05-31 16:17:32,556 [DEBUG]: QS.works.Thread-16 session_manager_impl - new_session          Created new SSH session
+2018-05-31 16:17:32,657 [DEBUG]: QS.works.Thread-16 expect_session - hardware_expect      Command: 
+2018-05-31 16:17:32,762 [DEBUG]: QS.works.Thread-16 expect_session - hardware_expect      
+2018-05-31 16:17:32,762 [DEBUG]: QS.works.Thread-16 expect_session - hardware_expect      *A:SWECS0000203TS# 
+2018-05-31 16:17:32,963 [DEBUG]: QS.works.Thread-16 expect_session - hardware_expect      Command: configure system snmp no shutdown
+2018-05-31 16:17:33,072 [DEBUG]: QS.works.Thread-16 expect_session - hardware_expect      configure system snmp no shutdown 
+2018-05-31 16:17:33,072 [DEBUG]: QS.works.Thread-16 expect_session - hardware_expect      MINOR: CLI Command not allowed for this user.
+2018-05-31 16:17:33,072 [DEBUG]: QS.works.Thread-16 expect_session - hardware_expect      *A:SWECS0000203TS# 
+2018-05-31 16:17:33,273 [DEBUG]: QS.works.Thread-16 expect_session - hardware_expect      Command: configure system security snmp community 	
+2018-05-31 16:17:33,391 [DEBUG]: QS.works.Thread-16 expect_session - hardware_expect      configure system security snmp community [1D [1D 
+2018-05-31 16:17:33,391 [DEBUG]: QS.works.Thread-16 expect_session - hardware_expect      <community-string>
+2018-05-31 16:17:33,391 [DEBUG]: QS.works.Thread-16 expect_session - hardware_expect      
+2018-05-31 16:17:33,391 [DEBUG]: QS.works.Thread-16 expect_session - hardware_expect      *A:SWECS0000203TS# configure system security snmp community 
+2018-05-31 16:17:33,391 [DEBUG]: QS.works.Thread-16 expect_session - hardware_expect                                                                  ^
+2018-05-31 16:17:33,391 [DEBUG]: QS.works.Thread-16 expect_session - hardware_expect      Error: Missing parameter
+2018-05-31 16:17:33,391 [DEBUG]: QS.works.Thread-16 expect_session - hardware_expect      *A:SWECS0000203TS# 
+2018-05-31 16:17:33,592 [DEBUG]: QS.works.Thread-16 expect_session - hardware_expect      Command: configure system security snmp community private rw version v2c
+2018-05-31 16:17:33,713 [DEBUG]: QS.works.Thread-16 expect_session - hardware_expect      configure system security snmp community private rw version v2c 
+2018-05-31 16:17:33,713 [DEBUG]: QS.works.Thread-16 expect_session - hardware_expect                                                                  ^
+2018-05-31 16:17:33,713 [DEBUG]: QS.works.Thread-16 expect_session - hardware_expect      MINOR: CLI Command not allowed for this user.
+2018-05-31 16:17:33,713 [DEBUG]: QS.works.Thread-16 expect_session - hardware_expect      *A:SWECS0000203TS# 
+2018-05-31 16:17:33,813 [INFO]: QS.works.Thread-16 alcatel_enable_snmp_flow - _enable_snmp_v2      Start verification of SNMP config
+2018-05-31 16:17:33,914 [DEBUG]: QS.works.Thread-16 expect_session - hardware_expect      Command: configure system security snmp community 	
+2018-05-31 16:17:34,035 [DEBUG]: QS.works.Thread-16 expect_session - hardware_expect      configure system security snmp community [1D [1D 
+2018-05-31 16:17:34,035 [DEBUG]: QS.works.Thread-16 expect_session - hardware_expect      <community-string>
+2018-05-31 16:17:34,035 [DEBUG]: QS.works.Thread-16 expect_session - hardware_expect      
+2018-05-31 16:17:34,035 [DEBUG]: QS.works.Thread-16 expect_session - hardware_expect      *A:SWECS0000203TS# configure system security snmp community 
+2018-05-31 16:17:34,035 [DEBUG]: QS.works.Thread-16 expect_session - hardware_expect                                                                  ^
+2018-05-31 16:17:34,035 [DEBUG]: QS.works.Thread-16 expect_session - hardware_expect      Error: Missing parameter
+2018-05-31 16:17:34,035 [DEBUG]: QS.works.Thread-16 expect_session - hardware_expect      *A:SWECS0000203TS# 
+2018-05-31 16:17:34,135 [DEBUG]: QS.works.Thread-16 session_pool_manager - remove_session       Removing session
+2018-05-31 16:17:34,135 [DEBUG]: QS.works.Thread-16 session_manager_impl - remove_session       SSH session was removed
+2018-05-31 16:25:11,201 [INFO]: QS.works.Thread-19 driver - get_inventory        Autoload started
+2018-05-31 16:25:11,219 [DEBUG]: QS.works.Thread-19 session_pool_manager - _new_session         Creating new session
+2018-05-31 16:25:11,875 [DEBUG]: QS.works.Thread-19 expect_session - hardware_expect      
+2018-05-31 16:25:11,875 [DEBUG]: QS.works.Thread-19 expect_session - hardware_expect      Welcome
+2018-05-31 16:25:11,875 [DEBUG]: QS.works.Thread-19 expect_session - hardware_expect      *A:SWECS0000203TS# 
+2018-05-31 16:25:12,076 [DEBUG]: QS.works.Thread-19 expect_session - hardware_expect      Command: 
+2018-05-31 16:25:12,183 [DEBUG]: QS.works.Thread-19 expect_session - hardware_expect      
+2018-05-31 16:25:12,183 [DEBUG]: QS.works.Thread-19 expect_session - hardware_expect      *A:SWECS0000203TS# 
+2018-05-31 16:25:12,384 [DEBUG]: QS.works.Thread-19 expect_session - hardware_expect      Command: environment no more
+2018-05-31 16:25:12,492 [DEBUG]: QS.works.Thread-19 expect_session - hardware_expect      environment no more 
+2018-05-31 16:25:12,492 [DEBUG]: QS.works.Thread-19 expect_session - hardware_expect      *A:SWECS0000203TS# 
+2018-05-31 16:25:12,595 [DEBUG]: QS.works.Thread-19 session_manager_impl - new_session          Created new SSH session
+2018-05-31 16:25:12,696 [DEBUG]: QS.works.Thread-19 expect_session - hardware_expect      Command: 
+2018-05-31 16:25:12,802 [DEBUG]: QS.works.Thread-19 expect_session - hardware_expect      
+2018-05-31 16:25:12,802 [DEBUG]: QS.works.Thread-19 expect_session - hardware_expect      *A:SWECS0000203TS# 
+2018-05-31 16:25:13,003 [DEBUG]: QS.works.Thread-19 expect_session - hardware_expect      Command: configure system snmp no shutdown
+2018-05-31 16:25:13,114 [DEBUG]: QS.works.Thread-19 expect_session - hardware_expect      configure system snmp no shutdown 
+2018-05-31 16:25:13,114 [DEBUG]: QS.works.Thread-19 expect_session - hardware_expect      MINOR: CLI Command not allowed for this user.
+2018-05-31 16:25:13,114 [DEBUG]: QS.works.Thread-19 expect_session - hardware_expect      *A:SWECS0000203TS# 
+2018-05-31 16:25:13,315 [DEBUG]: QS.works.Thread-19 expect_session - hardware_expect      Command: configure system security snmp community 	
+2018-05-31 16:25:13,430 [DEBUG]: QS.works.Thread-19 expect_session - hardware_expect      configure system security snmp community [1D [1D 
+2018-05-31 16:25:13,430 [DEBUG]: QS.works.Thread-19 expect_session - hardware_expect      <community-string>
+2018-05-31 16:25:13,430 [DEBUG]: QS.works.Thread-19 expect_session - hardware_expect      
+2018-05-31 16:25:13,430 [DEBUG]: QS.works.Thread-19 expect_session - hardware_expect      *A:SWECS0000203TS# configure system security snmp community 
+2018-05-31 16:25:13,430 [DEBUG]: QS.works.Thread-19 expect_session - hardware_expect                                                                  ^
+2018-05-31 16:25:13,430 [DEBUG]: QS.works.Thread-19 expect_session - hardware_expect      Error: Missing parameter
+2018-05-31 16:25:13,430 [DEBUG]: QS.works.Thread-19 expect_session - hardware_expect      *A:SWECS0000203TS# 
+2018-05-31 16:25:13,631 [DEBUG]: QS.works.Thread-19 expect_session - hardware_expect      Command: configure system security snmp community private rw version v2c
+2018-05-31 16:25:13,749 [DEBUG]: QS.works.Thread-19 expect_session - hardware_expect      configure system security snmp community private rw version v2c 
+2018-05-31 16:25:13,749 [DEBUG]: QS.works.Thread-19 expect_session - hardware_expect                                                                  ^
+2018-05-31 16:25:13,749 [DEBUG]: QS.works.Thread-19 expect_session - hardware_expect      MINOR: CLI Command not allowed for this user.
+2018-05-31 16:25:13,749 [DEBUG]: QS.works.Thread-19 expect_session - hardware_expect      *A:SWECS0000203TS# 
+2018-05-31 16:25:13,849 [INFO]: QS.works.Thread-19 alcatel_enable_snmp_flow - _enable_snmp_v2      Start verification of SNMP config
+2018-05-31 16:25:13,950 [DEBUG]: QS.works.Thread-19 expect_session - hardware_expect      Command: configure system security snmp community 	
+2018-05-31 16:25:14,065 [DEBUG]: QS.works.Thread-19 expect_session - hardware_expect      configure system security snmp community [1D [1D 
+2018-05-31 16:25:14,065 [DEBUG]: QS.works.Thread-19 expect_session - hardware_expect      <community-string>
+2018-05-31 16:25:14,065 [DEBUG]: QS.works.Thread-19 expect_session - hardware_expect      
+2018-05-31 16:25:14,065 [DEBUG]: QS.works.Thread-19 expect_session - hardware_expect      *A:SWECS0000203TS# configure system security snmp community 
+2018-05-31 16:25:14,065 [DEBUG]: QS.works.Thread-19 expect_session - hardware_expect                                                                  ^
+2018-05-31 16:25:14,065 [DEBUG]: QS.works.Thread-19 expect_session - hardware_expect      Error: Missing parameter
+2018-05-31 16:25:14,065 [DEBUG]: QS.works.Thread-19 expect_session - hardware_expect      *A:SWECS0000203TS# 
+2018-05-31 16:25:14,165 [DEBUG]: QS.works.Thread-19 session_pool_manager - remove_session       Removing session
+2018-05-31 16:25:14,165 [DEBUG]: QS.works.Thread-19 session_manager_impl - remove_session       SSH session was removed
+2018-05-31 16:25:28,644 [INFO]: QS.works.Thread-22 driver - get_inventory        Autoload started
+2018-05-31 16:25:28,661 [DEBUG]: QS.works.Thread-22 session_pool_manager - _new_session         Creating new session
+2018-05-31 16:25:29,311 [DEBUG]: QS.works.Thread-22 expect_session - hardware_expect      
+2018-05-31 16:25:29,311 [DEBUG]: QS.works.Thread-22 expect_session - hardware_expect      Welcome
+2018-05-31 16:25:29,311 [DEBUG]: QS.works.Thread-22 expect_session - hardware_expect      *A:SWECS0000203TS# 
+2018-05-31 16:25:29,512 [DEBUG]: QS.works.Thread-22 expect_session - hardware_expect      Command: 
+2018-05-31 16:25:29,618 [DEBUG]: QS.works.Thread-22 expect_session - hardware_expect      
+2018-05-31 16:25:29,618 [DEBUG]: QS.works.Thread-22 expect_session - hardware_expect      *A:SWECS0000203TS# 
+2018-05-31 16:25:29,819 [DEBUG]: QS.works.Thread-22 expect_session - hardware_expect      Command: environment no more
+2018-05-31 16:25:29,927 [DEBUG]: QS.works.Thread-22 expect_session - hardware_expect      environment no more 
+2018-05-31 16:25:29,927 [DEBUG]: QS.works.Thread-22 expect_session - hardware_expect      *A:SWECS0000203TS# 
+2018-05-31 16:25:30,028 [DEBUG]: QS.works.Thread-22 session_manager_impl - new_session          Created new SSH session
+2018-05-31 16:25:30,128 [DEBUG]: QS.works.Thread-22 expect_session - hardware_expect      Command: 
+2018-05-31 16:25:30,234 [DEBUG]: QS.works.Thread-22 expect_session - hardware_expect      
+2018-05-31 16:25:30,234 [DEBUG]: QS.works.Thread-22 expect_session - hardware_expect      *A:SWECS0000203TS# 
+2018-05-31 16:25:30,436 [DEBUG]: QS.works.Thread-22 expect_session - hardware_expect      Command: configure system snmp no shutdown
+2018-05-31 16:25:30,545 [DEBUG]: QS.works.Thread-22 expect_session - hardware_expect      configure system snmp no shutdown 
+2018-05-31 16:25:30,545 [DEBUG]: QS.works.Thread-22 expect_session - hardware_expect      MINOR: CLI Command not allowed for this user.
+2018-05-31 16:25:30,545 [DEBUG]: QS.works.Thread-22 expect_session - hardware_expect      *A:SWECS0000203TS# 
+2018-05-31 16:25:30,746 [DEBUG]: QS.works.Thread-22 expect_session - hardware_expect      Command: configure system security snmp community 	
+2018-05-31 16:25:30,861 [DEBUG]: QS.works.Thread-22 expect_session - hardware_expect      configure system security snmp community [1D [1D 
+2018-05-31 16:25:30,861 [DEBUG]: QS.works.Thread-22 expect_session - hardware_expect      <community-string>
+2018-05-31 16:25:30,861 [DEBUG]: QS.works.Thread-22 expect_session - hardware_expect      
+2018-05-31 16:25:30,861 [DEBUG]: QS.works.Thread-22 expect_session - hardware_expect      *A:SWECS0000203TS# configure system security snmp community 
+2018-05-31 16:25:30,861 [DEBUG]: QS.works.Thread-22 expect_session - hardware_expect                                                                  ^
+2018-05-31 16:25:30,861 [DEBUG]: QS.works.Thread-22 expect_session - hardware_expect      Error: Missing parameter
+2018-05-31 16:25:30,861 [DEBUG]: QS.works.Thread-22 expect_session - hardware_expect      *A:SWECS0000203TS# 
+2018-05-31 16:25:31,062 [DEBUG]: QS.works.Thread-22 expect_session - hardware_expect      Command: configure system security snmp community private rw version v2c
+2018-05-31 16:25:31,180 [DEBUG]: QS.works.Thread-22 expect_session - hardware_expect      configure system security snmp community private rw version v2c 
+2018-05-31 16:25:31,180 [DEBUG]: QS.works.Thread-22 expect_session - hardware_expect                                                                  ^
+2018-05-31 16:25:31,180 [DEBUG]: QS.works.Thread-22 expect_session - hardware_expect      MINOR: CLI Command not allowed for this user.
+2018-05-31 16:25:31,180 [DEBUG]: QS.works.Thread-22 expect_session - hardware_expect      *A:SWECS0000203TS# 
+2018-05-31 16:25:31,282 [INFO]: QS.works.Thread-22 alcatel_enable_snmp_flow - _enable_snmp_v2      Start verification of SNMP config
+2018-05-31 16:25:31,382 [DEBUG]: QS.works.Thread-22 expect_session - hardware_expect      Command: configure system security snmp community 	
+2018-05-31 16:25:31,499 [DEBUG]: QS.works.Thread-22 expect_session - hardware_expect      configure system security snmp community [1D [1D 
+2018-05-31 16:25:31,499 [DEBUG]: QS.works.Thread-22 expect_session - hardware_expect      <community-string>
+2018-05-31 16:25:31,499 [DEBUG]: QS.works.Thread-22 expect_session - hardware_expect      
+2018-05-31 16:25:31,499 [DEBUG]: QS.works.Thread-22 expect_session - hardware_expect      *A:SWECS0000203TS# configure system security snmp community 
+2018-05-31 16:25:31,499 [DEBUG]: QS.works.Thread-22 expect_session - hardware_expect                                                                  ^
+2018-05-31 16:25:31,499 [DEBUG]: QS.works.Thread-22 expect_session - hardware_expect      Error: Missing parameter
+2018-05-31 16:25:31,499 [DEBUG]: QS.works.Thread-22 expect_session - hardware_expect      *A:SWECS0000203TS# 
+2018-05-31 16:25:31,599 [DEBUG]: QS.works.Thread-22 session_pool_manager - remove_session       Removing session
+2018-05-31 16:25:31,599 [DEBUG]: QS.works.Thread-22 session_manager_impl - remove_session       SSH session was removed
+2018-05-31 16:25:49,390 [INFO]: QS.works.Thread-25 driver - get_inventory        Autoload started
+2018-05-31 16:25:50,749 [DEBUG]: QS.works.Thread-25 session_pool_manager - _new_session         Creating new session
+2018-05-31 16:25:51,403 [DEBUG]: QS.works.Thread-25 expect_session - hardware_expect      
+2018-05-31 16:25:51,403 [DEBUG]: QS.works.Thread-25 expect_session - hardware_expect      Welcome
+2018-05-31 16:25:51,403 [DEBUG]: QS.works.Thread-25 expect_session - hardware_expect      *A:SWECS0000203TS# 
+2018-05-31 16:25:51,604 [DEBUG]: QS.works.Thread-25 expect_session - hardware_expect      Command: 
+2018-05-31 16:25:51,710 [DEBUG]: QS.works.Thread-25 expect_session - hardware_expect      
+2018-05-31 16:25:51,710 [DEBUG]: QS.works.Thread-25 expect_session - hardware_expect      *A:SWECS0000203TS# 
+2018-05-31 16:25:51,911 [DEBUG]: QS.works.Thread-25 expect_session - hardware_expect      Command: environment no more
+2018-05-31 16:25:52,019 [DEBUG]: QS.works.Thread-25 expect_session - hardware_expect      environment no more 
+2018-05-31 16:25:52,019 [DEBUG]: QS.works.Thread-25 expect_session - hardware_expect      *A:SWECS0000203TS# 
+2018-05-31 16:25:52,119 [DEBUG]: QS.works.Thread-25 session_manager_impl - new_session          Created new SSH session
+2018-05-31 16:25:52,220 [DEBUG]: QS.works.Thread-25 expect_session - hardware_expect      Command: 
+2018-05-31 16:25:52,329 [DEBUG]: QS.works.Thread-25 expect_session - hardware_expect      
+2018-05-31 16:25:52,329 [DEBUG]: QS.works.Thread-25 expect_session - hardware_expect      *A:SWECS0000203TS# 
+2018-05-31 16:25:52,530 [DEBUG]: QS.works.Thread-25 expect_session - hardware_expect      Command: configure system snmp no shutdown
+2018-05-31 16:25:52,640 [DEBUG]: QS.works.Thread-25 expect_session - hardware_expect      configure system snmp no shutdown 
+2018-05-31 16:25:52,640 [DEBUG]: QS.works.Thread-25 expect_session - hardware_expect      MINOR: CLI Command not allowed for this user.
+2018-05-31 16:25:52,640 [DEBUG]: QS.works.Thread-25 expect_session - hardware_expect      *A:SWECS0000203TS# 
+2018-05-31 16:25:52,841 [DEBUG]: QS.works.Thread-25 expect_session - hardware_expect      Command: configure system security snmp community 	
+2018-05-31 16:25:52,957 [DEBUG]: QS.works.Thread-25 expect_session - hardware_expect      configure system security snmp community [1D [1D 
+2018-05-31 16:25:52,957 [DEBUG]: QS.works.Thread-25 expect_session - hardware_expect      <community-string>
+2018-05-31 16:25:52,957 [DEBUG]: QS.works.Thread-25 expect_session - hardware_expect      
+2018-05-31 16:25:52,957 [DEBUG]: QS.works.Thread-25 expect_session - hardware_expect      *A:SWECS0000203TS# configure system security snmp community 
+2018-05-31 16:25:52,957 [DEBUG]: QS.works.Thread-25 expect_session - hardware_expect                                                                  ^
+2018-05-31 16:25:52,957 [DEBUG]: QS.works.Thread-25 expect_session - hardware_expect      Error: Missing parameter
+2018-05-31 16:25:52,957 [DEBUG]: QS.works.Thread-25 expect_session - hardware_expect      *A:SWECS0000203TS# 
+2018-05-31 16:25:53,158 [DEBUG]: QS.works.Thread-25 expect_session - hardware_expect      Command: configure system security snmp community private rw version v2c
+2018-05-31 16:25:53,276 [DEBUG]: QS.works.Thread-25 expect_session - hardware_expect      configure system security snmp community private rw version v2c 
+2018-05-31 16:25:53,276 [DEBUG]: QS.works.Thread-25 expect_session - hardware_expect                                                                  ^
+2018-05-31 16:25:53,276 [DEBUG]: QS.works.Thread-25 expect_session - hardware_expect      MINOR: CLI Command not allowed for this user.
+2018-05-31 16:25:53,276 [DEBUG]: QS.works.Thread-25 expect_session - hardware_expect      *A:SWECS0000203TS# 
+2018-05-31 16:25:53,377 [INFO]: QS.works.Thread-25 alcatel_enable_snmp_flow - _enable_snmp_v2      Start verification of SNMP config
+2018-05-31 16:25:53,477 [DEBUG]: QS.works.Thread-25 expect_session - hardware_expect      Command: configure system security snmp community 	
+2018-05-31 16:25:53,594 [DEBUG]: QS.works.Thread-25 expect_session - hardware_expect      configure system security snmp community [1D [1D 
+2018-05-31 16:25:53,594 [DEBUG]: QS.works.Thread-25 expect_session - hardware_expect      <community-string>
+2018-05-31 16:25:53,594 [DEBUG]: QS.works.Thread-25 expect_session - hardware_expect      
+2018-05-31 16:25:53,594 [DEBUG]: QS.works.Thread-25 expect_session - hardware_expect      *A:SWECS0000203TS# configure system security snmp community 
+2018-05-31 16:25:53,594 [DEBUG]: QS.works.Thread-25 expect_session - hardware_expect                                                                  ^
+2018-05-31 16:25:53,594 [DEBUG]: QS.works.Thread-25 expect_session - hardware_expect      Error: Missing parameter
+2018-05-31 16:25:53,594 [DEBUG]: QS.works.Thread-25 expect_session - hardware_expect      *A:SWECS0000203TS# 
+2018-05-31 16:25:53,694 [DEBUG]: QS.works.Thread-25 session_pool_manager - remove_session       Removing session
+2018-05-31 16:25:53,694 [DEBUG]: QS.works.Thread-25 session_manager_impl - remove_session       SSH session was removed
+2018-05-31 16:33:09,388 [INFO]: QS.works.Thread-28 driver - get_inventory        Autoload started
+2018-05-31 16:33:09,476 [DEBUG]: QS.works.Thread-28 session_pool_manager - _new_session         Creating new session
+2018-05-31 16:33:09,812 [ERROR]: QS.works.Thread-28 ssh_session - _initialize_session  Traceback (most recent call last):
+2018-05-31 16:33:09,812 [ERROR]: QS.works.Thread-28 ssh_session - _initialize_session    File "C:\ProgramData\QualiSystems\venv\AlcatelTimetraRouterShell2G_1_71\lib\site-packages\cloudshell\cli\session\ssh_session.py", line 63, in _initialize_session
+2018-05-31 16:33:09,812 [ERROR]: QS.works.Thread-28 ssh_session - _initialize_session      banner_timeout=30, allow_agent=False, look_for_keys=False, pkey=self.pkey)
+2018-05-31 16:33:09,812 [ERROR]: QS.works.Thread-28 ssh_session - _initialize_session    File "C:\ProgramData\QualiSystems\venv\AlcatelTimetraRouterShell2G_1_71\lib\site-packages\paramiko\client.py", line 416, in connect
+2018-05-31 16:33:09,812 [ERROR]: QS.works.Thread-28 ssh_session - _initialize_session      look_for_keys, gss_auth, gss_kex, gss_deleg_creds, t.gss_host,
+2018-05-31 16:33:09,812 [ERROR]: QS.works.Thread-28 ssh_session - _initialize_session    File "C:\ProgramData\QualiSystems\venv\AlcatelTimetraRouterShell2G_1_71\lib\site-packages\paramiko\client.py", line 701, in _auth
+2018-05-31 16:33:09,812 [ERROR]: QS.works.Thread-28 ssh_session - _initialize_session      raise saved_exception
+2018-05-31 16:33:09,812 [ERROR]: QS.works.Thread-28 ssh_session - _initialize_session  AuthenticationException: Authentication failed.
+2018-05-31 16:33:09,812 [ERROR]: QS.works.Thread-28 ssh_session - _initialize_session  
+2018-05-31 16:33:09,931 [DEBUG]: QS.works.Thread-28 session_manager_impl - new_session          ('SSHSession', 'Failed to open connection to device: Authentication failed.')
+2018-05-31 16:33:10,934 [DEBUG]: QS.works.Thread-28 session_manager_impl - new_session          [Errno 10061] No connection could be made because the target machine actively refused it
+2018-05-31 16:33:12,934 [ERROR]: QS.works.Thread-28 ssh_session - _initialize_session  Traceback (most recent call last):
+2018-05-31 16:33:12,934 [ERROR]: QS.works.Thread-28 ssh_session - _initialize_session    File "C:\ProgramData\QualiSystems\venv\AlcatelTimetraRouterShell2G_1_71\lib\site-packages\cloudshell\cli\session\ssh_session.py", line 63, in _initialize_session
+2018-05-31 16:33:12,934 [ERROR]: QS.works.Thread-28 ssh_session - _initialize_session      banner_timeout=30, allow_agent=False, look_for_keys=False, pkey=self.pkey)
+2018-05-31 16:33:12,934 [ERROR]: QS.works.Thread-28 ssh_session - _initialize_session    File "C:\ProgramData\QualiSystems\venv\AlcatelTimetraRouterShell2G_1_71\lib\site-packages\paramiko\client.py", line 350, in connect
+2018-05-31 16:33:12,934 [ERROR]: QS.works.Thread-28 ssh_session - _initialize_session      raise NoValidConnectionsError(errors)
+2018-05-31 16:33:12,934 [ERROR]: QS.works.Thread-28 ssh_session - _initialize_session  NoValidConnectionsError: [Errno None] Unable to connect to port 22 on 192.168.57.177 or ::1
+2018-05-31 16:33:12,934 [ERROR]: QS.works.Thread-28 ssh_session - _initialize_session  
+2018-05-31 16:33:12,934 [DEBUG]: QS.works.Thread-28 session_manager_impl - new_session          ('ConsoleSSHSession', 'Failed to open connection to device: ')
+2018-05-31 16:33:14,936 [DEBUG]: QS.works.Thread-28 session_manager_impl - new_session          [Errno 10061] No connection could be made because the target machine actively refused it
+2018-05-31 16:33:16,937 [DEBUG]: QS.works.Thread-28 session_manager_impl - new_session          [Errno 10061] No connection could be made because the target machine actively refused it

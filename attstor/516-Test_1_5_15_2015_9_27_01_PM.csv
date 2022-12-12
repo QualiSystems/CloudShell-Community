@@ -1,0 +1,5 @@
+Time,Branch,Document,Step,Error,Description,Error Handler,Parameters,Stack Trace,Exception
+5/15/2015 9:27:05 PM,0,Test 1,Error1,General,An error has occurred,,"","TestShell\Tests\Local\ticket22397\Test 1
+",""
+5/15/2015 9:27:05 PM,0,Test 1,Error1,General,Ending Test with error...,Error1,"","",""
+5/15/2015 9:27:05 PM,0,Test 1,,General,An error has occurred,,"","TestShell\Tests\Local\ticket22397\Test 1",""

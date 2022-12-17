@@ -1,0 +1,35 @@
+Example JSON:
+{  
+   "Groups":[  
+      {  
+         "GroupName":"Test-CN",
+         "Constraints":[  
+            {  
+               "Attribute":"Location",
+               "Value":"cn"
+            }
+         ],
+                                 "MaxReservationDuration": 4,
+                                 "MaxConcurrentReservations": 11
+      },
+      {  
+         "EnableRegex":true,
+         "GroupName":"Test-ER",
+         "Constraints":[  
+            {  
+               "Attribute":"Location",
+               "Value":"eu*"
+            }
+         ]
+      },
+      {  
+         "GroupName":"Public Users",
+         "Constraints":[  
+            {  
+               "Attribute":"Location",
+               "Value":"*"
+            }
+         ]
+      }
+   ]
+}

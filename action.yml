@@ -27,15 +27,13 @@ jobs:
     runs-on: ubuntu-latest
     container: node:16
     steps:
-      - run: node --version
-      - run: npm --version
+      - run: npm ci
       - run: npm install markdown-it
       - run: npm install @actions/core
       - run: npm install @actions/github
       - run: npm install @octokit/graphql
       - run: npm install https
       - uses: actions/checkout@v3
-      - run: npm install    
 runs:
   using: 'node16'
   main: 'repoDiscUpd.js'

@@ -1,0 +1,41 @@
+name: 'Community Integration Discussion Update Action'
+description: 'act - Dispatch Workflow (Manually)'
+inputs:
+  ownerSlashRepo: 
+    description: '{Owner}/{Repo}'
+    required: true
+    type:
+  discNum:
+    description: 'Github Discussion Number'
+    required: true
+    type: number
+  clgI:
+    description: 'Challenge, Request'
+    required: true
+    type: string
+  clgS:
+    description: 'Challenge'
+    required: true
+    type: string
+  tkn: 
+    description: 'tkn'
+    required: true
+    type: string
+
+jobs:
+  build-node:
+    runs-on: ubuntu-latest
+    container: node:16
+    steps:
+      - run: node --version
+      - run: npm --version
+      - run: npm install markdown-it
+      - run: npm install @actions/core
+      - run: npm install @actions/github
+      - run: npm install @octokit/graphql
+      - run: npm install https
+      - uses: actions/checkout@v3
+      - run: npm install    
+runs:
+  using: 'node16'
+  main: 'repoDiscUpd.js'

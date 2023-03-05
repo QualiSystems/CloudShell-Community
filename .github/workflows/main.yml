@@ -1,0 +1,33 @@
+name: 'Update Community Integration Discussion'
+on:
+  workflow_dispatch:
+    inputs:
+      ownerSlashRepo:
+        description: "{Owner}/{Repo}"
+        required: true
+        type: string
+      discNum:
+        description: "Github Discussion Number"
+        required: true
+        type: number
+      clgI:
+        description: "Challenge"
+        required: true
+        type: string
+
+jobs:
+  intupd-action:
+    name: Integration Discussion Refresh
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Resolve
+        uses: ./
+        id: resolve
+        with:
+          ownerSlashrepo: ${{ inputs.ownerSlashRepo }}
+          discNum: ${{ inputs.discNum }}
+          clgI: ${{ inputs.clgI }}
+          clgS: ${{ secrets.INTUPD_CHALLENGE }}
+          tkn: ${{ secrets.GITHUB_TOKEN }}

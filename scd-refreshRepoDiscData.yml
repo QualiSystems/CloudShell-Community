@@ -1,0 +1,25 @@
+name: 'Refresh Integration(Repo) Discussion Data'
+description: 'refresh'
+inputs:
+  tkn: 
+    description: 'tkn'
+    required: true
+    type: string
+  clgI:
+    description: 'challenge, request'
+    required: true
+    type: string
+jobs:
+  build-node:
+    runs-on: ubuntu-latest
+    container: node:16
+    steps:
+      - run: npm install @actions/core
+      - run: npm install @actions/github
+      - run: npm install @octokit/graphql
+      - run: npm install https
+      - uses: actions/checkout@v3
+      - run: npm install    
+runs:
+  using: 'node16'
+  main: 'scdRepoRefresh.js'

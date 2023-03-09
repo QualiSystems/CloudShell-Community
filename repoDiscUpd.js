@@ -83,6 +83,71 @@ query GetDiscussionId($name: String!, $owner: String!, $number: Int!) {
       core.setFailed('GETDISCUSSIONID ERROR.');
     });
 
+//     let readmeFileContent;
+//     const octokit = new Octokit({  auth: tkn });
+//     await octokit.request('GET /repos/{owner}/{repo}/contents/{path}', {
+//       owner: owner,
+//       repo: repo,
+//       path: 'README.md'
+//     }).then(res=>{
+//       core.info(JSON.stringify(res));
+//       readmeFileContent = Buffer.from(res.data.content, 'base64'); // Ta-da
+//     }).catch(error=>{core.error(error);});
+    
+//     if (readmeFileContent){
+//       core.info(readmeFileContent);
+//       core.info('typeof: '+typeof readmeFileContent);
+//       core.info('README.md File GET CONTENT, OK');
+      
+//     }
+//     else{core.warning('README.md File, GET CONTENT, ERROR');}
+     
+//     let readmeFileContent;
+//       const octokit = new Octokit({  auth: tkn });
+//       await octokit.request('GET /repos/{owner}/{repo}/contents/{path}', {
+//         owner: owner,
+//         repo: repo,
+//         path: 'README.md'
+//       }).then(res=>{
+//         core.info(JSON.stringify(res));
+//         core.info('----------------------');
+//         core.info(JSON.stringify(res.data.content));
+//         readmeFileContent = Buffer.from(res.data.content, 'base64'); // Ta-da
+//       }).catch(error=>{core.warning(error);});
+      
+//       if (readmeFileContent){
+//         core.info(readmeFileContent);
+//         core.info('typeof: '+typeof readmeFileContent);
+//         core.info('README.md File GET CONTENT, OK');
+//         core.info(readmeFileContent);
+//       }
+//       else{
+        
+//         core.info('README.md File, GET CONTENT, ERROR...\n\n');
+//         core.notice('TRYING TO FETCH FROM REPO...');
+//         await octokit.request('GET /repos/{owner}/{repo}/contents', {
+//           owner: owner,
+//           repo: repo
+//         }).then(res=>{
+//           core.info(JSON.stringify(res));
+//           core.info('----------------------');
+//           try{
+//             let readmeFile = res.data.find(file=>file.name.toString().toLowerCase()=='readme.md');
+//             readmeFileContent = Buffer.from(readmeFile.content, 'base64'); // Ta-da
+//           }catch(e){
+//             core.warning('ERROR FETCHING README.md !\n'+JSON.stringify(res.data));
+//           }
+          
+//         }).catch(error=>{core.error(error);});
+        
+//         if (readmeFileContent){
+//           core.info(readmeFileContent);
+//           core.info('typeof: '+typeof readmeFileContent);
+//           core.info('readme.md File GET CONTENT, OK');
+//           // cliInteract_query.getYesNo(readmeFileContent,false);
+//         } else core.warning('README.md N/A!\n'+readmeFileContent);
+      
+//       }
     
           core.info('REPOSITORY\nDISCUSSION ID: '+repoDiscussionId+', DISUCSSION NUMBER: '+discNum);
       let readmeFilePath;
@@ -95,7 +160,11 @@ query GetDiscussionId($name: String!, $owner: String!, $number: Int!) {
           core.info(JSON.stringify(res));
           core.info('----------------------');
           try{
+            // res.data.forEach(datum=>core.notice(datum));
+            // core.warning('res.data forEach ^');
+
             readmeFilePath = res.data.find(file=>file.name.toLowerCase()=='readme.md').path;
+            // readmeFileContent = Buffer.from(readmeFile.content, 'base64'); // Ta-da
           }catch(e){
             core.warning('ERROR FETCHING README!\n'+JSON.stringify(res.data));
           }
@@ -111,7 +180,9 @@ query GetDiscussionId($name: String!, $owner: String!, $number: Int!) {
               path: readmeFilePath//'README.md'
             }).then(res=>{
              try{ readmeFile = res.data; } catch(_){console.dir(`${_}\nNO README.md for ${owner}/${repo}`)}
+//               core.info(JSON.stringify(res));
               core.info('----------------------');
+              // core.warning(JSON.stringify(res.data.content));
               readmeFileContent = Buffer.from(res.data.content, 'base64'); // Ta-da
             }).catch(error=>{core.info(error);});
             
@@ -119,16 +190,82 @@ query GetDiscussionId($name: String!, $owner: String!, $number: Int!) {
               core.info(readmeFileContent);
               core.info('typeof: '+typeof readmeFileContent);
               core.info('README.md File GET CONTENT, OK');
+              // core.warning(readmeFileContent);
               
             }
+            // else{core.info('README.md File, GET CONTENT, ERROR...\n\n');}
             else{
               core.warning('README.md File, GET CONTENT, ERROR...\n\n');
             }
+            // core.info(readmeFileContent);
+            // core.info('typeof: '+typeof readmeFileContent);
+            // core.notice('readme.md File GET CONTENT, OK');
+            // core.warning(readmeFileContent);
           }else {
             core.warning('ERROR FETCHING README!\n'+JSON.stringify(res.data));
           }
     
-
+//       else{core.info('README.md File, GET CONTENT, ERROR');
+//       await octokit.request('GET /repos/{owner}/{repo}/contents/{path}', {
+//         owner: owner,
+//         repo: repo,
+//         path: 'readme.md'
+//       }).then(res=>{
+//         core.info(JSON.stringify(res));
+//         core.info('----------------------');
+//         core.info(JSON.stringify(res.data.content));
+//         readmeFileContent = Buffer.from(res.data.content, 'base64'); // Ta-da
+//       }).catch(error=>{core.warning(error);});
+      
+//       if (readmeFileContent){
+//         core.info(readmeFileContent);
+//         core.info('typeof: '+typeof readmeFileContent);
+//         core.info('readme.md File GET CONTENT, OK');
+//         core.info(readmeFileContent);
+        
+//       }else{core.info('README.md File, GET CONTENT, ERROR');
+//       await octokit.request('GET /repos/{owner}/{repo}/contents/{path}', {
+//         owner: owner,
+//         repo: repo,
+//         path: 'Readme.md'
+//       }).then(res=>{
+//         core.info(JSON.stringify(res));
+//         core.info('----------------------');
+//         core.info(JSON.stringify(res.data.content));
+//         readmeFileContent = Buffer.from(res.data.content, 'base64'); // Ta-da
+//       }).catch(error=>{core.warning(error);});
+      
+//       if (readmeFileContent){
+//         core.info(readmeFileContent);
+//         core.info('typeof: '+typeof readmeFileContent);
+//         core.info('Readme.md File GET CONTENT, OK');
+//         core.info(readmeFileContent);
+        
+//       }else{core.info('README.md File, GET CONTENT, ERROR');
+//       await octokit.request('GET /repos/{owner}/{repo}/contents/{path}', {
+//         owner: owner,
+//         repo: repo,
+//         path: 'ReadMe.md'
+//       }).then(res=>{
+//         core.info(JSON.stringify(res));
+//         core.info('----------------------');
+//         core.info(JSON.stringify(res.data.content));
+//         readmeFileContent = Buffer.from(res.data.content, 'base64'); // Ta-da
+//       }).catch(error=>{core.warning(error);});
+      
+//       if (readmeFileContent){
+//         core.info(readmeFileContent);
+//         core.info('typeof: '+typeof readmeFileContent);
+//         core.info('ReadMe.md File GET CONTENT, OK');
+//         core.info(readmeFileContent,);
+        
+//       }else{core.error('README.md (several variations) ERROR');}
+    
+//     }
+//   }
+// }
+// const MarkdownIt = require('markdown-it');
+    
     
     let unrendered_readmeFileContent;
 let rendered_readmeFileContent;
@@ -144,10 +281,59 @@ await octokit.request('POST /markdown', {
       try{try{rendered_readmeFileContent = markdown.render(res.data);}catch(__){rendered_readmeFileContent = markdown.render(res);}}
     catch(e_){core.warning(e_); try{rendered_readmeFileContent = res.data;}catch(__){rendered_readmeFileContent = res;} core.notice('rendered_readmeFileContent = res/.data'); core.info(rendered_readmeFileContent);}
     }).catch(error=>{core.error(error);});
-try{
+// let rendered_readmeFileContent; try{rendered_readmeFileContent=markdown.render(String(readmeFileContent));}catch(e_){core.warning(`${e}\nERROR RENDERING readmeFileContent TO rendered_readmeFileContent`)}
+try{//try{markdown.render(String(readmeFileContent));}catch(_e){cliInteract_query.getYesNo(`${JSON.stringify(e)}\nERROR RENDERING README.md...`,false);} //<<<<<<<<<<
+  // console.log();
+  // console.log(String(readmeFileContent));
+  // cliInteract_query.getYesNo(`type of readmeFileContent: ${typeof readmeFileContent}`,true);
   core.info(`type of readmeFileContent: ${typeof readmeFileContent}`,true);
   
 
+// 											try{
+// 												updated_repoDiscussionBody = 
+// 													updated_repoDiscussionBody.replaceAll(
+// `![](cloudshell-logo.png)`,
+// `
+// \n
+// ![](QualiSystems/CloudShell-Community/raw/main/attstor/cloudshell_logo.png)
+// `);
+
+// 												}catch(_e_){core.warning(_e_);}
+				// let strRfc=String(readmeFileContent);
+				// 	let mas=[];
+				// try{strRfc = strRfc.replaceAll('![](cloudshell-logo.png)','![](QualiSystems/CloudShell-Community/raw/main/attstor/cloudshell_logo.png)');}
+				// catch(__){
+				// 	try{
+				// 		core.warning(__);
+				// 		let re=/!\[\]\(cloudshell-logo.png\)/g;
+				// 		let ma;
+				// // 		strRfc=String(readmeFileContent);
+				// 		while ((ma = re.exec(strRfc))!==null){
+				// 			mas.push(ma);	
+
+				// 		}
+				// 	}
+				// 	catch(___){
+				// 		core.warning(___);
+				// // 		strRfc = String(readmeFileContent);
+				// 	}
+
+				// }
+				// if(mas.length>0){
+				// 	mas.forEach(m=>{strRfc.replace(m[0],'![](QualiSystems/CloudShell-Community/raw/main/attstor/cloudshell_logo.png)')});
+				// }else core.warning('strRfc');
+
+				// 	unrendered_readmeFileContent=`<!--_-->
+
+
+
+				// ${strRfc}
+
+				// `;
+				// }
+				// catch(e){core.warning(`${JSON.stringify(e)}\nERROR - README.md...`);}
+
+	
 	unrendered_readmeFileContent=`<!--_-->
   
 
@@ -159,7 +345,15 @@ ${String(readmeFileContent)}
 catch(e){core.warning(`${JSON.stringify(e)}\nERROR - README.md...`);}
                     
 	
+// 	unrendered_readmeFileContent=`<!--_-->
+  
 
+// ${try{String(readmeFileContent).replaceAll('![](cloudshell-logo.png)','![](QualiSystems/CloudShell-Community/raw/main/attstor/cloudshell_logo.png)')}catch(__){String(readmeFileContent)}}
+
+// `;
+// }
+// catch(e){core.warning(`${JSON.stringify(e)}\nERROR - README.md...`);}
+                    
 //#endregion README.md request
 
 
@@ -183,6 +377,8 @@ catch(e){core.warning(`${JSON.stringify(e)}\nERROR - README.md...`);}
       if (res.data[0]){
         latest_release = res.data[0];
         core.info(JSON.stringify(res.data[0]));
+        //core.notice('^^^ LATEST RELEASE res.data[0] ^^^');
+        //core.notice(latest_release.html_url);
       }
   
      try{
@@ -231,6 +427,7 @@ catch(e){core.warning(`${JSON.stringify(e)}\nERROR - README.md...`);}
               sizeFormatted=sizeFormatted.split('.')[0]+'.'+sizeFormatted.split('.')[1].substring(0,2);
               scaleSuffix='MB';
             } else scaleSuffix='b';
+            //if (sizeFormatted.replace('.','').length>=4) sizeFormatted=sizeFormatted[0]+'.'+sizeFormatted.substring(1,sizeFormatted.length);
             if (sizeFormatted.replace('.','').length>=7) sizeFormatted=sizeFormatted[0]+','+sizeFormatted.substring(1,4)+','+sizeFormatted.substring(4,sizeFormatted.length);
             sizeFormatted+=' '+scaleSuffix;
 assets_str+=`<a href="${asset.browser_download_url}">${asset.name}<sup><br>[${sizeFormatted}]</sup></a><br></a><br>`
@@ -238,6 +435,17 @@ assets_str+=`<a href="${asset.browser_download_url}">${asset.name}<sup><br>[${si
         });
        }
     }catch(e){core.warning('ASSETS ERROR')}
+          
+// // //BODY                        //<!--CUTOFF--><!--KEEP-->
+// //          updated_repoDiscussionBody = 
+// // // ${repoDiscussionBody.split('<!--CUTOFF-->')[0]}
+// // `<table width="100%" align="center">
+// // <th><h3>Repository</h3></th>`;
+//    updated_repoDiscussionBody = 
+//     `${repoDiscussionBody.split(`<table width="100%" align="center">`)[0]}`;
+
+// if(!updated_repoDiscussionBody.includes('<!--CUTOFF-->'))
+//   updated_repoDiscussionBody +='<!--KEEP--><!--CUTOFF--><!--KEEP-->'
 
     //BODY  //BODY  //BODY  //BODY  //BODY  //BODY  //BODY  //BODY  //BODY  //BODY  //BODY  //BODY  //BODY  //BODY  //BODY  //BODY  //BODY  //BODY  //BODY  //BODY  
     //BODY    //BODY   //BODY    //BODY   //BODY   //BODY    //BODY   //BODY   //BODY    //BODY   //BODY   //BODY    //BODY   //BODY    //BODY   //BODY   //BODY  //BODY    //BODY   //BODY  
@@ -279,6 +487,10 @@ if(!updated_repoDiscussionBody.includes('<!--CUTOFF-->'))
 `<!--KEEP--><!--CUTOFF--><!--KEEP-->`
     
 
+// updated_repoDiscussionBody += 
+// `<table width="100%" align="center">
+// <th><h3>Repository</h3></th>`;
+
 repoDiscussionUrl=`https://github.com/${owner}/${repo}`;
 
 updated_repoDiscussionBody += 
@@ -292,7 +504,9 @@ try{
 `<th><h3><a href="">Repository</a></h3></th>`;
 }
 
-	if (
+//<th><h3>Repository</h3></th><th><h3>README.md</h3></th><th><h3>Latest Release</h3></th>
+//         if (readmeFileContent) updated_repoDiscussionBody += 
+if (
     readmeFile && readmeFileContent && 
     (
       rendered_readmeFileContent.includes('* **') || rendered_readmeFileContent.includes('```') || 
@@ -332,6 +546,9 @@ else{
   }
   
   
+//   if (latest_release) updated_repoDiscussionBody += 
+// `<th><h3>Latest Release</h3></th>`;
+// }
 try{
   if (latest_release && latest_release.html_url) updated_repoDiscussionBody += 
 `<th><h3><a href="${latest_release.html_url}">Latest Release</a></h3></th>`;
@@ -342,10 +559,35 @@ try{
 `<th><h3>Latest Release</h3></th>`;
 }
 }
+      
+//try{repoDetails = JSON.parse(repoDetails);}catch(e){}
+
 	  
 	  updated_repoDiscussionBody += 
+                                    // <tbody>
+                                    // <tr><!--CUTOFF-->
+                                    // ${repoDiscussionBody.split('<!--CUTOFF-->')[2]}<!--CUTOFF-->`;
 `<tbody>
 <tr valign="top"><!--KEEP--><!--CUTOFF--><!--KEEP-->`;
+// <th>
+// <br>`;
+//   try{
+//     updated_repoDiscussionBody +=
+// `Name<br><a href="${repoDiscussionUrl}">${repo}</a><hr/>
+// Owner<br><a href="https://github.com/${owner}/">${owner}</a><hr/>`;
+//   }catch(er){
+//     try{
+//       updated_repoDiscussionBody +=
+// `Name<br><a href="https://github.com/${owner}/${repo}">${repo}</a><hr/>
+// Owner<br><a href="https://github.com/${owner}/">${owner}</a><hr/>`;
+//     }catch(err){
+      
+//     }
+//   }
+//           if(repoDetails) updated_repoDiscussionBody +=
+// `Type<br>${repoDetails["Type"]}<hr/>
+// Category<br>${repoDetails["Category"]}<hr/>
+// Min. Compatible CloudShell Version<br>${repoDetails["Min. Compatible CloudShell Version"]}<hr/><!--KEEP--><!--CUTOFF--><!--KEEP-->`;
 
 											if(repoDiscussionBody.split('<!--CUTOFF-->')[2]){
 	updated_repoDiscussionBody += 	  
@@ -365,6 +607,7 @@ updated_repoDiscussionBody +=
   updated_repoDiscussionBody += `</th>`;        
   
   
+  // rendered_readmeFileContent = markdown.render(readmeFileContent);
   let astCount=0;
   let slsCount=0;
   let limit = 5;
@@ -372,7 +615,8 @@ updated_repoDiscussionBody +=
   if (rfc.includes('-    ')||rfc.includes('   -   '))
    while (slsCount<3&&limit>0){
     try{limit--;slsCount++;
-    }catch(e){
+      /******rfc=rfc.replace('-    ','');*******/
+    }catch(e){/*******rfc=rfc.replace('   -   ','');*******/}
   }
   astCount=0;
   slsCount=0;
@@ -381,7 +625,8 @@ updated_repoDiscussionBody +=
   if (rfc.includes('* *')||rfc.includes('* '))
    while (astCount<5&&limit>0){
     try{limit--;astCount++;
-    }catch(e){
+      /*******rfc=rfc.replace('* *','');*******/
+    }catch(e){/*******rfc=rfc.replace('* ','');*******/
             }
   }
 
@@ -392,7 +637,7 @@ updated_repoDiscussionBody +=
   {
     astCount=0;
     let rex = /\*/g;
-    let matcz;
+    let matcz;//=rex.exec(unrendered_readmeFileContent);
     while ((matcz=rex.exec(unrendered_readmeFileContent))!==null) {
       astCount++;
       if (astCount>5) break;
@@ -410,11 +655,30 @@ updated_repoDiscussionBody +=
 try{core.info(`slsCount: ${slsCount}`)}catch{}
 try{core.info(`astCount: ${astCount}`)}catch{}
   
+  // try{
+  //         if (readmeFileContent && (readmeFileContent.includes('* **') || readmeFileContent.includes('```') || astCount>=5 || readmeFileContent.includes('<li>') || readmeFileContent.includes('<ul>')) || readmeFileContent.includes('<ol>')) 
+  //           updated_repoDiscussionBody += 
+  // `<td valign="top">
+          
+  // ${readmeFileContent}
+  // </td>`;
+  //// }catch(e){updated_repoDiscussionBody += `<th valign="top"></th>`;} 
+  
+  // }catch(e){core.info('readmeFileContent ERROR!!!')} 
+
   try{
           
           if (
             readmeFileContent && 
-
+            // (
+            //   !readmeFileContent.includes('* **') && !readmeFileContent.includes('```') && astCount<5 && slsCount<3 &&
+            //   !readmeFileContent.includes('<li>') && !readmeFileContent.includes('<ul>') &&
+            //   !readmeFileContent.includes('<ol>') && !readmeFileContent.includes('- | -') &&
+            //   !readmeFileContent.includes('-|-') && !readmeFileContent.includes('- | <') &&
+            //   !readmeFileContent.includes('-|<') && !readmeFileContent.includes('> | -') && 
+            //   !readmeFileContent.includes('>|-') && !readmeFileContent.includes('> | <') &&
+            //   !readmeFileContent.includes('>|<') && !readmeFileContent.includes('1)') && !readmeFileContent.includes('1.')
+            // ) 
             (
               astCount<5 && slsCount<3 && !rendered_readmeFileContent.includes('<pre>') &&
               !rendered_readmeFileContent.includes('* **') && !rendered_readmeFileContent.includes('```') && 
@@ -434,7 +698,11 @@ ${unrendered_readmeFileContent}
 
 </th>
 <!--README.md-->`;
+  // ${readmeFileContent}
+  // </th>`;
 
+  
+  // }catch(e){updated_repoDiscussionBody += `<th valign="top"></th>`;} 
   }catch(e){core.info('readmeFileContent ERROR!!!')} 
 
       let tarLink, tarLinkStr;
@@ -499,6 +767,25 @@ ${unrendered_readmeFileContent}
 </td>
 <!--README.md-->`;
 
+
+      // `<td valign="top">
+    
+// ${unrendered_readmeFileContent}
+// </td>`;
+
+
+
+
+// ${readmeFileContent}
+// </td>`;
+
+    
+//     if (readmeFileContent && (!readmeFileContent.includes('* **') && !readmeFileContent.includes('```') && astCount<5 && !readmeFileContent.includes('<li>') && !readmeFileContent.includes('<ul>') && !readmeFileContent.includes('<ol>')) ) updated_repoDiscussionBody += 
+// `<th valign="top">
+    
+// ${readmeFileContent}
+// </th>`;
+// }catch(e){updated_repoDiscussionBody += `<th valign="top"></th>`;} 
 }catch(e){core.info('readmeFileContent ERROR!!!')} 
 
           updated_repoDiscussionBody +=
@@ -560,12 +847,211 @@ ${unrendered_readmeFileContent}
 
 	  //#endregion //BODY
 
+	/* Alt text 
+									  //           try{
+									  //         updated_repoDiscussionBody += 
+									  // `<hr><h6>${repoDiscussionBody.split('<hr><h6>')[1]}
+									  // `;      
+									  //           }catch(e){core.info('<hr><h6> NOT FOUND');}
+		  
+									  // if(updated_repoDiscussionBody.includes('[Alt text]') || updated_repoDiscussionBody.includes('[Alt Text]') 
+									  // || updated_repoDiscussionBody.includes('[ALT TEXT]') || updated_repoDiscussionBody.includes('[alt text]')){
+									  //         try{updated_repoDiscussionBody=updated_repoDiscussionBody.replaceAll('[Alt text]','[]')}catch(_e_){core.info`${_e_}\nAlt text error.`}
+									  //         try{updated_repoDiscussionBody=updated_repoDiscussionBody.replaceAll('[Alt Text]','[]')}catch(_e_){core.info`${_e_}\nAlt Text error.`}
+									  //         try{updated_repoDiscussionBody=updated_repoDiscussionBody.replaceAll('[ALT TEXT]','[]')}catch(_e_){core.info`${_e_}\nALT TEXT error.`}
+									  //         try{updated_repoDiscussionBody=updated_repoDiscussionBody.replaceAll('[alt text]','[]')}catch(_e_){core.info`${_e_}\nalt text error.`}
+									  // }
+	*/
+
 	//#region mend  #%
 
+	//>>>>>>>>>>>>>>>>>>>>>>//try{updated_repoDiscussionBody=markdown.render(updated_repoDiscussionBody);}catch(__){core.info(__);}//<<<<<<<<<<<<<<<<<<<
 	let regexp;
 	let match;
 	let matches=[];                        
+		  /////////////////////////////////////////////  // const regexp=/\[(!\[.*?\]\()(.*?\))\].*?(?=(\n|\s|\v))/g;
+		  /////////////////////////////////////////////  // let regexp=/\[\s?(!\[.*?\]\()(.*?\))\s?\].*?(?=(\n|\s|\v))/g;
+		  /////////////////////////////////////////////  // let regexp=/\[\s*?(!\s*?\[.*?\]\s*?\()(.*?\))\s*?\](?:(?=.*?)|(?=(\n|\s|\v)))/g;
+		  /////////////////////////////////////////////  //___[___(!|*)?___([...])___((...))]
+		  /////////////////////////////////////////////  // let regexp=/\[\s*?(!\s*?\[.*?\])\s*?(\(.*?\))\s*?\](?:(?=.*?)|(?=(\n|\s|\v)))/g;
+		  
+// 		   regexp=/\[\s*?(!\s*?\[.*?\])\s*?(\(.*?\))\].*\s*?(?:(?=.*?)|(?=(\n|\s|\v)))/g;
+// 		   if(updated_repoDiscussionBody.match(regexp))
+// 			{
+// 			  //updated_repoDiscussionBody = markdown.render(updated_repoDiscussionBody); ////////////<<<<<<<<<<<<<<<<<<<<<<<
+// 			//updated_repoDiscussionBody = rendered_readmeFileContent;
+				
+				
+				
+// 				// regexp = /(?=.*?)\[.*?\]\s?\(.*?\)/g;
+// 			  regexp = /(?=.*?)\[(.*?)\]\s?\((.*?)\)\]?\(?.*?\)?/g;
+// 			  if(updated_repoDiscussionBody.match(regexp)){
+// 				while ( (match = regexp.exec(updated_repoDiscussionBody) ) !== null ){
+// 				  try{
+// 					updated_repoDiscussionBody = updated_repoDiscussionBody.replace(match[0],`
+// 	<a href="${match[2]}">${match[1]}</a>
+// 	`);
+// 				  }catch(_){core.info(`${_}\n${'(?=.*?)\[.*?\]\s?\(.*?\)\]?\(?.*?\)?'}\nREPLACE regexp ERROR...`)}
+// 				}
+// 			  }
+// 			}
+		  
+		  //  regexp=/\[\s*?(!\s*?\[.*?\])\s*?(\(.*?\))\].*\s*?(?:(?=.*?)|(?=(\n|\s|\v)))/g;
+		  //  match;  matches=[];
+		  //   while ((match = regexp.exec(updated_repoDiscussionBody)) !== null)
+		  //     matches.push(match);
+			
+		  // try{
+		  //   matches.forEach(m=>{
+		  //     let ok;
+		  //     try{if (m[1]&&m[2]) ok = updated_repoDiscussionBody = updated_repoDiscussionBody.replace(m[0],`\n\n${m[1]}${m[2]}\n\n`);}catch(_){}
+		  //     try{if (!ok && m[2]) ok = updated_repoDiscussionBody = updated_repoDiscussionBody.replace(m[0],`\n\n${m[2]}\n\n`);}catch(_){}
+		  //     try{if (!ok && m[1]) updated_repoDiscussionBody = updated_repoDiscussionBody.replace(m[0],`\n\n${m[1]}\n\n`);}catch(_){}
+		  //   });
+		  // }catch(e){}
+			
+			
+	////////////////////////////////////                                    // let mdRender = markdown.render(String(readmeFileContent));
+	////////////////////////////////////          
+	////////////////////////////////////  // updated_repoDiscussionBody = updated_repoDiscussionBody.replaceAll('<pre>','<div style="max-width:60%;width:auto;overflow:auto;"><pre>');
+	////////////////////////////////////  // updated_repoDiscussionBody = updated_repoDiscussionBody.replaceAll('</pre>','</pre></div>');
+	////////////////////////////////////    // try{
+	////////////////////////////////////      // let reggie = /(```)/;
+	////////////////////////////////////      // if (String(readmeFileContent).match(reggie)!=null){
+	////////////////////////////////////      // let reggie = /(<pre><code>)/;
+	////////////////////////////////////      // reggie = /(?<=\n)\s+(?=.|#|\*|!|\|-|\| -|\|<|\| <){1}/;
+	////////////////////////////////////      
+	////////////////////////////////////      // reggie = /(?<=\n|\v)(?: )+(?=.|#|\*|!|\|-|\| -|\|\<|\|\s\<){1}/g;
+	////////////////////////////////////      // if (mdRender.match(reggie)){
+	////////////////////////////////////      //   let reM;
+	////////////////////////////////////      //   while ( ( reM = reggie.exec(readmeFileContent) ) != null ){
+	////////////////////////////////////      //     if (!reM.match(/\w/))
+	////////////////////////////////////      //     readmeFileContent.replace(reM[0],''); 
+		  
+// 		try{
+
+// 		////////////////////////////////  // reggie = /(?<=\n|\v)(?: )+(?=.|#|\*|!|\|-|\| -|\|\<|\|\s\<){1}/g;
+// 		////////////////////////////////    //(\n|\v)___(.|#|*|!||-|| -||<|| <)
+// 		// regexp = /(?<=\n|\v)(?: |\t)+(?=.|#|\*|!|\|-|\| -|\|\<|\|\s\<){1}/g;
+// 		regexp = /(?<=\n|\v)( |\t|\s)+(?=\d\.?\)?|\.|i.?\.|i.?\)|v.?\.|v.?\)|x.?\.|x.?\)|#|\*|!|\|-|\| -|\|\<|\|\s\<){1}/g;
+// 	  if (updated_repoDiscussionBody.match(regexp)){
+// 		let reM;
+// 		while ( ( reM = regexp.exec(updated_repoDiscussionBody) ) !== null ){
+// 		  // if (!reM[0].match(/\w/))
+// 		  if (reM[0].trim()=='')
+// 			updated_repoDiscussionBody=updated_repoDiscussionBody.replace(reM[0],''); 
+
+	  
+// 		}
+// 	  }
+// 	}catch(e_){core.info(`${e_}\n\n/(?<=\n|\v)( |\t|\s)+(?=\d\.?\)?|\.|i.?\.|i.?\)|v.?\.|v.?\)|x.?\.|x.?\)|#|\*|!|\|-|\| -|\|\<|\|\s\<){1}/g\n\n`);}
 		
+
+
+// 	//////////////////////// if(
+// 	////////////////////////     !updated_repoDiscussionBody.includes(`--- | --- | ---`) 
+// 	////////////////////////                                   && 
+// 	////////////////////////     !updated_repoDiscussionBody.match(/[-|\<|\>]{3}\s?|\s?[-|\<|\>]{3}/)
+// 	////////////////////////   )
+// 	////////////////////////     {
+// 	//////////////////////    // regexp=/(\[.*?\])\s*?(\(.*?\)){1}/g;
+// 	//////////////////////  //  try{
+// 	//////////////////////    //!?___?([...])___?((...))_(...)?
+// 		 regexp=/(!)?\t*?(\[.*?\])\s*?(\(.*?\))(?:\s?\(.*?\))?/g;
+// 		match=undefined;  matches=[];
+// 	   while ((match = regexp.exec(updated_repoDiscussionBody)) !== null){
+// 	 ///////////////////   // let ok; 
+		 
+// 	///////////    // if(!match[0].includes('(#')){
+// 		try{
+// 	//////////////////////////////     //////////////////////////////////core.info(match);
+// 	//////////////////////////////     //  if(match[1] && match[2] && match[3])
+// 	//////////////////////////////                                           //   if(!match[1])match[1]='';if(!match[2])match[2]='';if(!match[3])match[3]='';
+// 	//////////////////////////////                                           //     updated_repoDiscussionBody=updated_repoDiscussionBody.replace(match[0],match[1]+match[2]+match[3]);
+// 	//////////////////////////////                                               
+// 	//////////////////////////////                                           //   //  if(!ok && match[2] && match[3])
+// 	//////////////////////////////                                           //   if(match[2] && match[3])
+// 	//////////////////////////////                                           //     updated_repoDiscussionBody=updated_repoDiscussionBody.replace(match[0],match[2]+match[3]);
+// 	//////////////////////////////                                           // }catch(e){
+// 	//////////////////////////////                                             
+// 	//////////////////////////////                                           
+// 	//////////////////////////////// if(typeof match === [] && Object.keys(match).length>0){
+// 	let tmp_str = '';
+// 	try{
+// 	  if (match[1])tmp_str+=match[1];
+// 	  if (match[2])tmp_str+=match[2];
+// 	  if (match[3])tmp_str+=match[3];
+
+// 	  updated_repoDiscussionBody=updated_repoDiscussionBody.replace(match[0],`${tmp_str}`);
+
+
+// 	  // updated_repoDiscussionBody.replace(match[0],`\n\n${tmp_str}\n\n`);
+// 	//////////////      //  if(match[1] && match[2] && match[3])
+// 	//////////////          // updated_repoDiscussionBody=updated_repoDiscussionBody.replace(match[0],match[1]+match[2]+match[3]);
+// 	//////////////        // else  if(match[2] && match[3])
+// 	//////////////        // updated_repoDiscussionBody=updated_repoDiscussionBody.replace(match[0],match[2]+match[3]);
+// 		  }catch(e){
+// 			core.info(`${e}\n\n^e ERROR tmp_str`);
+// 	////////////////////     // if(match[2] && match[3])
+// 	////////////////////     //   updated_repoDiscussionBody=updated_repoDiscussionBody.replace(match[0],match[2]+match[3]);
+// 		  try{
+// 			if (match[3])
+// 			updated_repoDiscussionBody=
+// 			  updated_repoDiscussionBody.replace(`${match[0]}`,`${match[1]}${match[2]}${match[3]}`);
+// 	////////////////          // updated_repoDiscussionBody.replace(`${match[0]}`,`${match[1]}${match[2]}${match[3]}`);
+// 			else if (match[2])
+// 			updated_repoDiscussionBody=
+// 			  updated_repoDiscussionBody.replace(`${match[0]}`,`${match[1]}${match[2]}`);
+// 	///////////////          // updated_repoDiscussionBody.replace(`${match[0]}`,`${match[1]}${match[2]}`);
+// 			  else if (match[1])
+// 			  updated_repoDiscussionBody=
+// 			  updated_repoDiscussionBody.replace(`${match[0]}`,`${match[1]}`);
+// 	///////////////         // updated_repoDiscussionBody.replace(`${match[0]}`,`\n\n${match[1]}\n\n`);
+			  
+			
+// 		  }catch(er){
+// 			core.info(`${er}\n\n^ ERROR tmp_str`);
+// 			core.info(`${er}\n\n^ ERROR tmp_str`);
+
+// 			try{
+// 			  // updated_repoDiscussionBody=updated_repoDiscussionBody.replace(match[0],`\n\n${match[0].trim()}\n\n`);
+// 			  // updated_repoDiscussionBody=updated_repoDiscussionBody.replace(match[0],`${match[0].trim()}`);
+// 			}catch(err){
+// 			core.info(`${err}\n\n^err ERROR tmp_str`);
+// 			}
+// 		  }
+// 		}
+
+// 	////////////////////////////    // }
+// 	////////////////////////////      // }
+// 	////////////////////////////      // }
+// 		 }catch(error){
+// 		  core.info(`${error}\n\n^error ERROR tmp_str`);
+
+// 		 }
+// 		}
+	 
+// 		try {
+// 		  match=undefined;
+// 		  regexp=/\[.*?\]\(#.*?\)/g;
+// 		  if(readmeFile && readmeFile.html_url )
+// 		  while ((match=regexp.exec(updated_repoDiscussionBody))!==null)
+// 			updated_repoDiscussionBody=
+// 			  updated_repoDiscussionBody.replace(
+// 				match[0]
+// 				,
+// 				// `\n\n${match[0].split('#')[0]}
+// 				//   ${readmeFile.html_url}
+// 				//   #${match[0].split('#')[1]}\n\n`
+// 				`${match[0].split('#')[0]}
+// 				  ${readmeFile.html_url}
+// 				  #${match[0].split('#')[1]}`
+// 		  );
+		  
+// 	  /////////////////////////  // }catch(e){}
+// 	  }catch(e){core.info(`${JSON.stringify(e)}\n^ updated_repoDiscussionBody ERRORED WHILE REPLACING\nREGEX /\[.*?\]\(#.*?\)/g: [...](#...)`);}
+
+
 
 	  try{
 		if(updated_repoDiscussionBody.includes('<img src="Pics/')){
@@ -586,23 +1072,142 @@ ${unrendered_readmeFileContent}
 	  }catch(e_){core.info(`${e_}\n/Pics ERROR!`);}
 
 
+						  ////////////////////////////
+						  ////////////////////////////
+
+						  //#region draft
+						  ////////////////////
+						  ////////////////////          //  
+						  ////////////////////        //  try {
+						  ////////////////////        //     match=undefined;
+						  ////////////////////        //     regexp=/\[.*?\]\(.*?\/.*?\..*?\)/g;
+						  ////////////////////        //     if(readmeFile && readmeFile.html_url )
+						  ////////////////////        //     while ((match=regexp.exec(updated_repoDiscussionBody))!==null)
+						  ////////////////////        //       updated_repoDiscussionBody=
+						  ////////////////////        //         updated_repoDiscussionBody.replace(
+						  ////////////////////        //           match[0]
+						  ////////////////////        //           ,
+						  ////////////////////        //           match[0].split('](')[0]+
+						  ////////////////////        //             '](/'+owner+'/'+repo+'/'+
+						  ////////////////////        //             match[0].split('](')[1]
+						  ////////////////////        //     );
+						  ////////////////////            
+						  ////////////////////        //   // }catch(e){}
+						  ////////////////////        // }catch(e){core.info(`${JSON.stringify(e)}\n^ updated_repoDiscussionBody ERRORED WHILE REPLACING REGEX: [...](.../...) internal path`);}
+						  ////////////////////
+						  ////////////////////                
+						  ////////////////////            /***********************************/
+						  ////////////////////                                                                  /***********************************/
+						  ////////////////////                                                                  // let ms=[];
+						  ////////////////////                                                                  // try{
+						  ////////////////////                                                                      //  regexp=/\s?\[.*?\]\s?\((.*?)\)/g;
+						  ////////////////////                                                                      //___?[...]((...)) -------------------URL //GITHUB LINKS SYNTAX ( MD: []() | ![]() )
+						  ////////////////////                                                                      //  regexp=/\s?\[.*?\]\((.*?)\)/g;
+						  ////////////////////                                                                      // regexp=/(\s{8,})(-|!|[0-9]|\*|#)/g;
+						  ////////////////////                                                                      // match=undefined;  matches=[];
+						  ////////////////////                                                                      // while ((match = regexp.exec(updated_repoDiscussionBody)) !== null){
+						  ////////////////////                                                                      //   // match[sLength]=8;
+						  ////////////////////                                                                      //   // ms.push(match);
+						  ////////////////////                                                                      //   // core.info(`${updated_repoDiscussionBody}`);
+						  ////////////////////                                                                      // updated_repoDiscussionBody = updated_repoDiscussionBody.replaceAll(match[1],'^^');
+						  ////////////////////                                                                      // // core.info(`${updated_repoDiscussionBody}`);
+						  ////////////////////                                                                      // }
+						  ////////////////////                                                                      // regexp=/(\s{4,})(-|!|[0-9]|\*|#)/g;
+						  ////////////////////                                                                      // while ((match = regexp.exec(updated_repoDiscussionBody)) !== null){
+						  ////////////////////                                                                      //   // match[sLength]=4;
+						  ////////////////////                                                                      //   // ms.push(match);
+						  ////////////////////                                                                      // // core.info(`again!`);
+						  ////////////////////                                                                      // updated_repoDiscussionBody = updated_repoDiscussionBody.replaceAll(match[1],'^');
+						  ////////////////////                                                                      
+						  ////////////////////            // updated_repoDiscussionBody = updated_repoDiscussionBody.replaceAll('    *',' *');               
+						  ////////////////////            // updated_repoDiscussionBody = updated_repoDiscussionBody.replaceAll('    #','  #');
+						  ////////////////////            // updated_repoDiscussionBody = updated_repoDiscussionBody.replaceAll('    !','  !');
+						  ////////////////////            // updated_repoDiscussionBody = updated_repoDiscussionBody.replaceAll('        *','  *');
+						  ////////////////////            // updated_repoDiscussionBody = updated_repoDiscussionBody.replaceAll('        #','  #');
+						  ////////////////////            // updated_repoDiscussionBody = updated_repoDiscussionBody.replaceAll('        !','  !');
+						  ////////////////////            // updated_repoDiscussionBody = updated_repoDiscussionBody.replaceAll('                *','  *');
+						  ////////////////////            // updated_repoDiscussionBody = updated_repoDiscussionBody.replaceAll('                #','  #');
+						  ////////////////////            // updated_repoDiscussionBody = updated_repoDiscussionBody.replaceAll('                !','  !');
+						  ////////////////////
+						  ////////////////////            // for(let ks=0;ks<11;ks++) {
+						  ////////////////////            //   updated_repoDiscussionBody = updated_repoDiscussionBody.replaceAll(`    ${ks}`,` ${ks}`);
+						  ////////////////////            //   updated_repoDiscussionBody = updated_repoDiscussionBody.replaceAll(`        ${ks}`,`  ${ks}`);
+						  ////////////////////            //   updated_repoDiscussionBody = updated_repoDiscussionBody.replaceAll(`                ${ks}`,`  ${ks}`);
+						  ////////////////////            // }
+						  ////////////////////
+						  ////////////////////                                                                      // core.info(`${updated_repoDiscussionBody}`);
+						  ////////////////////                                                                      // }
+						  ////////////////////                                                // }catch(_______){core.info(`${updated_repoDiscussionBody}`);}
+						  ////////////////////                                                // try{
+						  ////////////////////                                                                    //   ms.forEach(ma=>{
+						  ////////////////////                                                                    //     updated_repoDiscussionBody = 
+						  ////////////////////                                                                          // updated_repoDiscussionBody.replace(ma[0],'<sub>'+ma[sLength]==8?
+						  ////////////////////                                                                          //         '  ':' '+ma[1]+'</sub>');
+						  ////////////////////                                                                          //   });
+						  ////////////////////                                                                // updated_repoDiscussionBody=
+						  ////////////////////                                                                //   updated_repoDiscussionBody.replaceAll('&nbsp;','');
+						  ////////////////////
+						  ////////////////////                                                                // let ma; let mas=[];
+						  ////////////////////                                                                          // while (ma=(/×*/.exec(updated_repoDiscussionBody))!==null)
+						  ////////////////////                                                                          // while (ma=(/(&nbsp;)*/.exec(updated_repoDiscussionBody))!==null)
+						  ////////////////////                                                                          // {
+						  ////////////////////                                                                          //   // updated_repoDiscussionBody.replace(ma[0],'\n');
+						  ////////////////////                                                                          //   mas.push(ma);
+						  ////////////////////                                                                          // }
+						  ////////////////////                                                                          // mas.forEach(ma=>{updated_repoDiscussionBody.replace(ma[0],'×')});
+						  ////////////////////                                                                          // while (ma=(/×*/.exec(updated_repoDiscussionBody))!==null)
+						  ////////////////////                                                                          // {
+						  ////////////////////                                                                          //   // updated_repoDiscussionBody.replace(ma[0],'\n');
+						  ////////////////////                                                                          //   mas.push(ma);
+						  ////////////////////                                                                          // }
+						  ////////////////////                                                                          // mas.forEach(ma=>{updated_repoDiscussionBody.replace(ma[0],'\n')});
+						  ////////////////////                                                                          //
+						  ////////////////////                                                                          
+						  ////////////////////                                              //}catch(e_){core.info(`${e_}\n?!?!?!?!2`);}
+						  ////////////////////                                                                    // core.info(`${updated_repoDiscussionBody}`);
+						  ////////////////////
+						  ////////////////////
+						  //#endregion draft
+
+						  ////////////////////////////   
+
+
 	try{
+		  //////////////////////////  regexp=/\s?\[.*?\]\s?\((.*?)\)/g;
+		  //////////////////////////___?[...]((...)) -------------------URL //GITHUB LINKS SYNTAX ( MD: []() | ![]() )
+		  //////////////////////////  regexp=/\s?\[.*?\]\((.*?)\)/g;
 		   regexp=/!?\s?\[.*?\]\((.*?)\)/g;
 		   match=undefined;  matches=[];
 		   let tmatch;
 		  while ((match = regexp.exec(updated_repoDiscussionBody)) !== null){
 			try{core.info(match[0]);}catch(_){core.info(`${_}\n       regexp=/!?\s?\[.*?\]\((.*?)\)/g;        `)}
 			core.info(`       regexp=/!?\s?\[.*?\]\((.*?)\)/g;        `);
+		   ////////////// // core.info('match[0].includes(\'![](Images/\'): '+match[0].includes('![](Images/'));  
+
+		   ////////////// //////////////////// END WHILE LOOP!!!
+
+		   ////////////// //////////////////// OR HANDLE EACH ITERATION SEPRATELY!!!
+
 			if(match[0].includes('![](Images/')){
 				try{
+		   ///////////////////   // updated_repoDiscussionBody = updated_repoDiscussionBody.replaceAll('![](Images/',`![](/${owner}/${repo}/raw/master/Images/${macth[1]})`;
+		   ///////////////////     // match[2] = `![](/${owner}/${repo}/raw/master/Images/${match[1]})`;
 				match[2] = match[0].replaceAll('![](Images/',`![](/${owner}/${repo}/raw/master/Images/`);
 				matches.push(match);
 				continue;
 			  }catch(ex){core.info(`${JSON.stringify(ex)}\nUNABLE TO REPLACE ![](Images/___) TO ![](/{owner}/{repo}/raw/master/Images/{match[1]}`);}
 			}
-
+		  ///////////////////////////// // else if(match[0].includes('<img src="Pics/')){
+		  ///////////////////////////// //     try{
+		  ///////////////////////////// //     match[2] = match[0].replaceAll('<img src="Pics/',`<img src="${owner}/${repo}/Pics/`);
+		  ///////////////////////////// //     matches.push(match);
+		  ///////////////////////////// //     continue;
+		  ///////////////////////////// //   }catch(ex){core.info(`${JSON.stringify(ex)}\nUNABLE TO REPLACE <img src="Pics/ TO <img src={owner}/{repo}/Pics`);}
+		  ///////////////////////////// // }
 			  else if(match[0].includes('![](pics/')){
 				try{
+				  // updated_repoDiscussionBody = updated_repoDiscussionBody.replaceAll('![](Images/',`![](/${owner}/${repo}/raw/master/Images/${macth[1]})`;
+				  // match[2] = `![](/${owner}/${repo}/raw/master/Images/${match[1]})`;
 				  match[2] = match[0].replaceAll('![](pics/',`![](/pics/${match[1]}`);
 				  matches.push(match);
 				  continue;
@@ -610,13 +1215,26 @@ ${unrendered_readmeFileContent}
 			}
 			  else if(match[0].includes('![](Pics/')){
 				try{
+				  // updated_repoDiscussionBody = updated_repoDiscussionBody.replaceAll('![](Images/',`![](/${owner}/${repo}/raw/master/Images/${macth[1]})`;
+				  // match[2] = `![](/${owner}/${repo}/raw/master/Images/${match[1]})`;
 				  match[2] = match[0].replaceAll('![](Pics/',`![](/Pics/${match[1]}`);
 				  matches.push(match);
 				  continue;
 				}catch(exe){core.info(`${JSON.stringify(exe)}\nUNABLE TO REPLACE ![]([Pics]/___) TO ![](/{owner}/{repo}/Pics/{match[1]}`);}
 			}
+		 ////////////////// //   else if(match[0].includes('![Alt text](Pics/')){
+		 ////////////////// //     try{
+		 ////////////////// //       // updated_repoDiscussionBody = updated_repoDiscussionBody.replaceAll('![](Images/',`![](/${owner}/${repo}/raw/master/Images/${macth[1]})`;
+		 ////////////////// //       // match[2] = `![](/${owner}/${repo}/raw/master/Images/${match[1]})`;
+		 ////////////////// //       match[2] = match[0].replaceAll('![Alt text](Pics/',`![](/Pics/${match[1]}`);
+		 ////////////////// //       matches.push(match);
+		 ////////////////// //       continue;
+		 ////////////////// //     }catch(exe){core.info(`${JSON.stringify(exe)}\nUNABLE TO REPLACE ![]([Pics]/___) TO ![](/{owner}/{repo}/Pics/{match[1]}`);}
+		 ////////////////// // }
 			  else if(match[0].includes('](Images/')){
 				  try{
+		  ///////////////////////         // updated_repoDiscussionBody = updated_repoDiscussionBody.replaceAll('![](Images/',`![](/${owner}/${repo}/raw/master/Images/${macth[1]})`;
+		  ///////////////////////         // match[2] = `![](/${owner}/${repo}/raw/master/Images/${match[1]})`;
 					match[2] = match[0].replaceAll('](Images/',`](/${owner}/${repo}/raw/master/Images/`);
 					matches.push(match);
 					continue;
@@ -624,6 +1242,8 @@ ${unrendered_readmeFileContent}
 			  }
 			  else if(match[0].includes('](pics/')){
 				  try{
+			//////////////////////////////       // updated_repoDiscussionBody = updated_repoDiscussionBody.replaceAll('![](Images/',`![](/${owner}/${repo}/raw/master/Images/${macth[1]})`;
+			//////////////////////////////       // match[2] = `![](/${owner}/${repo}/raw/master/Images/${match[1]})`;
 					match[2] = match[0].replaceAll('](pics/',`](/pics/`);
 					matches.push(match);
 					continue;
@@ -631,6 +1251,8 @@ ${unrendered_readmeFileContent}
 			  }
 			  else if(match[0].includes('](Pics/')){
 				  try{
+					// updated_repoDiscussionBody = updated_repoDiscussionBody.replaceAll('![](Images/',`![](/${owner}/${repo}/raw/master/Images/${macth[1]})`;
+					// match[2] = `![](/${owner}/${repo}/raw/master/Images/${match[1]})`;
 					match[2] = match[0].replaceAll('](Pics/',`](/Pics/`);
 					matches.push(match);
 					continue;
@@ -639,49 +1261,101 @@ ${unrendered_readmeFileContent}
 
 
 			  else if (((tmatch = match[0].match(/.*\/(.*?\.(svg\??.*?|jpg|jpeg|png|gif|bmp|mp4|mov|webm))\)/))!==null) &&
-			  match[1].includes('Images/')){
+			  match[1].includes('Images/')){// && match[0].includes(owner) && match[0].includes(repo))
 				try{
+			 /////////////////////////   // core.info(tmatch)
+			 /////////////////////////   // if (tmatch[0] && tmatch[0].includes('Images/'))
+			 /////////////////////////   // try{match[2]=match[1].replaceAll('/raw/master/','/raw/master/images/');}
+			 /////////////////////////   // catch(_){
+			 /////////////////////////     //core.info('CAUGHT ERROR: /blob/master/ => /raw/master/');
+			 /////////////////////////     // match[2]=`https://github.com/${owner}/${repo}/raw/master/${match[1]}`;
+			 /////////////////////////     // matches.push(match);
 				  match[2] = match[0].replaceAll('](Images/',`](/${owner}/${repo}/raw/master/Images/`);
 				  matches.push(match);
 				  continue;
+			  /////////////////////////////   // }
+			  /////////////////////////////   // https://github.com/graboskyc/BasicCloudShellRobot/raw/master/Images/SnQSS.PNG
 				}catch(ex){core.info(`${JSON.stringify(ex)}\nUNABLE TO REPLACE ](Images/___.*) TO ...](/{owner}/{repo}/raw/master/Images/{match[1]}`)}
-			  }
+			  }// else match[2]=`https://github.com/${owner}/${repo}/blob/master/${match[1]}`;
 			  else if (((tmatch = match[0].match(/.*\/(.*?\.(svg\??.*?|jpg|jpeg|png|gif|bmp|mp4|mov|webm))\)/))!==null) &&
-			  match[1].includes('pics/')){
+			  match[1].includes('pics/')){// && match[0].includes(owner) && match[0].includes(repo))
 				try{
+			  /////////////////////  // core.info(tmatch)
+			  /////////////////////  // if (tmatch[0] && tmatch[0].includes('Images/'))
+			  /////////////////////  // try{match[2]=match[1].replaceAll('/raw/master/','/raw/master/images/');}
+			  /////////////////////  // catch(_){
+			  /////////////////////    //core.info('CAUGHT ERROR: /blob/master/ => /raw/master/');
+			  /////////////////////    // match[2]=`https://github.com/${owner}/${repo}/raw/master/${match[1]}`;
+			  /////////////////////    // matches.push(match);
 				  match[2] = match[0].replaceAll('](pics/',`](/pics/`);
 				  matches.push(match);
 				  continue;
+			  //////////////////    // }
+			  //////////////////    // https://github.com/graboskyc/BasicCloudShellRobot/raw/master/Images/SnQSS.PNG
 				}catch(ex){core.info(`${JSON.stringify(ex)}\nUNABLE TO REPLACE ](pics/___.*) TO ...](/{owner}/{repo}/pics/{match[1]}`)}
-			  }
+			  }// else match[2]=`https://github.com/${owner}/${repo}/blob/master/${match[1]}`;
 			  
 			  else if (((tmatch = match[0].match(/.*\/(.*?\.(svg\??.*?|jpg|jpeg|png|gif|bmp|mp4|mov|webm))\)/))!==null) &&
 			  match[1].includes('Pics/')){// && match[0].includes(owner) && match[0].includes(repo))
 				try{
+			 ////////////////////   // core.info(tmatch)
+			 ////////////////////   // if (tmatch[0] && tmatch[0].includes('Images/'))
+			 ////////////////////   // try{match[2]=match[1].replaceAll('/raw/master/','/raw/master/images/');}
+			 ////////////////////   // catch(_){
+			 ////////////////////     //core.info('CAUGHT ERROR: /blob/master/ => /raw/master/');
+			 ////////////////////     // match[2]=`https://github.com/${owner}/${repo}/raw/master/${match[1]}`;
+			 ////////////////////     // matches.push(match);
 				  match[2] = match[0].replaceAll('](Pics/',`](/Pics/`);
 				  matches.push(match);
 				  continue;
+			  /////////////////////    // }
+			  /////////////////////    // https://github.com/graboskyc/BasicCloudShellRobot/raw/master/Images/SnQSS.PNG
 				}catch(ex){core.info(`${JSON.stringify(ex)}\nUNABLE TO REPLACE ](Pics/___.*) TO ...](/{owner}/{repo}/Pics/{match[1]}`)}
-			  }
+			  }// else match[2]=`https://github.com/${owner}/${repo}/blob/master/${match[1]}`;
+			  
+			 //////////////////// //     regexp=/\[.*?\]\(.*?\/.*?\..*?\)/g;
 
 			  else if (((tmatch = match[0].match(/\]\(.*?\/.*?\..*?\)/))!==null)
 			  && !match[1].includes('http') && !match[1].includes('www') 
 			  && !match[1].includes('github.com') ){
+			/////////////////  //&& ((/\..*?\//.exec(match[1]))==null) ){// && match[0].includes(owner) && match[0].includes(repo))
 				try{
+			   ///////////////////////////   // match[2]=`https://github.com/${owner}/${repo}/raw/master/${match[1]}`;
+			   ///////////////////////////////   // match[2]=match[0].replace('](',`](/${owner}/${repo}/raw/master/`);
 				  match[2]=match[0].replace('](',`](/${owner}/${repo}/raw/master/`);
 				  matches.push(match);
 				  continue;
 				}catch(ex){core.info(`${JSON.stringify(ex)}\nUNABLE TO REPLACE ![...](/___.*) TO ![...](/{owner}/{repo}/raw/master/{match[1]}`)}
-			  }
+			  }// else match[2]=`https://github.com/${owner}/${repo}/blob/master/${match[1]}`;
+			  
+
+			
+	////////////////////// // core.info('match[0]: '+match[0]);  
 	if (((tmatch = match[0].match(/.*\/(.*?\.(svg\??.*?|jpg|jpeg|png|gif|bmp|mp4|mov|webm))\)/))!==null)
-	&& match[1].includes('github.com') )
+	&& match[1].includes('github.com') )//&& match[2].includes(`${owner}/${repo}`))
+	//////////////////// //    match[2]=`https://github.com/${owner}/${repo}/raw/master/${tmatch[1]}`;
 	{
+	///////////////  // let slss=match[1].split['/'];
+	  // match[2]=`https://github.com/${owner}/${repo}/raw/master/${match[1]}`;
 	  
 	  if (match[1].includes('/blob/master/')){
 		try{match[2]=match[0].replaceAll('/blob/master/','/raw/master/');}catch(_){core.info('CAUGHT ERROR: /blob/master/ => /raw/master/');}
 		matches.push(match);
 	  }
 	 }
+	/////////////// //  else if (((tmatch = match[0].match(/.*\/(.*?\.(svg\??.*?|jpg|jpeg|png|gif|bmp|mp4|mov|webm))\)/))!==null) &&
+	/////////////// //  match[1].includes('Images/'))// && match[0].includes(owner) && match[0].includes(repo))
+	/////////////// //  {
+	/////////////// //   // core.info(tmatch)
+	/////////////// //   // if (tmatch[0] && tmatch[0].includes('Images/'))
+	/////////////// //   // try{match[2]=match[1].replaceAll('/raw/master/','/raw/master/images/');}
+	/////////////// //   // catch(_){
+	/////////////// //     //core.info('CAUGHT ERROR: /blob/master/ => /raw/master/');
+	/////////////// //     match[2]=`https://github.com/${owner}/${repo}/raw/master/${match[1]}`;
+	/////////////// //     matches.push(match);
+	/////////////// //     // }
+	/////////////// //   // https://github.com/graboskyc/BasicCloudShellRobot/raw/master/Images/SnQSS.PNG
+	/////////////// //  }// else match[2]=`https://github.com/${owner}/${repo}/blob/master/${match[1]}`;
 	  else if(!match[1].includes('http')&&!match[1].includes('www')&&!match[1].includes('github.com')
 	  && match[1].match(/.*\/.*/)!==null&&!match[1].includes('.')) //![](someOwner/someRepo) / [](someOwner/someRepo)
 	   {
@@ -691,18 +1365,31 @@ ${unrendered_readmeFileContent}
 	   }
 	  
 
+	//////////////////// /  // core.info(match[2]);
+	//////////////////// / 
+	//////////////////// // match[2]=`https://github.com/${owner}/${repo}
+	//////////////////// // match[2]=`https://github.com/${owner}/${repo}/blob/master/${match[1]}`;
+	//////////////////// //${match[1].includes('!')?'raw':'blob'}/master/${match[1]}`;
+
+
+	///////////////// // core.info('match[2]: '+match[2]);  
 			}
 		}catch(e){core.info(`ERROR:::::::::::::::::::`);core.info(e);}
 	  try{
+	 //////////////////   // core.info(matches);
 		core.info(matches.map(o=>o[1]+':'+o[2]));     
 
 		}    catch(e){core.info(`ERROR:::::::::::::::::::`);;core.info(e);}
 	try{
+	 //////////   // core.info('?!?-?!?');
 		  matches.forEach(m=>{
 			core.info('CHANGING ');
 			core.info(m[0]+'\nTO:\n'+m[2]);
+	/////////        // core.info('CHANGING...');
 			core.info('CHANGING...');
+			// updated_repoDiscussionBody = updated_repoDiscussionBody.replace(m[0],`\n\n${m[2]}\n\n`);});
 			updated_repoDiscussionBody = updated_repoDiscussionBody.replace(m[0],`${m[2]}`);});
+	 //////////       // updated_repoDiscussionBody = updated_repoDiscussionBody.replace(m[1],m[2]);});
 	  }catch(e){core.info(`ERROR:::::::::::::::::::`);core.info(e);}
 
 	
@@ -766,6 +1453,7 @@ fbstr +=
 	//#endregion mend 
 
 
+	/////////// // try{updated_repoDiscussionBody=markdown.render(updated_repoDiscussionBody);}catch(__){core.info(__);}//<<<<<<<<<<<<<<<<<<<
 
 						  //SIG:
 						  try{
@@ -790,6 +1478,19 @@ fbstr +=
 		core.info('+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*');
 		core.info('+*+*+*+*+*+*+*+*:::MUTATION:::+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*');
 
+	//SPLIT OUT THE README.md
+// 	let readmemd = updated_repoDiscussionBody.split('<!--README.md-->')[1];
+// 	updated_repoDiscussionBody = updated_repoDiscussionBody.split('<!--README.md-->')[0]+'<!--README.md-->'+'<!--README.md-->'+updated_repoDiscussionBody.split('<!--README.md-->')[2];
+	//RENDER WITHOUT
+// 	updated_repoDiscussionBody=markdown.render(updated_repoDiscussionBody);
+	//READD
+// 	updated_repoDiscussionBody = updated_repoDiscussionBody.split('<!--README.md-->')[0]+readmemd+updated_repoDiscussionBody.split('<!--README.md-->')[2];
+
+	///////////////////    //'SB' MUTATION SECTION
+	///////////////////    //#region 'SB' SUBMIT
+	/////////////////
+	///////////////////   }//'SB' MUTATION SECTION
+	///////////////////   //#endregion 'SB' SUBMIT
 	
     let updateDiscussionMutation =
   `mutation UpdateDiscussion($discussionId: ID!, $body: String, $clientMutationId: String) {

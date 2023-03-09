@@ -54,14 +54,14 @@ query GetDiscussionId($name: String!, $owner: String!, $number: Int!) {
 
     await graphql(getDiscId_Query,getDiscId_QueryHeaders)
     .then(res=>{
-      core.info(JSON.stringify(res));
       try{
+		core.info(JSON.stringify(res));
         core.notice(res.repository.discussion.id); 
         repoDiscussionId = res.repository.discussion.id;
         //core.notice(res.repository.discussion.body); 
         repoDiscussionBody = res.repository.discussion.body;
         repoDiscussionTitle = res.repository.discussion.title;
-      }catch(e){core.error('GETDISCUSSIONID FAILED.');}
+      }catch(e){core.setFailed('GETDISCUSSIONID FAILED.');}
     })
     .catch(errors=>{
       core.notice(errors);        
@@ -78,16 +78,16 @@ query GetDiscussionId($name: String!, $owner: String!, $number: Int!) {
           owner: owner,
           repo: repo
         }).then(res=>{
-          core.info(JSON.stringify(res));
-          core.info('----------------------');
           try{
+			  core.info(JSON.stringify(res));
+			  core.info('----------------------');
 
-            readmeFilePath = res.data.find(file=>file.name.toLowerCase()=='readme.md').path;
+				readmeFilePath = res.data.find(file=>file.name.toLowerCase()=='readme.md').path;
           }catch(e){
-            core.warning('ERROR FETCHING README!\n'+JSON.stringify(res.data));
+            core.warning('ERROR FETCHING README!');
           }
           
-        }).catch(error=>{core.info(error);});
+        }).catch(error=>{core.setFailed(error);});
         
         let readmeFile;
         let readmeFileContent;
@@ -97,10 +97,13 @@ query GetDiscussionId($name: String!, $owner: String!, $number: Int!) {
               repo: repo,
               path: readmeFilePath//'README.md'
             }).then(res=>{
-             try{ readmeFile = res.data; } catch(_){console.dir(`${_}\nNO README.md for ${owner}/${repo}`)}
+             try{ 
+				readmeFile = res.data; 
+				readmeFileContent = Buffer.from(res.data.content, 'base64'); 
+			 } catch(_){console.dir(`${_}\nNO README.md for ${owner}/${repo}`)}
               core.info('----------------------');
-              readmeFileContent = Buffer.from(res.data.content, 'base64'); 
-            }).catch(error=>{core.info(error);});
+             
+            }).catch(error=>{core.warning(error);});
             
             if (readmeFileContent){
               core.info(readmeFileContent);
@@ -112,7 +115,7 @@ query GetDiscussionId($name: String!, $owner: String!, $number: Int!) {
               core.warning('README.md File, GET CONTENT, ERROR...\n\n');
             }
           }else {
-            core.warning('ERROR FETCHING README!\n'+JSON.stringify(res.data));
+            core.warning('ERROR FETCHING README!');
           }
     
 
@@ -128,7 +131,7 @@ await octokit.request('POST /markdown', {
       core.info(JSON.stringify(res));
 //       try{try{rendered_readmeFileContent = markdown.render(res.data);}catch(__){rendered_readmeFileContent = markdown.render(res);}}
       try{rendered_readmeFileContent = res.data;}
-    catch(e_){core.warning(e_); rendered_readmeFileContent = res; core.notice('rendered_readmeFileContent = res'); core.info(rendered_readmeFileContent);}
+    catch(e_){core.warning(e_);}//rendered_readmeFileContent = res; core.notice('rendered_readmeFileContent = res'); core.info(rendered_readmeFileContent);}
     }).catch(error=>{core.error(error);});
 try{
   core.info(`type of readmeFileContent: ${typeof readmeFileContent}`,true);

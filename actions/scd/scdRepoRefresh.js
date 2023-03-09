@@ -41,7 +41,7 @@ async function refresh() {
   
  entryCount=!entryCount?300:entryCount;
 //get   
-  let pages = parseInt(entryCount/100);///10);
+  let pages = 1+parseInt(entryCount/100);///10);
   core.info('PAGES: '+pages);
   
   let firstPage = true, hasNextPage/*, startCursor*/, endCursor, totalRecords;

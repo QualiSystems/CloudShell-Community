@@ -1,0 +1,22 @@
+name: 'Scheduled Update Community Integration Discussion (Semi-Daily)'
+on:
+  # schedule:
+  # - cron: '* 2 */2 * *'
+  workflow_dispatch:
+       
+jobs:
+  intupd-action:
+    name: Scheduled Integration Refresh
+    runs-on: ubuntu-latest
+    steps:
+      # To use this repository's private action,
+      # you must check out the repository
+      - name: Checkout
+        uses: actions/checkout@v3
+        with: { ref: main }
+      - name: Refresh
+        uses: ./actions/scd
+        id: refresh
+        with:
+          tkn: ${{ secrets.GITHUB_TOKEN }}
+          clgI: ${{ secrets.INTUPD_CHALLENGE }}

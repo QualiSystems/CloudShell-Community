@@ -2,13 +2,12 @@ const core = require('@actions/core');
 const { Octokit } = require('@octokit/core');
 const { graphql } = require('@octokit/graphql');
 const https = require('https');
-// const COMMUNITY_OWNER = 'QualiSystems'
-// const COMMUNITY = 'CloudShell-Community';
-const COMMUNITY_OWNER = 'Quali-Community'
-const COMMUNITY = 'TestRepo';
-const MarkdownIt = require('markdown-it');
-
-const markdown = new MarkdownIt('commonmark',);
+const COMMUNITY_OWNER = 'QualiSystems'
+const COMMUNITY = 'CloudShell-Community';
+// const COMMUNITY_OWNER = 'Quali-Community'
+// const COMMUNITY = 'TestRepo';
+// const MarkdownIt = require('markdown-it');
+// const markdown = new MarkdownIt('commonmark',);
 
 
 run();
@@ -128,7 +127,19 @@ await octokit.request('POST /markdown', {
   }
     }).then(res=>{
       core.info(JSON.stringify(res));
-      try{try{rendered_readmeFileContent = markdown.render(res.data);}catch(__){rendered_readmeFileContent = markdown.render(res);}}
+//       try{try{rendered_readmeFileContent = markdown.render(res.data);}catch(__){rendered_readmeFileContent = markdown.render(res);}}
+	try{
+		await octokit.request('POST /markdown', {
+  text: String(readmeFileContent),
+  headers: {
+    'X-GitHub-Api-Version': '2022-11-28'
+  }
+    }).then(res=>{
+      core.info(JSON.stringify(res));
+      try{rendered_readmeFileContent = res.data;}
+    catch(e_){core.warning(e_); rendered_readmeFileContent = res; core.notice('rendered_readmeFileContent = res'); core.info(rendered_readmeFileContent);}
+    }).catch(error=>{core.error(error);});
+	}
     catch(e_){core.warning(e_); try{rendered_readmeFileContent = res.data;}catch(__){rendered_readmeFileContent = res;} core.notice('rendered_readmeFileContent = res/.data'); core.info(rendered_readmeFileContent);}
     }).catch(error=>{core.error(error);});
 try{

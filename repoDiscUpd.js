@@ -140,7 +140,6 @@ try{
 	unrendered_readmeFileContent=`<!--_-->
   
 
-
 ${String(readmeFileContent)}
 
 `;
@@ -241,19 +240,24 @@ try{
   if(!updated_repoDiscussionBody.includes(`<h1>${repoDiscussionTitle}</h1>`))
         updated_repoDiscussionBody += 
 `
-<h1>${repoDiscussionTitle}</h1>`;
+<h1>${repoDiscussionTitle}</h1>
+\n
+
+`;
 }
 				if(repoDiscussionBody.includes(`<!--KEEP--><!--CUTOFF--><!--KEEP-->undefined<!--CUTOFF--><!--KEEP-->`))
 				   repoDiscussionBody = repoDiscussionBody.split(`<!--KEEP--><!--CUTOFF--><!--KEEP-->undefined<!--CUTOFF--><!--KEEP-->`)[0];
 							if (repoDiscussionBody.includes(`<table width="100%" align="center">`))
       updated_repoDiscussionBody += 
-`${repoDiscussionBody.split('<table width="100%" align="center">')[0]}`;
+`${repoDiscussionBody.split('<table width="100%" align="center">')[0]}
+\n
+
+`;
 
 							else {
 updated_repoDiscussionBody += `<br>\n
 ${repoDiscussionBody}
-
-<br>\n
+\n
 
 <table width="100%" align="center">`;
 							}
@@ -265,14 +269,19 @@ ${repoDiscussionBody}
 	
 if(!updated_repoDiscussionBody.includes('<!--CUTOFF-->'))
   updated_repoDiscussionBody +=
-`<!--KEEP--><!--CUTOFF--><!--KEEP-->`
+`\n
+
+<!--KEEP--><!--CUTOFF--><!--KEEP-->\n
+
+`;
     
 
 repoDiscussionUrl=`https://github.com/${owner}/${repo}`;
 
 updated_repoDiscussionBody += 
-`
-<br><table width="100%" align="center">`;
+`\n
+
+<table width="100%" align="center">`;
 try{
   updated_repoDiscussionBody +=
 `<th><h3><a href="${repoDiscussionUrl}">Repository</a></h3></th>`;

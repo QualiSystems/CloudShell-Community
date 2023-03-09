@@ -4,7 +4,27 @@ const { graphql } = require('@octokit/graphql');
 const https = require('https');
 const COMMUNITY_OWNER = 'QualiSystems'
 const COMMUNITY = 'CloudShell-Community';
+// const COMMUNITY_OWNER = 'Quali-Community'
+// const COMMUNITY = 'TestRepo';
+const MarkdownIt = require('markdown-it');
 
+const markdown = new MarkdownIt('commonmark',);
+
+// const scd = await isScheduled();
+// if (scd) core.warning('SCHEDULED RUN');
+// else run();
+
+
+// async function isScheduled(){
+// 	let hr = new Date().getUTCHours();
+// 	core.notice(hr);
+// 	core.notice('OK!');
+// if(hr==21) return true;
+// 	else return false;
+	
+// }
+
+run();
 
 async function run() {
 if (!core.getInput('clgI').includes(core.getInput('clgS'))) core.error('FAILED CHALLENGE');
@@ -52,6 +72,7 @@ query GetDiscussionId($name: String!, $owner: String!, $number: Int!) {
       try{
         core.notice(res.repository.discussion.id); 
         repoDiscussionId = res.repository.discussion.id;
+        //core.notice(res.repository.discussion.body); 
         repoDiscussionBody = res.repository.discussion.body;
         repoDiscussionTitle = res.repository.discussion.title;
       }catch(e){core.error('GETDISCUSSIONID FAILED.');}
@@ -61,8 +82,9 @@ query GetDiscussionId($name: String!, $owner: String!, $number: Int!) {
       core.error(errors);
       core.setFailed('GETDISCUSSIONID ERROR.');
     });
-  
-        core.info('REPOSITORY\nDISCUSSION ID: '+repoDiscussionId+', DISUCSSION NUMBER: '+discNum);
+
+    
+          core.info('REPOSITORY\nDISCUSSION ID: '+repoDiscussionId+', DISUCSSION NUMBER: '+discNum);
       let readmeFilePath;
       const octokit = new Octokit({  auth: tkn });
         core.notice('TRYING TO FETCH FILE INDEX FROM REPO...');
@@ -88,7 +110,7 @@ query GetDiscussionId($name: String!, $owner: String!, $number: Int!) {
               repo: repo,
               path: readmeFilePath//'README.md'
             }).then(res=>{
-             try{ readmeFile = res.data; } catch(_){console.dir(`${_}\nNO README.md for ${owner_repo}`)}
+             try{ readmeFile = res.data; } catch(_){console.dir(`${_}\nNO README.md for ${owner}/${repo}`)}
               core.info('----------------------');
               readmeFileContent = Buffer.from(res.data.content, 'base64'); // Ta-da
             }).catch(error=>{core.info(error);});
@@ -97,6 +119,7 @@ query GetDiscussionId($name: String!, $owner: String!, $number: Int!) {
               core.info(readmeFileContent);
               core.info('typeof: '+typeof readmeFileContent);
               core.info('README.md File GET CONTENT, OK');
+              
             }
             else{
               core.warning('README.md File, GET CONTENT, ERROR...\n\n');
@@ -104,6 +127,8 @@ query GetDiscussionId($name: String!, $owner: String!, $number: Int!) {
           }else {
             core.warning('ERROR FETCHING README!\n'+JSON.stringify(res.data));
           }
+    
+
     
     let unrendered_readmeFileContent;
 let rendered_readmeFileContent;
@@ -113,14 +138,17 @@ await octokit.request('POST /markdown', {
   headers: {
     'X-GitHub-Api-Version': '2022-11-28'
   }
+// })
     }).then(res=>{
       core.info(JSON.stringify(res));
-      try{rendered_readmeFileContent = res.data;}
-    catch(e_){core.warning(e_); rendered_readmeFileContent = res; core.notice('rendered_readmeFileContent = res'); core.info(rendered_readmeFileContent);}
+      try{try{rendered_readmeFileContent = markdown.render(res.data);}catch(__){rendered_readmeFileContent = markdown.render(res);}}
+    catch(e_){core.warning(e_); try{rendered_readmeFileContent = res.data;}catch(__){rendered_readmeFileContent = res;} core.notice('rendered_readmeFileContent = res/.data'); core.info(rendered_readmeFileContent);}
     }).catch(error=>{core.error(error);});
 try{
   core.info(`type of readmeFileContent: ${typeof readmeFileContent}`,true);
-  unrendered_readmeFileContent=`<!--_-->
+  
+
+	unrendered_readmeFileContent=`<!--_-->
   
 
 
@@ -130,12 +158,18 @@ ${String(readmeFileContent)}
 }
 catch(e){core.warning(`${JSON.stringify(e)}\nERROR - README.md...`);}
                     
+	
+
 //#endregion README.md request
 
+
+//#region latest_release
 
     
     let updated_repoDiscussionBody='';
    
+    //let updated_repoDiscussionBody;
+
     let totalDownloadCount_AllReleases=0;
     let latest_release;
     let assets;
@@ -173,8 +207,10 @@ catch(e){core.warning(`${JSON.stringify(e)}\nERROR - README.md...`);}
         }
       });
       
+      //still in .then(res=>{
       assets=res.data[0].assets;     
       core.info(JSON.stringify(assets));    
+      //core.notice('^^^ LATEST RELEASE ASSETS res.data[0].assets ^^^');
      }catch(e){}
     }).catch(e=>{core.info(e);core.warning('FETCH LATEST RELEASE METADATA, FAILURE');});
          
@@ -202,7 +238,7 @@ assets_str+=`<a href="${asset.browser_download_url}">${asset.name}<sup><br>[${si
         });
        }
     }catch(e){core.warning('ASSETS ERROR')}
-          
+
     //BODY  //BODY  //BODY  //BODY  //BODY  //BODY  //BODY  //BODY  //BODY  //BODY  //BODY  //BODY  //BODY  //BODY  //BODY  //BODY  //BODY  //BODY  //BODY  //BODY  
     //BODY    //BODY   //BODY    //BODY   //BODY   //BODY    //BODY   //BODY   //BODY    //BODY   //BODY   //BODY    //BODY   //BODY    //BODY   //BODY   //BODY  //BODY    //BODY   //BODY  
 //BODY  //BODY  //BODY  //BODY  //BODY  //BODY  //BODY  //BODY  //BODY  //BODY  //BODY  //BODY  //BODY  //BODY  //BODY  //BODY  //BODY  //BODY  //BODY  //BODY  
@@ -218,14 +254,31 @@ try{
 `
 <h1>${repoDiscussionTitle}</h1>`;
 }
-
+				if(repoDiscussionBody.includes(`<!--KEEP--><!--CUTOFF--><!--KEEP-->undefined<!--CUTOFF--><!--KEEP-->`))
+				   repoDiscussionBody = repoDiscussionBody.split(`<!--KEEP--><!--CUTOFF--><!--KEEP-->undefined<!--CUTOFF--><!--KEEP-->`)[0];
+							if (repoDiscussionBody.includes(`<table width="100%" align="center">`))
       updated_repoDiscussionBody += 
-`${repoDiscussionBody.split(`<table width="100%" align="center">`)[0]}`;
+`${repoDiscussionBody.split('<table width="100%" align="center">')[0]}`;
 
+							else {
+updated_repoDiscussionBody += `<br>\n
+${repoDiscussionBody}
+
+<br>\n
+
+<table width="100%" align="center">`;
+							}
+								
+							
+	
+	
+	
+	
 if(!updated_repoDiscussionBody.includes('<!--CUTOFF-->'))
   updated_repoDiscussionBody +=
 `<!--KEEP--><!--CUTOFF--><!--KEEP-->`
     
+
 repoDiscussionUrl=`https://github.com/${owner}/${repo}`;
 
 updated_repoDiscussionBody += 
@@ -239,7 +292,7 @@ try{
 `<th><h3><a href="">Repository</a></h3></th>`;
 }
 
-if (
+	if (
     readmeFile && readmeFileContent && 
     (
       rendered_readmeFileContent.includes('* **') || rendered_readmeFileContent.includes('```') || 
@@ -268,8 +321,8 @@ if (
 `<td><h3>README.md</h3></td>`;
   }
 }
-
-  else{
+//<th><h3>Repository</h3></th><th><h3>README.md</h3></th><th><h3>Latest Release</h3></th>
+else{
   try{
     if (readmeFile && readmeFile.html_url) updated_repoDiscussionBody += 
 `<th><h3><a href="${readmeFile.html_url}">README.md</a></h3></th>`;
@@ -277,8 +330,9 @@ if (
     if (readmeFile) updated_repoDiscussionBody += 
 `<th><h3>README.md</h3></th>`;             
   }
-
-  try{
+  
+  
+try{
   if (latest_release && latest_release.html_url) updated_repoDiscussionBody += 
 `<th><h3><a href="${latest_release.html_url}">Latest Release</a></h3></th>`;
   else if (latest_release) updated_repoDiscussionBody += 
@@ -288,22 +342,29 @@ if (
 `<th><h3>Latest Release</h3></th>`;
 }
 }
-      
-
 	  
 	  updated_repoDiscussionBody += 
 `<tbody>
 <tr valign="top"><!--KEEP--><!--CUTOFF--><!--KEEP-->`;
-updated_repoDiscussionBody += 	  
+
+											if(repoDiscussionBody.split('<!--CUTOFF-->')[2]){
+	updated_repoDiscussionBody += 	  
 `${repoDiscussionBody.split('<!--CUTOFF-->')[2]}<!--CUTOFF--><!--KEEP-->`;
-          
+											}else {
+if (repoDiscussionUrl)
+updated_repoDiscussionBody += 	  
+`<th><h3><a href="${repoDiscussionUrl}">${repoDiscussionUrl}</a></h3>`;
+else
+updated_repoDiscussionBody += 	  
+`<th><!--CUTOFF--><!--KEEP-->`;
+
+											}
           if (latest_release && assets_str) updated_repoDiscussionBody += 
 `Total Downloads<sup><br>(All Releases)</sup><br>${totalDownloadCount_AllReleases}<br><br>`;
   
   updated_repoDiscussionBody += `</th>`;        
   
   
-  // rendered_readmeFileContent = markdown.render(readmeFileContent);
   let astCount=0;
   let slsCount=0;
   let limit = 5;
@@ -311,8 +372,7 @@ updated_repoDiscussionBody +=
   if (rfc.includes('-    ')||rfc.includes('   -   '))
    while (slsCount<3&&limit>0){
     try{limit--;slsCount++;
-      /******rfc=rfc.replace('-    ','');*******/
-    }catch(e){/*******rfc=rfc.replace('   -   ','');*******/}
+    }catch(e){
   }
   astCount=0;
   slsCount=0;
@@ -321,8 +381,7 @@ updated_repoDiscussionBody +=
   if (rfc.includes('* *')||rfc.includes('* '))
    while (astCount<5&&limit>0){
     try{limit--;astCount++;
-      /*******rfc=rfc.replace('* *','');*******/
-    }catch(e){/*******rfc=rfc.replace('* ','');*******/
+    }catch(e){
             }
   }
 
@@ -351,11 +410,11 @@ updated_repoDiscussionBody +=
 try{core.info(`slsCount: ${slsCount}`)}catch{}
 try{core.info(`astCount: ${astCount}`)}catch{}
   
-
   try{
           
           if (
             readmeFileContent && 
+
             (
               astCount<5 && slsCount<3 && !rendered_readmeFileContent.includes('<pre>') &&
               !rendered_readmeFileContent.includes('* **') && !rendered_readmeFileContent.includes('```') && 
@@ -371,12 +430,11 @@ try{core.info(`astCount: ${astCount}`)}catch{}
 <!--README.md-->
 <th valign="top">
 
-${rendered_readmeFileContent}
+${unrendered_readmeFileContent}
 
 </th>
 <!--README.md-->`;
 
-  
   }catch(e){core.info('readmeFileContent ERROR!!!')} 
 
       let tarLink, tarLinkStr;
@@ -436,13 +494,12 @@ ${assets_str}
 `<!--README.md-->
 <td valign="top">
 
-${rendered_readmeFileContent}
+${unrendered_readmeFileContent}
 
 </td>
 <!--README.md-->`;
 
-  
-  }catch(e){core.info('readmeFileContent ERROR!!!')} 
+}catch(e){core.info('readmeFileContent ERROR!!!')} 
 
           updated_repoDiscussionBody +=
   `</tr>
@@ -450,6 +507,7 @@ ${rendered_readmeFileContent}
         
           if (readmeFileContent && latest_release) {
             
+            // if (readmeFileContent && !readmeFileContent.includes('```')){
               if (
                 readmeFileContent && 
                 (
@@ -466,7 +524,7 @@ ${rendered_readmeFileContent}
               updated_repoDiscussionBody +=       
   `<tfoot>
   <th align="right">
-  <sub><sup>* Updated Daily</sup></sub>
+  <sub><sup>* Updated Semi-Daily</sup></sub>
   </th>
   <th><sub><sup>* Repository, release and asset info is updated daily.<br>Please allow 30-60 seconds for manual update changes to take effect.</sub></sup></th>
   <th align="left">
@@ -502,93 +560,12 @@ ${rendered_readmeFileContent}
 
 	  //#endregion //BODY
 
+	//#region mend  #%
+
 	let regexp;
 	let match;
-	let matches=[];                 
-		   regexp=/\[\s*?(!\s*?\[.*?\])\s*?(\(.*?\))\].*\s*?(?:(?=.*?)|(?=(\n|\s|\v)))/g;
-		   if(updated_repoDiscussionBody.match(regexp))
-			{
-			  regexp = /(?=.*?)\[(.*?)\]\s?\((.*?)\)\]?\(?.*?\)?/g;
-			  if(updated_repoDiscussionBody.match(regexp)){
-				while ( (match = regexp.exec(updated_repoDiscussionBody) ) !== null ){
-				  try{
-					updated_repoDiscussionBody = updated_repoDiscussionBody.replace(match[0],`
-	<a href="${match[2]}">${match[1]}</a>
-	`);
-				  }catch(_){core.info(`${_}\n${'(?=.*?)\[.*?\]\s?\(.*?\)\]?\(?.*?\)?'}\nREPLACE regexp ERROR...`)}
-				}
-			  }
-			}
-		  
-		try{
-		regexp = /(?<=\n|\v)( |\t|\s)+(?=\d\.?\)?|\.|i.?\.|i.?\)|v.?\.|v.?\)|x.?\.|x.?\)|#|\*|!|\|-|\| -|\|\<|\|\s\<){1}/g;
-	  if (updated_repoDiscussionBody.match(regexp)){
-		let reM;
-		while ( ( reM = regexp.exec(updated_repoDiscussionBody) ) !== null ){
-		  if (reM[0].trim()=='')
-			updated_repoDiscussionBody=updated_repoDiscussionBody.replace(reM[0],''); 
-
-	  
-		}
-	  }
-	}catch(e_){core.info(`${e_}\n\n/(?<=\n|\v)( |\t|\s)+(?=\d\.?\)?|\.|i.?\.|i.?\)|v.?\.|v.?\)|x.?\.|x.?\)|#|\*|!|\|-|\| -|\|\<|\|\s\<){1}/g\n\n`);}
+	let matches=[];                        
 		
-		 regexp=/(!)?\t*?(\[.*?\])\s*?(\(.*?\))(?:\s?\(.*?\))?/g;
-		match=undefined;  matches=[];
-	   while ((match = regexp.exec(updated_repoDiscussionBody)) !== null){
-		try{
-      let tmp_str = '';
-      try{
-        if (match[1])tmp_str+=match[1];
-        if (match[2])tmp_str+=match[2];
-        if (match[3])tmp_str+=match[3];
-
-        updated_repoDiscussionBody=updated_repoDiscussionBody.replace(match[0],`${tmp_str}`);
-
-      }catch(e){
-			core.info(`${e}\n\n^e ERROR tmp_str`);
-		  try{
-        if (match[3])
-        updated_repoDiscussionBody=
-          updated_repoDiscussionBody.replace(`${match[0]}`,`${match[1]}${match[2]}${match[3]}`);
-        else if (match[2])
-        updated_repoDiscussionBody=
-		  	  updated_repoDiscussionBody.replace(`${match[0]}`,`${match[1]}${match[2]}`);
-			  else if (match[1])
-			  updated_repoDiscussionBody=
-			    updated_repoDiscussionBody.replace(`${match[0]}`,`${match[1]}`);
-			  
-			
-        }catch(er){
-        core.info(`${er}\n\n^ ERROR tmp_str`);
-        core.info(`${er}\n\n^ ERROR tmp_str`);
-
-		  }
-		}
-
-		 }catch(error){
-		  core.info(`${error}\n\n^error ERROR tmp_str`);
-
-		 }
-		}
-	 
-		try {
-		  match=undefined;
-		  regexp=/\[.*?\]\(#.*?\)/g;
-		  if(readmeFile && readmeFile.html_url )
-		  while ((match=regexp.exec(updated_repoDiscussionBody))!==null)
-			updated_repoDiscussionBody=
-			  updated_repoDiscussionBody.replace(
-				match[0]
-				,
-				`${match[0].split('#')[0]}
-				  ${readmeFile.html_url}
-				  #${match[0].split('#')[1]}`
-		  );
-		  
-	  }catch(e){core.info(`${JSON.stringify(e)}\n^ updated_repoDiscussionBody ERRORED WHILE REPLACING\nREGEX /\[.*?\]\(#.*?\)/g: [...](#...)`);}
-
-
 
 	  try{
 		if(updated_repoDiscussionBody.includes('<img src="Pics/')){
@@ -609,16 +586,13 @@ ${rendered_readmeFileContent}
 	  }catch(e_){core.info(`${e_}\n/Pics ERROR!`);}
 
 
-
 	try{
 		   regexp=/!?\s?\[.*?\]\((.*?)\)/g;
 		   match=undefined;  matches=[];
 		   let tmatch;
 		  while ((match = regexp.exec(updated_repoDiscussionBody)) !== null){
-
 			try{core.info(match[0]);}catch(_){core.info(`${_}\n       regexp=/!?\s?\[.*?\]\((.*?)\)/g;        `)}
 			core.info(`       regexp=/!?\s?\[.*?\]\((.*?)\)/g;        `);
-		   
 			if(match[0].includes('![](Images/')){
 				try{
 				match[2] = match[0].replaceAll('![](Images/',`![](/${owner}/${repo}/raw/master/Images/`);
@@ -626,6 +600,7 @@ ${rendered_readmeFileContent}
 				continue;
 			  }catch(ex){core.info(`${JSON.stringify(ex)}\nUNABLE TO REPLACE ![](Images/___) TO ![](/{owner}/{repo}/raw/master/Images/{match[1]}`);}
 			}
+
 			  else if(match[0].includes('![](pics/')){
 				try{
 				  match[2] = match[0].replaceAll('![](pics/',`![](/pics/${match[1]}`);
@@ -635,86 +610,87 @@ ${rendered_readmeFileContent}
 			}
 			  else if(match[0].includes('![](Pics/')){
 				try{
-          match[2] = match[0].replaceAll('![](Pics/',`![](/Pics/${match[1]}`);
+				  match[2] = match[0].replaceAll('![](Pics/',`![](/Pics/${match[1]}`);
 				  matches.push(match);
 				  continue;
 				}catch(exe){core.info(`${JSON.stringify(exe)}\nUNABLE TO REPLACE ![]([Pics]/___) TO ![](/{owner}/{repo}/Pics/{match[1]}`);}
 			}
 			  else if(match[0].includes('](Images/')){
-          try{
-            match[2] = match[0].replaceAll('](Images/',`](/${owner}/${repo}/raw/master/Images/`);
-            matches.push(match);
-            continue;
-          }catch(exe){core.info(`${JSON.stringify(exe)}\nUNABLE TO REPLACE ![.*](Images/___) TO ![](/{owner}/{repo}/raw/master/Images/{match[1]}`);}
+				  try{
+					match[2] = match[0].replaceAll('](Images/',`](/${owner}/${repo}/raw/master/Images/`);
+					matches.push(match);
+					continue;
+				}catch(exe){core.info(`${JSON.stringify(exe)}\nUNABLE TO REPLACE ![.*](Images/___) TO ![](/{owner}/{repo}/raw/master/Images/{match[1]}`);}
 			  }
 			  else if(match[0].includes('](pics/')){
 				  try{
-            match[2] = match[0].replaceAll('](pics/',`](/pics/`);
-            matches.push(match);
-            continue;
-				  }catch(exe){core.info(`${JSON.stringify(exe)}\nUNABLE TO REPLACE ![.*](pics/___) TO ![](/{owner}/{repo}/pics/{match[1]}`);}
+					match[2] = match[0].replaceAll('](pics/',`](/pics/`);
+					matches.push(match);
+					continue;
+				}catch(exe){core.info(`${JSON.stringify(exe)}\nUNABLE TO REPLACE ![.*](pics/___) TO ![](/{owner}/{repo}/pics/{match[1]}`);}
 			  }
 			  else if(match[0].includes('](Pics/')){
 				  try{
-            match[2] = match[0].replaceAll('](Pics/',`](/Pics/`);
-            matches.push(match);
-            continue;
-				  }catch(exe){core.info(`${JSON.stringify(exe)}\nUNABLE TO REPLACE ![.*](Pics/___) TO ![](/{owner}/{repo}/Pics/{match[1]}`);}
+					match[2] = match[0].replaceAll('](Pics/',`](/Pics/`);
+					matches.push(match);
+					continue;
+				}catch(exe){core.info(`${JSON.stringify(exe)}\nUNABLE TO REPLACE ![.*](Pics/___) TO ![](/{owner}/{repo}/Pics/{match[1]}`);}
 			  }
 
 
 			  else if (((tmatch = match[0].match(/.*\/(.*?\.(svg\??.*?|jpg|jpeg|png|gif|bmp|mp4|mov|webm))\)/))!==null) &&
-			  match[1].includes('Images/')){// && match[0].includes(owner) && match[0].includes(repo))
-          try{
-            match[2] = match[0].replaceAll('](Images/',`](/${owner}/${repo}/raw/master/Images/`);
-            matches.push(match);
-            continue;
-          }catch(ex){core.info(`${JSON.stringify(ex)}\nUNABLE TO REPLACE ](Images/___.*) TO ...](/{owner}/{repo}/raw/master/Images/{match[1]}`)}
+			  match[1].includes('Images/')){
+				try{
+				  match[2] = match[0].replaceAll('](Images/',`](/${owner}/${repo}/raw/master/Images/`);
+				  matches.push(match);
+				  continue;
+				}catch(ex){core.info(`${JSON.stringify(ex)}\nUNABLE TO REPLACE ](Images/___.*) TO ...](/{owner}/{repo}/raw/master/Images/{match[1]}`)}
 			  }
 			  else if (((tmatch = match[0].match(/.*\/(.*?\.(svg\??.*?|jpg|jpeg|png|gif|bmp|mp4|mov|webm))\)/))!==null) &&
 			  match[1].includes('pics/')){
-          try{
-            match[2] = match[0].replaceAll('](pics/',`](/pics/`);
-            matches.push(match);
-            continue;
-  				}catch(ex){core.info(`${JSON.stringify(ex)}\nUNABLE TO REPLACE ](pics/___.*) TO ...](/{owner}/{repo}/pics/{match[1]}`)}
+				try{
+				  match[2] = match[0].replaceAll('](pics/',`](/pics/`);
+				  matches.push(match);
+				  continue;
+				}catch(ex){core.info(`${JSON.stringify(ex)}\nUNABLE TO REPLACE ](pics/___.*) TO ...](/{owner}/{repo}/pics/{match[1]}`)}
 			  }
+			  
 			  else if (((tmatch = match[0].match(/.*\/(.*?\.(svg\??.*?|jpg|jpeg|png|gif|bmp|mp4|mov|webm))\)/))!==null) &&
-			  match[1].includes('Pics/')){
-          try{
-            match[2] = match[0].replaceAll('](Pics/',`](/Pics/`);
-            matches.push(match);
-            continue;
-          }catch(ex){core.info(`${JSON.stringify(ex)}\nUNABLE TO REPLACE ](Pics/___.*) TO ...](/{owner}/{repo}/Pics/{match[1]}`)}
+			  match[1].includes('Pics/')){// && match[0].includes(owner) && match[0].includes(repo))
+				try{
+				  match[2] = match[0].replaceAll('](Pics/',`](/Pics/`);
+				  matches.push(match);
+				  continue;
+				}catch(ex){core.info(`${JSON.stringify(ex)}\nUNABLE TO REPLACE ](Pics/___.*) TO ...](/{owner}/{repo}/Pics/{match[1]}`)}
 			  }
+
 			  else if (((tmatch = match[0].match(/\]\(.*?\/.*?\..*?\)/))!==null)
 			  && !match[1].includes('http') && !match[1].includes('www') 
 			  && !match[1].includes('github.com') ){
-          try{
-            match[2]=match[0].replace('](',`](/${owner}/${repo}/raw/master/`);
-            matches.push(match);
-            continue;
-          }catch(ex){core.info(`${JSON.stringify(ex)}\nUNABLE TO REPLACE ![...](/___.*) TO ![...](/{owner}/{repo}/raw/master/{match[1]}`)}
+				try{
+				  match[2]=match[0].replace('](',`](/${owner}/${repo}/raw/master/`);
+				  matches.push(match);
+				  continue;
+				}catch(ex){core.info(`${JSON.stringify(ex)}\nUNABLE TO REPLACE ![...](/___.*) TO ![...](/{owner}/{repo}/raw/master/{match[1]}`)}
 			  }
-			  
-
 	if (((tmatch = match[0].match(/.*\/(.*?\.(svg\??.*?|jpg|jpeg|png|gif|bmp|mp4|mov|webm))\)/))!==null)
 	&& match[1].includes('github.com') )
 	{
+	  
 	  if (match[1].includes('/blob/master/')){
 		try{match[2]=match[0].replaceAll('/blob/master/','/raw/master/');}catch(_){core.info('CAUGHT ERROR: /blob/master/ => /raw/master/');}
 		matches.push(match);
 	  }
 	 }
-	
 	  else if(!match[1].includes('http')&&!match[1].includes('www')&&!match[1].includes('github.com')
 	  && match[1].match(/.*\/.*/)!==null&&!match[1].includes('.')) //![](someOwner/someRepo) / [](someOwner/someRepo)
 	   {
-	
+		// match[2]=`/${owner}/${repo}/blob/master/${match[1]}`;
 		match[2]=`https://github.com/${owner}/${repo}/blob/master/${match[1]}`;
 		matches.push(match);
 	   }
 	  
+
 			}
 		}catch(e){core.info(`ERROR:::::::::::::::::::`);core.info(e);}
 	  try{
@@ -729,7 +705,64 @@ ${rendered_readmeFileContent}
 			updated_repoDiscussionBody = updated_repoDiscussionBody.replace(m[0],`${m[2]}`);});
 	  }catch(e){core.info(`ERROR:::::::::::::::::::`);core.info(e);}
 
+	
+	try{
+		updated_repoDiscussionBody = 
+			updated_repoDiscussionBody.replaceAll(
+`![](cloudshell_logo.png)`,
+`
+\n
+![](/QualiSystems/CloudShell-Community/raw/main/attstor/cloudshell_logo.png)
+`);
 
+	}catch(_e_){core.warning(_e_);}
+
+	
+	
+	
+
+try{updated_repoDiscussionBody=updated_repoDiscussionBody.replaceAll(`http://community.quali.com/users/`,`#`);}catch(_e){core.error(`${_e}\nERROR CHANGING USER URL`);}
+try{updated_repoDiscussionBody=updated_repoDiscussionBody.replaceAll(`https://community.quali.com/users/`,`#`);}catch(_e){core.error(`${_e}\nERROR CHANGING USER URL`);}
+try{updated_repoDiscussionBody=updated_repoDiscussionBody.replaceAll(`community.quali.com/users/`,`#`);}catch(_e){core.error(`${_e}\nERROR CHANGING USER URL`);}
+try{updated_repoDiscussionBody=updated_repoDiscussionBody.replaceAll(`http://community.quali.com/articles/create?space=36#`,`#`);}catch(_e){core.error(`${_e}\nERROR CHANGING ARTICLES/create?space=36#`);}
+try{updated_repoDiscussionBody=updated_repoDiscussionBody.replaceAll(`https://community.quali.com/articles/create?space=36#`,`#`);}catch(_e){core.error(`${_e}\nERROR CHANGING ARTICLES/create?space=36#`);}
+try{updated_repoDiscussionBody=updated_repoDiscussionBody.replaceAll(`community.quali.com/articles/create?space=36#`,`#`);}catch(_e){core.error(`${_e}\nERROR CHANGING ARTICLES/create?space=36#`);}
+try{updated_repoDiscussionBody=updated_repoDiscussionBody.replaceAll(`http://community.quali.com/ideabox`,`/QualiSystems/CloudShell-Community/discussions/categories/idea-box`);}catch(_e){core.error(`${_e}\nERROR CHANGING ideabox`);}
+try{updated_repoDiscussionBody=updated_repoDiscussionBody.replaceAll(`https://community.quali.com/ideabox`,`/QualiSystems/CloudShell-Community/discussions/categories/idea-box`);}catch(_e){core.error(`${_e}\nERROR CHANGING ideabox`);}
+try{updated_repoDiscussionBody=updated_repoDiscussionBody.replaceAll(`community.quali.com/ideabox`,`/QualiSystems/CloudShell-Community/discussions/categories/idea-box`);}catch(_e){core.error(`${_e}\nERROR CHANGING ideabox`);}
+try{updated_repoDiscussionBody=updated_repoDiscussionBody.replaceAll(`http://community.quali.com/integrations`,`/QualiSystems/CloudShell-Community/discussions/categories/integrations`);}catch(_e){core.error(`${_e}\nERROR CHANGING integrations`);}
+try{updated_repoDiscussionBody=updated_repoDiscussionBody.replaceAll(`https://community.quali.com/integrations`,`/QualiSystems/CloudShell-Community/discussions/categories/integrations`);}catch(_e){core.error(`${_e}\nERROR CHANGING integrations`);}
+try{updated_repoDiscussionBody=updated_repoDiscussionBody.replaceAll(`community.quali.com/integrations`,`/QualiSystems/CloudShell-Community/discussions/categories/integrations`);}catch(_e){core.error(`${_e}\nERROR CHANGING integrations`);}
+try{updated_repoDiscussionBody=updated_repoDiscussionBody.replaceAll(`http://community.quali.com/ideas/state/Delivered`,`/QualiSystems/CloudShell-Community/discussions?discussions_q=label%3A%223%C2%B710+%3Abulb%3A+Delivered%22`);}catch(_e){core.error(`${_e}\nERROR CHANGING Delivered idea state`);}
+try{updated_repoDiscussionBody=updated_repoDiscussionBody.replaceAll(`https://community.quali.com/ideas/state/Delivered`,`/QualiSystems/CloudShell-Community/discussions?discussions_q=label%3A%223%C2%B710+%3Abulb%3A+Delivered%22`);}catch(_e){core.error(`${_e}\nERROR CHANGING Delivered idea state`);}
+try{updated_repoDiscussionBody=updated_repoDiscussionBody.replaceAll(`community.quali.com/ideas/state/Delivered`,`/QualiSystems/CloudShell-Community/discussions?discussions_q=label%3A%223%C2%B710+%3Abulb%3A+Delivered%22`);}catch(_e){core.error(`${_e}\nERROR CHANGING Delivered idea state`);}
+try{updated_repoDiscussionBody=updated_repoDiscussionBody.replaceAll(`http://community.quali.com/spaces/12/index.html`,`/QualiSystems/CloudShell-Community/discussions/categories/forums`);}catch(_e){core.error(`${_e}\nERROR CHANGING spaces/12/index`);}
+try{updated_repoDiscussionBody=updated_repoDiscussionBody.replaceAll(`https://community.quali.com/spaces/12/index.html`,`/QualiSystems/CloudShell-Community/discussions/categories/forums`);}catch(_e){core.error(`${_e}\nERROR CHANGING spaces/12/index`);}
+try{updated_repoDiscussionBody=updated_repoDiscussionBody.replaceAll(`community.quali.com/spaces/12/index.html`,`/QualiSystems/CloudShell-Community/discussions/categories/forums`);}catch(_e){core.error(`${_e}\nERROR CHANGING spaces/12/index`);}
+try{updated_repoDiscussionBody=updated_repoDiscussionBody.replaceAll(`http://community.quali.com/spac`,`/QualiSystems/CloudShell-Community/discussions/categories/forums`);}catch(_e){core.error(`${_e}\nERROR CHANGING spac`);}
+try{updated_repoDiscussionBody=updated_repoDiscussionBody.replaceAll(`https://community.quali.com/spac`,`/QualiSystems/CloudShell-Community/discussions/categories/forums`);}catch(_e){core.error(`${_e}\nERROR CHANGING spac`);}
+try{updated_repoDiscussionBody=updated_repoDiscussionBody.replaceAll(`community.quali.com/spac`,`/QualiSystems/CloudShell-Community/discussions/categories/forums`);}catch(_e){core.error(`${_e}\nERROR CHANGING spac`);}
+try{updated_repoDiscussionBody=updated_repoDiscussionBody.replaceAll(`http://community.quali.com`,`/QualiSystems/CloudShell-Community/discussions`);}catch(_e){core.error(`${_e}\nERROR CHANGING community.quali.com`);}
+try{updated_repoDiscussionBody=updated_repoDiscussionBody.replaceAll(`https://community.quali.com`,`/QualiSystems/CloudShell-Community/discussions`);}catch(_e){core.error(`${_e}\nERROR CHANGING community.quali.com`);}
+try{updated_repoDiscussionBody=updated_repoDiscussionBody.replaceAll(`community.quali.com`,`/QualiSystems/CloudShell-Community/discussions`);}catch(_e){core.error(`${_e}\nERROR CHANGING community.quali.com`);}
+	
+	
+	try{
+		let fbstr='';
+			try{
+fbstr +=
+`<th><h3><a href="${repoDiscussionUrl}">${repoDiscussionUrl}</a></h3>`;
+}catch(er){
+  fbstr +=
+`<th>`;
+}
+		updated_repoDiscussionBody=updated_repoDiscussionBody.replace(
+			`<!--KEEP--><!--CUTOFF--><!--KEEP-->undefined<!--CUTOFF--><!--KEEP-->`,
+			`<!--KEEP--><!--CUTOFF--><!--KEEP-->${fbstr}<!--CUTOFF--><!--KEEP-->`);
+		
+	}catch(_e){core.error(`${_e}\nERROR CHANGING <!--KEEP--><!--CUTOFF--><!--KEEP-->undefined<!--CUTOFF--><!--KEEP-->`);}
+
+					
 	//#endregion mend 
 
 
@@ -745,6 +778,7 @@ ${rendered_readmeFileContent}
 	core.info('+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*');
 		core.info(repoDiscussionId);
 		core.info(discNum);
+	  ////////////////  // core.info(ownerSlashRepo);
 		try{core.info(latest_release.html_url);}catch(e){}
 		try{core.info('README.md: '+readmeFileContent!==undefined);}catch(e){}
 		try{core.info('ASSETS: '+Object.keys(assets).length);}catch(e){}
@@ -756,6 +790,7 @@ ${rendered_readmeFileContent}
 		core.info('+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*');
 		core.info('+*+*+*+*+*+*+*+*:::MUTATION:::+*+*+*+*+*+*+*+*+*+*+*+*+*+*+*');
 
+	
     let updateDiscussionMutation =
   `mutation UpdateDiscussion($discussionId: ID!, $body: String, $clientMutationId: String) {
     updateDiscussion(
@@ -800,4 +835,3 @@ ${rendered_readmeFileContent}
   
 }
 
-run();

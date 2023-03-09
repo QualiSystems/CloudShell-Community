@@ -303,11 +303,11 @@ if (
 `<th><h3>Latest Release</h3></th>`;
   }
   try{if (readmeFile && readmeFile.html_url) updated_repoDiscussionBody += 
-`<td><h3><a href="${readmeFile.html_url}">README.md</a></h3></td>`;
+`<td valign="top"><h3><a href="${readmeFile.html_url}">README.md</a></h3></td>`;
   }
   catch(e){
     if (readmeFile) updated_repoDiscussionBody += 
-`<td><h3>README.md</h3></td>`;
+`<td valign="top"><h3>README.md</h3></td>`;
   }
 }
 else{
@@ -316,7 +316,7 @@ else{
 `<th><h3><a href="${readmeFile.html_url}">README.md</a></h3></th>`;
   }catch(e){
     if (readmeFile) updated_repoDiscussionBody += 
-`<th><h3>README.md</h3></th>`;             
+`<th valign="top"><h3>README.md</h3></th>`;             
   }
   
   

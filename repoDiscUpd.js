@@ -116,7 +116,6 @@ query GetDiscussionId($name: String!, $owner: String!, $number: Int!) {
           }
     
 
-    
     let unrendered_readmeFileContent;
 let rendered_readmeFileContent;
 	  
@@ -128,19 +127,8 @@ await octokit.request('POST /markdown', {
     }).then(res=>{
       core.info(JSON.stringify(res));
 //       try{try{rendered_readmeFileContent = markdown.render(res.data);}catch(__){rendered_readmeFileContent = markdown.render(res);}}
-	try{
-		await octokit.request('POST /markdown', {
-  text: String(readmeFileContent),
-  headers: {
-    'X-GitHub-Api-Version': '2022-11-28'
-  }
-    }).then(res=>{
-      core.info(JSON.stringify(res));
       try{rendered_readmeFileContent = res.data;}
     catch(e_){core.warning(e_); rendered_readmeFileContent = res; core.notice('rendered_readmeFileContent = res'); core.info(rendered_readmeFileContent);}
-    }).catch(error=>{core.error(error);});
-	}
-    catch(e_){core.warning(e_); try{rendered_readmeFileContent = res.data;}catch(__){rendered_readmeFileContent = res;} core.notice('rendered_readmeFileContent = res/.data'); core.info(rendered_readmeFileContent);}
     }).catch(error=>{core.error(error);});
 try{
   core.info(`type of readmeFileContent: ${typeof readmeFileContent}`,true);

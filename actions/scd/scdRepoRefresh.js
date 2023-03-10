@@ -199,12 +199,12 @@ async function refresh() {
 //         if(itr<7)        {
 // 	if(itr==4 || itr==5 || itr==6){
 // 	if (x.number==1492 || x.number==1494 || x.number==1495){
-	if (itr>80 && itr<130){
+// 	if (itr>80 && itr<130){
+	if (itr>129){
           core.info(`POST: ${x.ownerSlashRepo}, TO: #${x.number}.`);
           octokit.request('POST /repos/{owner}/{repo}/actions/workflows/{workflow_id}/dispatches', {
             owner: COMMUNITY_OWNER,
             repo: COMMUNITY,
-//             workflow_id: 48178700,
 	    workflow_id: 50262476,
             ref: 'main',
              inputs: {
@@ -225,29 +225,5 @@ async function refresh() {
   
           
 
-        
-//         const octokit = new Octokit({
-//           auth: core.getInput('tkn')
-//         })
-
-// //         if(itr==3 || itr==1)        {
-//           core.notice(`POSTING: QualiSystems/Huawei-VRP-WDM-Shell-2G, #1690`);
-//           octokit.request('POST /repos/{owner}/{repo}/actions/workflows/{workflow_id}/dispatches', {
-//             owner: COMMUNITY_OWNER,
-//             repo: COMMUNITY,
-//             //workflow_id: 50262476,
-//             workflow_id: 48178700,
-//             ref: 'main',
-//              inputs: {
-//               ownerSlashRepo: 'QualiSystems/Huawei-VRP-WDM-Shell-2G',
-//               discNum: '1690',
-//               clgI: core.getInput('clgI')
-//             },
-//             headers: {
-//               'X-GitHub-Api-Version': '2022-11-28'
-//             }
-//           })
-  
-  
   
 }

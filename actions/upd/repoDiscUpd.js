@@ -779,7 +779,7 @@ try{updated_repoDiscussionBody=updated_repoDiscussionBody.replaceAll(`community.
 								while((matS = /\[(\d)\]: (.*?)\n/g.exec(updated_repoDiscussionBody))!=null){
 									mcos.push(matS);//if (m[2]==matS[1]) mcos.push({src:matG,tgt:matS});
 // 								}
-							});
+// 							});
 							mcos.forEach(m=>{
 								let tgt;
 								try{tgt=mcs.find(mc=>mc[2]==m[1]);}catch(_){}

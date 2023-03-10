@@ -68,7 +68,7 @@ query GetDiscussionId($name: String!, $owner: String!, $number: Int!) {
           core.info('REPOSITORY\nDISCUSSION ID: '+repoDiscussionId+', DISUCSSION NUMBER: '+discNum);
       let readmeFilePath;
       const octokit = new Octokit({  auth: tkn });
-        core.notice('TRYING TO FETCH FILE INDEX FROM REPO...');
+        core.info('TRYING TO FETCH FILE INDEX FROM REPO...');
         await octokit.request('GET /repos/{owner}/{repo}/contents', {
           owner: owner,
           repo: repo
@@ -77,13 +77,25 @@ query GetDiscussionId($name: String!, $owner: String!, $number: Int!) {
 			  core.info(JSON.stringify(res));
 			  core.info('----------------------');
 
-				readmeFilePath = res.data.find(file=>file.name.toLowerCase()=='readme.md').path;
+		  readmeFilePath = res.data.find(file=>file.name.toLowerCase()=='readme.md').path;
           }catch(e){
-            core.warning('ERROR FETCHING README!');
-          }
-          
-        }).catch(error=>{core.setFailed(error);});
-        
+            core.warning('ERROR FETCHING README FROM ROOT!');
+          }         
+        }).catch(error=>{core.error(error);});
+if (!readmeFilePath) await octokit.request('GET /repos/{owner}/{repo}/contents/docs', {
+          owner: owner,
+          repo: repo
+        }).then(res=>{
+          try{
+			  core.info(JSON.stringify(res));
+			  core.info('----------------------');
+
+		  readmeFilePath = res.data.find(file=>file.name.toLowerCase()=='readme.md').path;
+          }catch(e){
+            core.warning('ERROR FETCHING README FROM DOCS!');
+          }         
+        }).catch(error=>{core.error(error);});
+	
         let readmeFile;
         let readmeFileContent;
         if (readmeFilePath){

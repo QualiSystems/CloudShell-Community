@@ -766,16 +766,17 @@ try{updated_repoDiscussionBody=updated_repoDiscussionBody.replaceAll(`community.
 	
 						try{
 							let regger = /!\[Image\](\[(\d)\])/g
-							let mcs=[]; let matG; let matS;
+							/*let mcs=[];*/ let matG; let matS;
 							while ((matG=regger.exec(updated_repoDiscussionBody))!==null){
-								if((matS = updated_repoDiscussionBody.match(new RegExp(`\[(${matG[2]})\]: (.*?)\n`,'g')))!=null)
-									if (matG[2]==matS[1]) mcs.push({src:matG,tgt:matS});
+								if((matS = updated_repoDiscussionBody.match(/\[(\d)\]: (.*?)\n/g))!=null)
+									if (matG[2]==matS[1]) //mcs.push({src:matG,tgt:matS});
+										updated_repoDiscussionBody=updated_repoDiscussionBody.replace(m.src[1],`(${m.tgt[2]})`);
 						       }
-							mcs.forEach(m=>{
-								try{m.tgt[2]=m.tgt[2].replace('blob','raw');}catch(_){}
-								updated_repoDiscussionBody=updated_repoDiscussionBody.replace(m.src[1],`(${m.tgt[2]})`);
-							});
-						}catch(___){}
+// 							mcs.forEach(m=>{
+// 								try{m.tgt[2]=m.tgt[2].replace('blob','raw');}catch(_){}
+// 								updated_repoDiscussionBody=updated_repoDiscussionBody.replace(m.src[1],`(${m.tgt[2]})`);
+// 							});
+// 						}catch(___){}
 	
 	
 	

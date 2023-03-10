@@ -776,7 +776,7 @@ try{updated_repoDiscussionBody=updated_repoDiscussionBody.replaceAll(`community.
 // 								try{m.tgt[2]=m.tgt[2].replace('blob','raw');}catch(_){}
 // 								updated_repoDiscussionBody=updated_repoDiscussionBody.replace(m.src[1],`(${m.tgt[2]})`);
 // 							});
-// 						}catch(___){}
+						}catch(___){}
 	
 	
 	

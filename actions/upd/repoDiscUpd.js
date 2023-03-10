@@ -768,7 +768,7 @@ try{updated_repoDiscussionBody=updated_repoDiscussionBody.replaceAll(`community.
 							let regger = /!\[Image\](\[(\d)\])/g
 							let mcs=[]; let matG; let matS;
 							while ((matG=regger.exec(updated_repoDiscussionBody))!==null){
-								if((matS = updated_repoDiscussionBody.match(new RegExp(`\[(${matG[2]})\]: (.*?)\n`,'g'))!=null)
+								if((matS = updated_repoDiscussionBody.match(new RegExp(`\[(${matG[2]})\]: (.*?)\n`,'g')))!=null)
 									if (matG[2]==matS[1]) mcs.push({src:matG,tgt:matS});
 						       }
 							mcs.forEach(m=>{

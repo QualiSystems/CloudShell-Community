@@ -766,12 +766,13 @@ try{updated_repoDiscussionBody=updated_repoDiscussionBody.replaceAll(`community.
 	
 						try{
 							let regger = /!\[Image\](\[(\d)\])/g
-							let mats=[]; let matG; let matS;
+							let mcs=[]; let matG; let matS;
 							while ((matG=regger.exec(updated_repoDiscussionBody))!==null){
-								if((matS = updated_repoDiscussionBody.match(/\[(\d)\]: (.*?)\n/))!=null)
-									if (matG[2]==matS[1]) mats.push({src:matG,tgt:matS});
+// 								if((matS = updated_repoDiscussionBody.match(/\[(\d)\]: (.*?)\n/))!=null)
+								while((matS = /\[(\d)\]: (.*?)\n/g.exec(updated_repoDiscussionBody))!=null)
+									if (matG[2]==matS[1]) mcs.push({src:matG,tgt:matS});
 						       }
-							mats.forEach(m=>{
+							mcs.forEach(m=>{
 								try{m.tgt[2]=m.tgt[2].replace('blob','raw');}catch(_){}
 								updated_repoDiscussionBody=updated_repoDiscussionBody.replace(m.src[1],`(${m.tgt[2]})`);
 							});

@@ -770,7 +770,7 @@ try{updated_repoDiscussionBody=updated_repoDiscussionBody.replaceAll(`community.
 							while ((matG=regger.exec(updated_repoDiscussionBody))!==null){
 								if((matS = updated_repoDiscussionBody.match(/\[(\d)\]: (.*?)\n/g))!=null)
 									if (matG[2]==matS[1]) //mcs.push({src:matG,tgt:matS});
-										updated_repoDiscussionBody=updated_repoDiscussionBody.replace(m.src[1],`(${m.tgt[2]})`);
+										updated_repoDiscussionBody=updated_repoDiscussionBody.replace(matG[1],`(${matS[2]})`);
 						       }
 // 							mcs.forEach(m=>{
 // 								try{m.tgt[2]=m.tgt[2].replace('blob','raw');}catch(_){}

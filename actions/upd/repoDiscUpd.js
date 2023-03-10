@@ -778,7 +778,7 @@ try{updated_repoDiscussionBody=updated_repoDiscussionBody.replaceAll(`community.
 // 								updated_repoDiscussionBody=updated_repoDiscussionBody.replace(m.src[1],`(${m.tgt[2]})`);
 								while((matS = /\[(\d)\]: (.*?)\n/g.exec(updated_repoDiscussionBody))!=null){
 									mcos.push(matS);//if (m[2]==matS[1]) mcos.push({src:matG,tgt:matS});
-// 								}
+								}
 // 							});
 							mcos.forEach(m=>{
 								let tgt;

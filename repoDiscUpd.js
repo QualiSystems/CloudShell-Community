@@ -524,7 +524,7 @@ ${unrendered_readmeFileContent}
               updated_repoDiscussionBody +=       
   `<tfoot>
   <th align="right">
-  <sub><sup>* Updated Semi-Daily</sup></sub>
+  <sub><sup>* Updated Weekly</sup></sub>
   </th>
   <th><sub><sup>* Repository, release and asset info is updated daily.<br>Please allow 30-60 seconds for manual update changes to take effect.</sub></sup></th>
   <th align="left">

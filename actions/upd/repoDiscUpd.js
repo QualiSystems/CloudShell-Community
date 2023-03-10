@@ -776,7 +776,8 @@ try{updated_repoDiscussionBody=updated_repoDiscussionBody.replaceAll(`community.
 // 							mcs.forEach(m=>{
 // 								try{m.tgt[2]=m.tgt[2].replace('blob','raw');}catch(_){}
 // 								updated_repoDiscussionBody=updated_repoDiscussionBody.replace(m.src[1],`(${m.tgt[2]})`);
-								while((matS = /\[(\d)\]: (.*?)\n/g.exec(updated_repoDiscussionBody))!=null){
+							let reggio=/\[(\d)\]: (.*?)\n/g;	
+							while((matS = reggio.exec(updated_repoDiscussionBody))!=null){
 									mcos.push(matS);//if (m[2]==matS[1]) mcos.push({src:matG,tgt:matS});
 								}
 // 							});

@@ -773,17 +773,18 @@ try{updated_repoDiscussionBody=updated_repoDiscussionBody.replaceAll(`community.
 										
 						       }
 							let mcos=[]; let matS;
-							mcs.forEach(m=>{
+// 							mcs.forEach(m=>{
 // 								try{m.tgt[2]=m.tgt[2].replace('blob','raw');}catch(_){}
 // 								updated_repoDiscussionBody=updated_repoDiscussionBody.replace(m.src[1],`(${m.tgt[2]})`);
 								while((matS = /\[(\d)\]: (.*?)\n/g.exec(updated_repoDiscussionBody))!=null){
-									if (m[2]==matS[1]) mcos.push({src:matG,tgt:matS});
-								}
+									mcos.push(matS);//if (m[2]==matS[1]) mcos.push({src:matG,tgt:matS});
+// 								}
 							});
 							mcos.forEach(m=>{
-								
-								try{m.tgt[2]=m.tgt[2].replace('blob','raw');}catch(_){}
-								try{updated_repoDiscussionBody=updated_repoDiscussionBody.replace(m.src[1],`(${m.tgt[2]})`);}catch(_){}
+								let tgt;
+								try{tgt=mcs.find(mc=>mc[2]==m[1]);}catch(_){}
+								try{m[2]=m[2].replace('blob','raw');}catch(_){}
+								try{updated_repoDiscussionBody=updated_repoDiscussionBody.replace(tgt[1],`(${m[2]})`);}catch(_){core.warning(_);}
 								
 							});
 						}catch(___){}

@@ -1,8 +1,9 @@
 name: 'Scheduled Update Community Integration Discussion (Semi-Daily)'
 on:
-  # schedule:
+  schedule:
+  - cron: '2 21 * * *'
   # - cron: '* 2 */2 * *'
-  workflow_dispatch:
+#   workflow_dispatch:
        
 jobs:
   intupd-action:

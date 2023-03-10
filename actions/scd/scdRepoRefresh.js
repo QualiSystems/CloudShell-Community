@@ -200,7 +200,7 @@ async function refresh() {
 // 	if(itr==4 || itr==5 || itr==6){
 // 	if (x.number==1492 || x.number==1494 || x.number==1495){
 // 	if (itr>80 && itr<130){
-	if (itr>129){
+	if (itr>129 && itr<133){
           core.info(`POST: ${x.ownerSlashRepo}, TO: #${x.number}.`);
           octokit.request('POST /repos/{owner}/{repo}/actions/workflows/{workflow_id}/dispatches', {
             owner: COMMUNITY_OWNER,

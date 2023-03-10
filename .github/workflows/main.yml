@@ -23,7 +23,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Resolve
-        uses: ./
+        uses: ./actions/upd
         id: resolve
         with:
           ownerSlashrepo: ${{ inputs.ownerSlashRepo }}

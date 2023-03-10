@@ -135,7 +135,7 @@ async function refresh() {
 									if ((
 								    owner_repo=en.body
 								    .split('github.com/repos/')[1]
-								    .match(/([-\w]*?\/[-\w]*?)(?=[\.\/\"\\\)\n\r])/)
+								    .match(/([-_\w]*?\/[-_\w]*?)(?=[\.\/\"\\\)\n\r])/)
 								    )!==null){
 								    if (owner_repo[1] && owner_repo[1].includes('/'))
 								    //{ owner = owner_repo[1].split('/')[0]; repo = owner_repo[1].split('/')[1]; }

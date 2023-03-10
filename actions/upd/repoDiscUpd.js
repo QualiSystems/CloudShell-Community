@@ -773,7 +773,7 @@ try{updated_repoDiscussionBody=updated_repoDiscussionBody.replaceAll(`community.
 						       }
 							mats.forEach(m=>{
 								try{m.tgt[2]=m.tgt[2].replace('blob','raw');}catch(_){}
-								updated_repoDiscussionBody=updated_repoDiscussionBody.replace(m.src[1],`(${m.tgt[2])})`);
+								updated_repoDiscussionBody=updated_repoDiscussionBody.replace(m.src[1],`(${m.tgt[2]})`);
 							});
 						}catch(___){}
 	

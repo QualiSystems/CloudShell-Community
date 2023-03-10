@@ -526,7 +526,7 @@ ${unrendered_readmeFileContent}
   <th align="right">
   <sub><sup>* Updated Weekly</sup></sub>
   </th>
-  <th><sub><sup>* Repository, release and asset info is updated daily.<br>Please allow 30-60 seconds for manual update changes to take effect.</sub></sup></th>
+  <th><sub><sup>* Repository, release and asset info is updated weekly.<br>Please allow 30-60 seconds for manual update changes to take effect.</sub></sup></th>
   <th align="left">
   <sub><sup><a href="https://hooks.zapier.com/hooks/catch/13116203/b7e29bg?OR=${owner}/${repo}&DN=${discNum}">* Update Now</a></sup></sub>
   </th>
@@ -536,12 +536,12 @@ ${unrendered_readmeFileContent}
               updated_repoDiscussionBody +=       
 `<tfoot>
   <th align="right">
-  <sub><sup>* Updated Semi-Daily</sup></sub>
+  <sub><sup>* Updated Weekly</sup></sub>
   </th>
   <th align="right">
   <sub><sup><a href="https://hooks.zapier.com/hooks/catch/13116203/b7e29bg?OR=${owner}/${repo}&DN=${discNum}">* Update Now</a></sup></sub>
   </th>
-  <td><strong><sub><sup>* Repository, release and asset info is updated daily.<br>* Please allow 30-60 seconds for manual update changes to take effect.</sub></sup></strong></td>
+  <td><strong><sub><sup>* Repository, release and asset info is updated weekly.<br>* Please allow 30-60 seconds for manual update changes to take effect.</sub></sup></strong></td>
   </tfoot>
   </table>`;
             }
@@ -550,9 +550,9 @@ ${unrendered_readmeFileContent}
   `</table>
   <table width="100%" align="center">
   <td align="right">
-  <sub><sup>* Updated Daily</sup></sub>
+  <sub><sup>* Updated Weekly</sup></sub>
   </td>
-  <th><sub><sup>* Repository, release and asset info is updated daily.<br>For manual update: Please allow 30-60 seconds for changes to take effect.</sub></sup></th>
+  <td><strong><sub><sup>* Repository, release and asset info is updated weekly.<br>* Please allow 30-60 seconds for manual update changes to take effect.</sub></sup></strong></td>
   <td align="left">
   <sub><sup><a href="https://hooks.zapier.com/hooks/catch/13116203/b7e29bg?OR=${owner}/${repo}&DN=${discNum}">* Update Now</a></sup></sub>
   </td>

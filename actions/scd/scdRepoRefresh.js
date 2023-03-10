@@ -1,14 +1,9 @@
 const core = require('@actions/core');
 const { Octokit } = require('@octokit/core');
 const { graphql } = require('@octokit/graphql');
-// const https = require('https');
 const COMMUNITY_OWNER = 'QualiSystems'
 const COMMUNITY = 'CloudShell-Community';
-// const COMMUNITY_OWNER = 'Quali-Community';
-// const COMMUNITY = 'TestRepo';
 const repoCatId = 'DIC_kwDOHwZ3p84CQk7b'; 
-// const repoCatId = 'DIC_kwDOH62R-M4CTONe'; 
-//SB REPOS : DIC_kwDOH62R-M4CTONe ~92 ////////////////// PR REPOS : DIC_kwDOHwZ3p84CQk7b
 
 refresh();
 
@@ -22,7 +17,7 @@ async function refresh() {
   let extracted=[];
   var entries = [];
 
-//getTotalRepoDiscCount //SB REPOS : DIC_kwDOH62R-M4CTONe ~92 ////////////////// PR REPOS : DIC_kwDOHwZ3p84CQk7b
+//getTotalRepoDiscCount //SB REPOS : ~92 ////////////////// PR REPOS : DIC_kwDOHwZ3p84CQk7b ~213
   await graphql(
     `query getTotalRepoDiscCount ($owner: String!, $name: String!, $categoryId: ID){
     repository(name: $name, owner: $owner) {
@@ -203,7 +198,8 @@ async function refresh() {
 //         if(itr==3 || itr==1)        {
 //         if(itr<7)        {
 // 	if(itr==4 || itr==5 || itr==6){
-	if (x.number==1492 || x.number==1494 || x.number==1495){
+// 	if (x.number==1492 || x.number==1494 || x.number==1495){
+	if (itr>50 && itr<81){
           core.info(`POST: ${x.ownerSlashRepo}, TO: #${x.number}.`);
           octokit.request('POST /repos/{owner}/{repo}/actions/workflows/{workflow_id}/dispatches', {
             owner: COMMUNITY_OWNER,

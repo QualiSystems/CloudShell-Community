@@ -4,10 +4,6 @@ const { graphql } = require('@octokit/graphql');
 const https = require('https');
 const COMMUNITY_OWNER = 'QualiSystems'
 const COMMUNITY = 'CloudShell-Community';
-// const COMMUNITY_OWNER = 'Quali-Community'
-// const COMMUNITY = 'TestRepo';
-// const MarkdownIt = require('markdown-it');
-// const markdown = new MarkdownIt('commonmark',);
 
 
 run();
@@ -58,7 +54,6 @@ query GetDiscussionId($name: String!, $owner: String!, $number: Int!) {
 		core.info(JSON.stringify(res));
         core.notice(res.repository.discussion.id); 
         repoDiscussionId = res.repository.discussion.id;
-        //core.notice(res.repository.discussion.body); 
         repoDiscussionBody = res.repository.discussion.body;
         repoDiscussionTitle = res.repository.discussion.title;
       }catch(e){core.setFailed('GETDISCUSSIONID FAILED.');}
@@ -819,7 +814,7 @@ fbstr +=
                                 .then(res=>{
                                   core.info(JSON.stringify(res));
                                   (JSON.stringify(res).includes('UpdateDiscussion:OK!')) ?
-                                    core.notice('DISCUSSION UPDATED.') : core.error('UPDATE DISCUSSION FAILED.') ;
+                                    core.notice(`DISCUSSION ${discNum} UPDATED.`) : core.error(`UPDATE ${discNum} DISCUSSION FAILED.`) ;
                                 })
                                 .catch(errors=>{
                                   core.warning(errors);        

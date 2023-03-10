@@ -536,7 +536,7 @@ ${unrendered_readmeFileContent}
               updated_repoDiscussionBody +=       
 `<tfoot>
   <th align="right">
-  <sub><sup>* Updated Daily</sup></sub>
+  <sub><sup>* Updated Semi-Daily</sup></sub>
   </th>
   <th align="right">
   <sub><sup><a href="https://hooks.zapier.com/hooks/catch/13116203/b7e29bg?OR=${owner}/${repo}&DN=${discNum}">* Update Now</a></sup></sub>

@@ -182,13 +182,13 @@ async function refresh() {
       
       extracted.forEach((x,itr)=>{
 	
-          let startTime = Date.now(); 
-        let finishTime = Date.now(); 
-        if (itr==100) 
-		while ((finishTime - startTime) < 90000) 
-          		finishTime = Date.now();
-	else while ((finishTime - startTime) < 500) 
-          	finishTime = Date.now();
+//           let startTime = Date.now(); 
+//         let finishTime = Date.now(); 
+//         if (itr==100) 
+// 		while ((finishTime - startTime) < 90000) 
+//           		finishTime = Date.now();
+// 	else while ((finishTime - startTime) < 1000) 
+//           	finishTime = Date.now();
         
         
 //         core.notice(`POSTING: ${x.ownerSlashRepo}, #${x.number}`);
@@ -198,11 +198,13 @@ async function refresh() {
           auth: core.getInput('tkn')
         })
 
-//         if(itr==3 || itr==1)        {
-//         if(itr<7)        {
-// 	if(itr==4 || itr==5 || itr==6){
-// 	if (x.number==1492 || x.number==1494 || x.number==1495){
-// 	if (itr>80 && itr<130){
+//         if(itr==3 || itr==1)        
+//         if(itr<7)        
+// 	if(itr==4 || itr==5 || itr==6)
+// 	if (itr>80 && itr<130)
+// if (x.number==1492 || x.number==1494 || x.number==1495)
+if (x.number>=1690)
+setTimeout(()=>{
 	if (x.ownerSlashRepo && x.number && core.getInput('clgI')){
           core.info(`POST: ${x.ownerSlashRepo}, TO: #${x.number}.`);
           octokit.request('POST /repos/{owner}/{repo}/actions/workflows/{workflow_id}/dispatches', {
@@ -218,7 +220,47 @@ async function refresh() {
             headers: {
               'X-GitHub-Api-Version': '2022-11-28'
             }
-          })
+          }).then(res=>{
+		  if(JSON.stringify(res).includes(`'retry-after': '60'`) || JSON.stringify(er).includes('retry-after: 60'))
+			  setTimeout(()=>{
+			   	core.info(`POST (after 60s): ${x.ownerSlashRepo}, TO: #${x.number}.`);
+				  octokit.request('POST /repos/{owner}/{repo}/actions/workflows/{workflow_id}/dispatches', {
+				    owner: COMMUNITY_OWNER,
+				    repo: COMMUNITY,
+				    workflow_id: 50262476,
+				    ref: 'main',
+				     inputs: {
+				      ownerSlashRepo: x.ownerSlashRepo,
+				      discNum: String(x.number),
+				      clgI: core.getInput('clgI')
+				    },
+				    headers: {
+				      'X-GitHub-Api-Version': '2022-11-28'
+				    }
+				  });
+			   	},61000);
+	     })
+		.catch(er=>{
+		  core.warning(er);
+		   if(JSON.stringify(er).includes(`'retry-after': '60'`) || JSON.stringify(er).includes('retry-after: 60'))
+			   setTimeout(()=>{
+			   	core.info(`POST (after 60s): ${x.ownerSlashRepo}, TO: #${x.number}.`);
+				  octokit.request('POST /repos/{owner}/{repo}/actions/workflows/{workflow_id}/dispatches', {
+				    owner: COMMUNITY_OWNER,
+				    repo: COMMUNITY,
+				    workflow_id: 50262476,
+				    ref: 'main',
+				     inputs: {
+				      ownerSlashRepo: x.ownerSlashRepo,
+				      discNum: String(x.number),
+				      clgI: core.getInput('clgI')
+				    },
+				    headers: {
+				      'X-GitHub-Api-Version': '2022-11-28'
+				    }
+				  }).then(res=>{})
+			   	},61000);
+   	});
         }
         
       });       
@@ -226,6 +268,7 @@ async function refresh() {
   
   }else{    core.error('extracted: ERROR!');  }
   
+  },1000);
           
 
   

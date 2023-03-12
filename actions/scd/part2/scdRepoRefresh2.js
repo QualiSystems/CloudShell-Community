@@ -277,7 +277,8 @@ setTimeout(()=>{
 // 		   }
    	});
         }
-        },delay*1000);//},1000);
+        //},delay*1000);//},1000);
+	},itr>(extracted.length-extracted.length/10)?delay*2000:delay*1000);//},1000);
       };//});       
     }
   

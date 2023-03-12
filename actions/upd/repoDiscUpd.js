@@ -67,14 +67,15 @@ query GetDiscussionId($name: String!, $owner: String!, $number: Int!) {
 	
           core.info('REPOSITORY\nDISCUSSION ID: '+repoDiscussionId+', DISUCSSION NUMBER: '+discNum);
       let readmeFilePath;
-      const octokit = new Octokit({  auth: tkn });
+//       const octokit = new Octokit({  auth: tkn });
+const octokit = new Octokit({ auth: `Bearer ${tkn}` });
         core.info('TRYING TO FETCH FILE INDEX FROM REPO...');
         await octokit.request('GET /repos/{owner}/{repo}/contents', {
           owner: owner,
-          repo: repo,
-		  headers: {			
-			'authorization': `Bearer ${tkn}`
-			}
+          repo: repo//,
+		  //headers: {			
+			//'authorization': `Bearer ${tkn}`
+			//}
         }).then(res=>{
           try{
 			  core.info(JSON.stringify(res));
@@ -87,10 +88,10 @@ query GetDiscussionId($name: String!, $owner: String!, $number: Int!) {
         }).catch(error=>{core.error(error);});
 if (!readmeFilePath) await octokit.request('GET /repos/{owner}/{repo}/contents/docs', {
           owner: owner,
-          repo: repo,
-		  headers: {			
-			'authorization': `Bearer ${tkn}`
-			}
+          repo: repo//,
+		  //headers: {			
+			//'authorization': `Bearer ${tkn}`
+			//}
         }).then(res=>{
           try{
 			  core.info(JSON.stringify(res));
@@ -108,10 +109,10 @@ if (!readmeFilePath) await octokit.request('GET /repos/{owner}/{repo}/contents/d
           await octokit.request('GET /repos/{owner}/{repo}/contents/{path}', {
               owner: owner,
               repo: repo,
-              path: readmeFilePath,
-			  headers: {			
-			'authorization': `Bearer ${tkn}`
-			}
+              path: readmeFilePath//
+			 // headers: {			
+			//'authorization': `Bearer ${tkn}`
+			//}
 		  
             }).then(res=>{
              try{ 
@@ -142,8 +143,8 @@ let rendered_readmeFileContent;
 await octokit.request('POST /markdown', {
   text: String(readmeFileContent),
   headers: {
-    'X-GitHub-Api-Version': '2022-11-28',
-	'authorization': `Bearer ${tkn}`
+    'X-GitHub-Api-Version': '2022-11-28'//,
+	//'authorization': `Bearer ${tkn}`
   }
     }).then(res=>{
       core.info(JSON.stringify(res));

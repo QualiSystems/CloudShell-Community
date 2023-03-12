@@ -1,0 +1,23 @@
+name: 'Scheduled Integrations Weekly Refresh - PART II'
+on:
+  schedule:
+  - cron: '57 9 * * SUN'
+#   - cron: '2 21 */7 * *'
+  workflow_dispatch:
+       
+jobs:
+  intupd-action:
+    name: Scheduled Integration Refresh - PART II
+    runs-on: ubuntu-latest
+    steps:
+      # To use this repository's private action,
+      # you must check out the repository
+      - name: Checkout
+        uses: actions/checkout@v3
+        with: { ref: main }
+      - name: Refresh
+        uses: ./actions/scd/
+        id: refresh
+        with:
+          tkn: ${{ secrets.GITHUB_TOKEN }}
+          clgI: ${{ secrets.INTUPD_CHALLENGE }}

@@ -241,7 +241,7 @@ setTimeout(()=>{
 				      'X-GitHub-Api-Version': '2022-11-28'
 				    }
 				  });
-			  },delay*1000//},61000);
+			  },delay*1000);//},61000);
 		  }
 	     })
 		.catch(er=>{

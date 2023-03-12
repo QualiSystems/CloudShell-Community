@@ -822,7 +822,10 @@ fbstr +=
 		
 	}catch(_e){core.error(`${_e}\nERROR CHANGING <!--KEEP--><!--CUTOFF--><!--KEEP-->undefined<!--CUTOFF--><!--KEEP-->`);}
 
-					
+		
+	try{updated_repoDiscussionBody=updated_repoDiscussionBody.replaceAll('</sup></a><br></a><br>','</sup></a><br>')}catch(_e){core.warning('ERROR CHANGING </sup></a><br></a><br>');}
+	
+	
 	//#endregion mend 
 
 

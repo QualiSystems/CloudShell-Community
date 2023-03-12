@@ -109,7 +109,7 @@ if (!readmeFilePath) await octokit.request('GET /repos/{owner}/{repo}/contents/d
           await octokit.request('GET /repos/{owner}/{repo}/contents/{path}', {
               owner: owner,
               repo: repo,
-              path: readmeFilePath
+              path: readmeFilePath,
 			  headers: {			
 			'authorization': `Bearer ${tkn}`
 			}

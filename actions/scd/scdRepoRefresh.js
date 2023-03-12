@@ -183,7 +183,7 @@ async function refresh() {
 //       extracted.forEach((x,itr)=>{
 		
     let delay = 1;
-    try{extracted=extracted.sort((x1,x2)=>x1.number-x2.number);};catch(___){core.warning('failed SORT');}
+    try{extracted=extracted.sort((x1,x2)=>x1.number-x2.number);}catch(___){core.warning('failed SORT');}
     //PART I
     core.notice(`starting itr: 0 of extracted.length/2 (${extracted.length/2})`);
      for (let itr=0;itr<=extracted.length/2;itr++){

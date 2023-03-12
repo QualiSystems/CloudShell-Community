@@ -7,7 +7,7 @@ on:
        
 jobs:
   intupd-action:
-    name: Scheduled Integration Refresh
+    name: Scheduled Integration Refresh - PART I
     runs-on: ubuntu-latest
     steps:
       # To use this repository's private action,

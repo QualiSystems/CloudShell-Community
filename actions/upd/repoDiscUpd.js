@@ -566,17 +566,17 @@ ${unrendered_readmeFileContent}
   </table>`;
             }
   
-//           }else updated_repoDiscussionBody += 
-//   `</table>
-//   <table width="100%" align="center">
-//   <td align="right">
-//   <sub><sup>* Updated Weekly</sup></sub>
-//   </td>
-//   <td><strong><sub><sup>* Repository, release and asset info is updated weekly.<br>* Please allow 30-60 seconds for manual update changes to take effect.</sub></sup></strong></td>
-//   <td align="left">
-//   <sub><sup><a href="https://hooks.zapier.com/hooks/catch/13116203/b7e29bg?OR=${owner}/${repo}&DN=${discNum}">* Update Now</a></sup></sub>
-//   </td>
-//   </table>`;
+          }else updated_repoDiscussionBody += 
+  `</table>
+  <table width="100%" align="center">
+  <td align="right">
+  <sub><sup>* Updated Weekly</sup></sub>
+  </td>
+  <td><strong><sub><sup>* Repository, release and asset info is updated weekly.<br>* Please allow 30-60 seconds for manual update changes to take effect.</sub></sup></strong></td>
+  <td align="left">
+  <sub><sup><a href="https://hooks.zapier.com/hooks/catch/13116203/b7e29bg?OR=${owner}/${repo}&DN=${discNum}">* Update Now</a></sup></sub>
+  </td>
+  </table>`;
 
 	  //#endregion //BODY
 

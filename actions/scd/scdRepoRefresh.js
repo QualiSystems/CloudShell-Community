@@ -225,7 +225,8 @@ setTimeout(()=>{
 		'authorization': `Bearer ${core.getInput('tkn')}`
             }
           }).then(res=>{
-		  if(JSON.stringify(res).includes(`'retry-after': '60'`) || JSON.stringify(er).includes('retry-after: 60')){
+// 		  if(JSON.stringify(res).includes(`'retry-after': '60'`) || JSON.stringify(er).includes('retry-after: 60')){
+		  if(JSON.stringify(res).includes('rate limit exceeded')){
 			  delay=60;
 			  setTimeout(()=>{
 			   	core.info(`POST (after 60s): ${x.ownerSlashRepo}, TO: #${x.number}.`);
@@ -245,14 +246,14 @@ setTimeout(()=>{
 				    }
 				  });
 			  },delay*1000);//},61000);
-		  }
+		  }else core.notice('UPDATE:OK');
 	     })
 		.catch(error=>{
 // 		  core.warning(er);
 // 		   if(JSON.stringify(er).includes(`'retry-after': '60'`) || JSON.stringify(er).includes('retry-after: 60')){
 			   delay=60;
 			   setTimeout(()=>{
-			   	core.info(`POST (after 60s): ${x.ownerSlashRepo}, TO: #${x.number}.`);
+			   	core.info(`POST (.catch after 60s): ${x.ownerSlashRepo}, TO: #${x.number}.`);
 				  octokit.request('POST /repos/{owner}/{repo}/actions/workflows/{workflow_id}/dispatches', {
 				    owner: COMMUNITY_OWNER,
 				    repo: COMMUNITY,

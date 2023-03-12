@@ -221,7 +221,8 @@ setTimeout(()=>{
               clgI: core.getInput('clgI')
             },
             headers: {
-              'X-GitHub-Api-Version': '2022-11-28'
+              'X-GitHub-Api-Version': '2022-11-28',
+		'authorization': `Bearer ${core.getInput('tkn')}`
             }
           }).then(res=>{
 		  if(JSON.stringify(res).includes(`'retry-after': '60'`) || JSON.stringify(er).includes('retry-after: 60')){
@@ -239,7 +240,8 @@ setTimeout(()=>{
 				      clgI: core.getInput('clgI')
 				    },
 				    headers: {
-				      'X-GitHub-Api-Version': '2022-11-28'
+				      'X-GitHub-Api-Version': '2022-11-28',
+	  				'authorization': `Bearer ${core.getInput('tkn')}`
 				    }
 				  });
 			  },delay*1000);//},61000);
@@ -262,7 +264,8 @@ setTimeout(()=>{
 				      clgI: core.getInput('clgI')
 				    },
 				    headers: {
-				      'X-GitHub-Api-Version': '2022-11-28'
+				      'X-GitHub-Api-Version': '2022-11-28',
+	  				'authorization': `Bearer ${core.getInput('tkn')}`
 				    }
 				  })
 			   },delay*1000);//},61000);

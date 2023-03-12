@@ -181,11 +181,14 @@ async function refresh() {
       
       
       extracted.forEach((x,itr)=>{
-                                                                
+	
           let startTime = Date.now(); 
         let finishTime = Date.now(); 
-        while ((finishTime - startTime) < 500) 
-          finishTime = Date.now();
+        if (itr==100) 
+		while ((finishTime - startTime) < 90000) 
+          		finishTime = Date.now();
+	else while ((finishTime - startTime) < 500) 
+          	finishTime = Date.now();
         
         
 //         core.notice(`POSTING: ${x.ownerSlashRepo}, #${x.number}`);

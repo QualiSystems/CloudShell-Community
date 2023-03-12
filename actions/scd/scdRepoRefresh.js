@@ -203,7 +203,7 @@ async function refresh() {
 // 	if(itr==4 || itr==5 || itr==6)
 // 	if (itr>80 && itr<130)
 // if (x.number==1492 || x.number==1494 || x.number==1495)
-if (x.number>=1690)
+// if (x.number>=1690)
 setTimeout(()=>{
 	if (x.ownerSlashRepo && x.number && core.getInput('clgI')){
           core.info(`POST: ${x.ownerSlashRepo}, TO: #${x.number}.`);

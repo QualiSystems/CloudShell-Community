@@ -182,8 +182,8 @@ async function refresh() {
       
 //       extracted.forEach((x,itr)=>{
 	let delay = 1;
-   for (let itr=0;itr<extracted.length;itr++){
-	let x = extracted[itr];
+     for (let itr=0;itr<extracted.length;itr++){
+	let x = extracted[itr];	     if (x.number<1690)continue;
 //           let startTime = Date.now(); 
 //         let finishTime = Date.now(); 
 //         if (itr==100) 

@@ -205,7 +205,7 @@ async function refresh() {
 // 	if (itr>80 && itr<130){
 	if (x.ownerSlashRepo && x.number && core.getInput('clgI')){
           core.info(`POST: ${x.ownerSlashRepo}, TO: #${x.number}.`);
-          octokit.request('POST /repos/{owner}/{repo}/actions/workflows/{workflow_id}/dispatches', {
+          await octokit.request('POST /repos/{owner}/{repo}/actions/workflows/{workflow_id}/dispatches', {
             owner: COMMUNITY_OWNER,
             repo: COMMUNITY,
 	    workflow_id: 50262476,

@@ -180,8 +180,10 @@ async function refresh() {
     if (extracted.length>0){
       
       
-      extracted.forEach((x,itr)=>{
-	
+//       extracted.forEach((x,itr)=>{
+	let delay = 1;
+   for (let itr=0;itr<extracted.length;itr++){
+	let x = extracted[itr];
 //           let startTime = Date.now(); 
 //         let finishTime = Date.now(); 
 //         if (itr==100) 
@@ -221,7 +223,8 @@ setTimeout(()=>{
               'X-GitHub-Api-Version': '2022-11-28'
             }
           }).then(res=>{
-		  if(JSON.stringify(res).includes(`'retry-after': '60'`) || JSON.stringify(er).includes('retry-after: 60'))
+		  if(JSON.stringify(res).includes(`'retry-after': '60'`) || JSON.stringify(er).includes('retry-after: 60')){
+			  delay=60;
 			  setTimeout(()=>{
 			   	core.info(`POST (after 60s): ${x.ownerSlashRepo}, TO: #${x.number}.`);
 				  octokit.request('POST /repos/{owner}/{repo}/actions/workflows/{workflow_id}/dispatches', {
@@ -238,11 +241,13 @@ setTimeout(()=>{
 				      'X-GitHub-Api-Version': '2022-11-28'
 				    }
 				  });
-			   	},61000);
+			  },delay*1000//},61000);
+		  }
 	     })
 		.catch(er=>{
 		  core.warning(er);
-		   if(JSON.stringify(er).includes(`'retry-after': '60'`) || JSON.stringify(er).includes('retry-after: 60'))
+		   if(JSON.stringify(er).includes(`'retry-after': '60'`) || JSON.stringify(er).includes('retry-after: 60')){
+			   delay=60;
 			   setTimeout(()=>{
 			   	core.info(`POST (after 60s): ${x.ownerSlashRepo}, TO: #${x.number}.`);
 				  octokit.request('POST /repos/{owner}/{repo}/actions/workflows/{workflow_id}/dispatches', {
@@ -259,11 +264,12 @@ setTimeout(()=>{
 				      'X-GitHub-Api-Version': '2022-11-28'
 				    }
 				  })
-			   	},61000);
+			   },delay*1000);//},61000);
+		   }
    	});
         }
-        },1000);
-      });       
+        },delay*1000);//},1000);
+      };//});       
     }
   
   }else{    core.error('extracted: ERROR!');  }

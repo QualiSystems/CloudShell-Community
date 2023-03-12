@@ -258,17 +258,17 @@ setTimeout(()=>{
 				    headers: {
 				      'X-GitHub-Api-Version': '2022-11-28'
 				    }
-				  }).then(res=>{})
+				  })
 			   	},61000);
    	});
         }
-        
+        },1000);
       });       
-    }
+//     }
   
   }else{    core.error('extracted: ERROR!');  }
   
-  },1000);
+  
           
 
   

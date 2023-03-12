@@ -84,7 +84,10 @@ query GetDiscussionId($name: String!, $owner: String!, $number: Int!) {
         }).catch(error=>{core.error(error);});
 if (!readmeFilePath) await octokit.request('GET /repos/{owner}/{repo}/contents/docs', {
           owner: owner,
-          repo: repo
+          repo: repo,
+		  headers: {			
+			'authorization': `Bearer ${tkn}`
+			}
         }).then(res=>{
           try{
 			  core.info(JSON.stringify(res));
@@ -102,7 +105,11 @@ if (!readmeFilePath) await octokit.request('GET /repos/{owner}/{repo}/contents/d
           await octokit.request('GET /repos/{owner}/{repo}/contents/{path}', {
               owner: owner,
               repo: repo,
-              path: readmeFilePath//'README.md'
+              path: readmeFilePath,
+			  headers: {			
+			'authorization': `Bearer ${tkn}`
+			}
+		  
             }).then(res=>{
              try{ 
 				readmeFile = res.data; 
@@ -132,7 +139,8 @@ let rendered_readmeFileContent;
 await octokit.request('POST /markdown', {
   text: String(readmeFileContent),
   headers: {
-    'X-GitHub-Api-Version': '2022-11-28'
+    'X-GitHub-Api-Version': '2022-11-28',
+	'authorization': `Bearer ${tkn}`
   }
     }).then(res=>{
       core.info(JSON.stringify(res));

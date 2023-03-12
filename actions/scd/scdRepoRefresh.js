@@ -169,7 +169,7 @@ async function refresh() {
       if (en.number){ targetDisc.number = en.number };
       if (targetDisc.ownerSlashRepo!==undefined && targetDisc.ownerSlashRepo.includes(`/`) && targetDisc.number!==undefined){        extracted.push(targetDisc);      }
        
-    }catch(e_){core.warning(e_);}
+    }catch(e_){core.warning(`${e_}\n${en.number} ^^^`);}
    }); 
   }
   
@@ -181,8 +181,11 @@ async function refresh() {
       
       
 //       extracted.forEach((x,itr)=>{
-	let delay = 1;
-     for (let itr=0;itr<extracted.length;itr++){
+		
+    let delay = 1;
+    try{extracted=extracted.sort((x1,x2)=>x1.number-x2.number);};catch(___){core.warning('failed SORT');}
+    //PART I
+     for (let itr=0;itr<=extracted.length/2;itr++){
 	let x = extracted[itr];	   // if(x.number!=1569)continue;// if (x.number<1690)continue;
 	     
 //           let startTime = Date.now(); 

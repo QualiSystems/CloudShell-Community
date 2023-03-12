@@ -245,9 +245,9 @@ setTimeout(()=>{
 			  },delay*1000);//},61000);
 		  }
 	     })
-		.catch(er=>{
-		  core.warning(er);
-		   if(JSON.stringify(er).includes(`'retry-after': '60'`) || JSON.stringify(er).includes('retry-after: 60')){
+		.catch(error=>{
+// 		  core.warning(er);
+// 		   if(JSON.stringify(er).includes(`'retry-after': '60'`) || JSON.stringify(er).includes('retry-after: 60')){
 			   delay=60;
 			   setTimeout(()=>{
 			   	core.info(`POST (after 60s): ${x.ownerSlashRepo}, TO: #${x.number}.`);
@@ -266,7 +266,7 @@ setTimeout(()=>{
 				    }
 				  })
 			   },delay*1000);//},61000);
-		   }
+// 		   }
    	});
         }
         },delay*1000);//},1000);

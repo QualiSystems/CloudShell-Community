@@ -1,7 +1,7 @@
 name: 'Scheduled Integrations Weekly Refresh'
 on:
   schedule:
-  - cron: '35 6 * * SUN'
+  - cron: '47 6 * * SUN'
 #   - cron: '2 21 */7 * *'
 #   workflow_dispatch:
        

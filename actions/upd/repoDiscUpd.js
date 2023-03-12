@@ -245,7 +245,7 @@ catch(e){core.warning(`${JSON.stringify(e)}\nERROR - README.md...`);}
             } else scaleSuffix='b';
             if (sizeFormatted.replace('.','').length>=7) sizeFormatted=sizeFormatted[0]+','+sizeFormatted.substring(1,4)+','+sizeFormatted.substring(4,sizeFormatted.length);
             sizeFormatted+=' '+scaleSuffix;
-assets_str+=`<a href="${asset.browser_download_url}">${asset.name}<sup><br>[${sizeFormatted}]</sup></a><br></a><br>`
+assets_str+=`<a href="${asset.browser_download_url}">${asset.name}<sup><br>[${sizeFormatted}]</sup></a><br>`
           }catch(e){}
         });
        }
@@ -823,7 +823,7 @@ fbstr +=
 	}catch(_e){core.error(`${_e}\nERROR CHANGING <!--KEEP--><!--CUTOFF--><!--KEEP-->undefined<!--CUTOFF--><!--KEEP-->`);}
 
 		
-	try{updated_repoDiscussionBody=updated_repoDiscussionBody.replaceAll('</sup></a><br></a><br>','</sup></a><br>')}catch(_e){core.warning('ERROR CHANGING </sup></a><br></a><br>');}
+// 	try{updated_repoDiscussionBody=updated_repoDiscussionBody.replaceAll('</sup></a><br></a><br>','</sup></a><br>')}catch(_e){core.warning('ERROR CHANGING </sup></a><br></a><br>');}
 	
 	
 	//#endregion mend 

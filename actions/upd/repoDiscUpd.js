@@ -71,7 +71,10 @@ query GetDiscussionId($name: String!, $owner: String!, $number: Int!) {
         core.info('TRYING TO FETCH FILE INDEX FROM REPO...');
         await octokit.request('GET /repos/{owner}/{repo}/contents', {
           owner: owner,
-          repo: repo
+          repo: repo,
+		  headers: {			
+			'authorization': `Bearer ${tkn}`
+			}
         }).then(res=>{
           try{
 			  core.info(JSON.stringify(res));
@@ -182,7 +185,10 @@ catch(e){core.warning(`${JSON.stringify(e)}\nERROR - README.md...`);}
     let latestRelease_published_at;
     await octokit.request('GET /repos/{owner}/{repo}/releases', {
       owner: owner,
-      repo: repo
+      repo: repo,
+		  headers: {			
+			'authorization': `Bearer ${tkn}`
+			}
     }).then(res=>{
      
       if (res.data[0]){
